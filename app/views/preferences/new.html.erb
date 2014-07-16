@@ -1,0 +1,35 @@
+<%= form_for @preference do |f| %>
+  <% if @preference.errors.any? %>
+    <div>
+      <%= pluralize(@preference.errors.count, "error") %> prevented this preference from being submitted:
+      <ul>
+        <% @preference.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label "gender_pref" %><br>
+    <%= f.select("gender_pref",[['male', 'male'], ['female', 'female']]) %>
+  </div>
+  <div>
+    <%= f.label "min_age" %><br>
+    <%= f.number_field "min_age" %>
+  </div>
+  <div>
+    <%= f.label "max_age" %><br>
+    <%= f.number_field "max_age" %>
+  </div>
+  <div>
+    <%= f.label "date_type_pref" %><br>
+    <%= f.text_field "date_type_pref" %>
+  </div>
+  <div>
+    <%= f.label "lifestyle_pref" %><br>
+    <%= f.text_area "lifestyle_pref" %>
+  </div>
+  <div>
+    <%= f.submit "Submit" %> 
+  </div>
+<% end %>
