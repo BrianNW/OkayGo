@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+
+  Serotonin::Application.routes.draw do
+    root :to => "home#index"
+  end
   # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  # See how all your route lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
