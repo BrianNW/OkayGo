@@ -1,7 +1,7 @@
 class PreferencesController < ApplicationController
   
   def index
-    @preference = Preference.all
+    @preference = Preference.all.page(params[:page]).per(5)
   end
 
   def show
@@ -13,10 +13,11 @@ class PreferencesController < ApplicationController
   end
 
   def create
-    @preference = Preference.new(preference_params)
+    @preference = current_user.build_preference(preference_params)
+    @preference.user_id = current_user.id
 
     if @preference.save
-      redirect_to preferences_path
+      redirect_to preferences_path, notice: "Preference created successfully!"
     else
       render :new
     end
