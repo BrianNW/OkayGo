@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140717201239) do
+ActiveRecord::Schema.define(version: 20140717224846) do
 
   create_table "deets", force: true do |t|
     t.string   "about_me"
@@ -22,18 +22,28 @@ ActiveRecord::Schema.define(version: 20140717201239) do
     t.integer  "user_id"
   end
 
+  create_table "lifestyles", force: true do |t|
+    t.string   "types"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "preferences", force: true do |t|
     t.integer  "user_id"
     t.string   "gender_pref"
     t.integer  "min_age"
     t.integer  "max_age"
     t.string   "date_type_pref"
-    t.string   "lifestyle_pref"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "preferences", ["user_id"], name: "index_preferences_on_user_id"
+  create_table "user_lifestyle_prefs", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "lifestyle_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "username"
