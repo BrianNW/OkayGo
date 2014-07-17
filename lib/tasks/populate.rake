@@ -6,7 +6,37 @@ namespace :db do
 
     [User].each(&:delete_all)
 
- 100.times do
+    Lifestyle.populate 1 do |p|
+      p.types = 'adventurer'
+    end
+
+    Lifestyle.populate 1 do |p|
+      p.types = 'athletic'
+    end
+
+    Lifestyle.populate 1 do |p|
+      p.types = 'intellectual'
+    end
+
+    Lifestyle.populate 1 do |p|
+      p.types = 'professional'
+    end
+
+    Lifestyle.populate 1 do |p|
+      p.types = 'traveller'
+    end
+
+    Lifestyle.populate 1 do |p|
+      p.types = 'party animal'
+    end
+
+    Lifestyle.populate 1 do |p|
+      p.types = 'chill'
+    end
+
+
+  100.times do
+
     User.populate 1 do |user|
       user.username = 'Sarah'
       user.gender ='female'
@@ -24,9 +54,16 @@ namespace :db do
         p.min_age = 26
         p.max_age = 30
         p.date_type_pref = ['coffee', 'dinner', 'show', 'drinks']
-        p.lifestyle_pref = ['adventurer', 'athletic', 'intellectual', 'professional', 'traveller', 'party animal', 'chill']
+      UserLifestylePref.populate 1 do |p|
+        p.user_id = user.id
+        p.lifestyle_id = [1, 2, 3, 4, 5, 6, 7]
+      UserLifestylePref.populate 1 do |p|
+        p.user_id = user.id
+        p.lifestyle_id = [1, 2, 3, 4, 5, 6, 7]
+        end
+       end
       end
-      end
+     end
     end
 
     User.populate 1 do |user|
@@ -43,14 +80,23 @@ namespace :db do
       Preference.populate 1 do |p|
         p.user_id = user.id
         p.gender_pref = ['female', 'male']
-        p.min_age = 19
-        p.max_age = 24
+        p.min_age = 26
+        p.max_age = 30
         p.date_type_pref = ['coffee', 'dinner', 'show', 'drinks']
-        p.lifestyle_pref = ['adventurer', 'athletic', 'intellectual', 'professional', 'traveller', 'party animal', 'chill']
+      UserLifestylePref.populate 1 do |p|
+        p.user_id = user.id
+        p.lifestyle_id = [1, 2, 3, 4, 5, 6, 7]
+      UserLifestylePref.populate 1 do |p|
+        p.user_id = user.id
+        p.lifestyle_id = [1, 2, 3, 4, 5, 6, 7]
+        end
+       end
       end
-      end
+     end
     end
 
- end
+
+   end #FOR 100.times do
+
  end
 end
