@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    ultimate_matches
+    @matches = ultimate_matches
   end
 
   def show
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to users_path, notice: "Welcome aboard, #{@user.username}!"
+      redirect_to new_preference_path, notice: "Welcome aboard, #{@user.username}!"
     else
       render :new
     end
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   end
 
   def ultimate_matches
-    @user = User.where(:gender => current_user.preference.gender_pref, :age => current_user.preference.min_age..current_user.preference.max_age)
+    @user = User.where(:gender => current_user.preference.gender_pref, :age => current_user.preference.min_age..current_user.preference.max_age).page(params[:page]).per(5)
   end
 end
 
