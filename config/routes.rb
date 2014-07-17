@@ -4,4 +4,6 @@ Rails.application.routes.draw do
 
   resources :preferences
 
+  resources :sessions, only: [:new, :create]
+
 end 

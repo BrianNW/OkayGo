@@ -1,6 +1,11 @@
 <h1>User Test Index</h1>
 
-<%= link_to "Add your users!", new_user_path %>
+<hr>
+<% if current_user %>
+      Signed in as <%= current_user.username %> (<%= link_to "Log out", session_path("current"), method: :delete %>)
+    <% else %>
+      <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
+    <% end %>
 <hr>
 <% @user.each do |user| %>
   <h3><%= user.username %></h3>
