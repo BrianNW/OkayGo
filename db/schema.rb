@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20140716222116) do
     t.datetime "updated_at"
   end
 
+  add_index "preferences", ["user_id"], name: "index_preferences_on_user_id"
+
   create_table "users", force: true do |t|
     t.string   "username"
     t.string   "password"
