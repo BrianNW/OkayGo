@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    # if current_user.gender_pref == 'female'
+    if current_user.gender_pref == 'female'
     #   @user = User.where(:gender => 'female')
     # elsif current_user.gender_pref == 'male'
     #   @user = User.where(:gender => 'male')
