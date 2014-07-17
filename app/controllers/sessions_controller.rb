@@ -19,5 +19,4 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to users_path, notice: "Adios!"
   end
-
 end

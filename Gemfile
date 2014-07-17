@@ -43,3 +43,9 @@ gem 'faker'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 2dbf35d154974e9ab8ecab110f39ea9deedbb689
