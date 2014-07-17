@@ -4,6 +4,7 @@
 <hr>
 <% @user.each do |user| %>
   <h3><%= user.username %></h3>
+  <img src="<%=user.img%>" width="270px" height="170px">
   <h2><%= user.age %></h2>
   <h2><%= user.gender %></h2>
   <hr>
