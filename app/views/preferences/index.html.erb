@@ -1,0 +1,9 @@
+<h1>Preference Index Test</h1>
+
+<%= link_to "Add your preferences!", new_preference_path %>
+<hr>
+<% @preference.each do |preference| %>
+  <h2><%= preference.gender_pref %></h2>
+  <h3><%= preference.lifestyle_pref %></h3>
+  <hr>
+<% end %>

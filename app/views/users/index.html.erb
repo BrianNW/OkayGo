@@ -1,0 +1,10 @@
+<h1>User Test Index</h1>
+
+<%= link_to "Add your users!", new_user_path %>
+<hr>
+<% @user.each do |user| %>
+  <h3><%= user.username %></h3>
+  <h2><%= user.age %></h2>
+  <h2><%= user.gender %></h2>
+  <hr>
+<% end %>
