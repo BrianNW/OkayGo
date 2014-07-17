@@ -15,11 +15,11 @@
   </div>
   <div>
     <%= f.label "min_age" %><br>
-    <%= f.number_field "min_age" %>
+    <%= select(@preference, "min_age", (18..99).to_a) %>
   </div>
   <div>
     <%= f.label "max_age" %><br>
-    <%= f.number_field "max_age" %>
+    <%= f.select(@preference, "max_age", (18..99).to_a) %>
   </div>
   <div>
     <%= f.label "date_type_pref" %><br>
