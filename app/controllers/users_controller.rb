@@ -1,13 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    if current_user.gender_pref == 'female'
-    #   @user = User.where(:gender => 'female')
-    # elsif current_user.gender_pref == 'male'
-    #   @user = User.where(:gender => 'male')
-    # else
-      @user = User.all
-    # end
+    ultimate_matches
   end
 
   def show
@@ -38,11 +32,23 @@ class UsersController < ApplicationController
     params.require(:user).permit(
       :username, :password, :img, :age, :gender, :bio)
   end
+
+  def ultimate_matches
+    @user = User.where(:gender => current_user.preference.gender_pref, :age => current_user.preference.min_age..current_user.preference.max_age)
+  end
 end
 
-#   def self.gender_matches(user)
-#     where(:gender => user.preference.gender_pref)
-#   end
+  # if current_user.preference.gender_pref == 'female'
+  #   @user = User.where(:gender => 'female')
+  # elsif current_user.preference.gender_pref == 'male'
+  #   @user = User.where(:gender => 'male')
+  # else
+  #   @user = User.all
+  # end
+
+  # def self.gender_matches(user)
+  #   where(:gender => user.preference.gender_pref)
+  # end
 #
 #   def self.age_matches(user)
 #     User.where('users.age >= ? AND users.age < ?', user.preference.min_age, user.preference.max_age)
