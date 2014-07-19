@@ -17,7 +17,7 @@ class PreferencesController < ApplicationController
     @preference.user_id = current_user.id
 
     if @preference.save
-      redirect_to preferences_path, notice: "Preference created successfully!"
+      redirect_to new_deet_path, notice: "Preference created successfully!"
     else
       render :new
     end

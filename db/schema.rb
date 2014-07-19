@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20140717224846) do
     t.datetime "updated_at"
   end
 
+  add_index "preferences", ["user_id"], name: "index_preferences_on_user_id"
+
   create_table "user_lifestyle_prefs", force: true do |t|
     t.integer  "user_id"
     t.integer  "lifestyle_id"

@@ -1,0 +1,27 @@
+<h1>Add your Deets!</h1>
+
+<%= form_for @deet do |f| %>
+  <% if @deet.errors.any? %>
+    <div>
+      <%= pluralize(@deet.errors.count, "error") %> prevented this deet from being submitted:
+      <ul>
+        <% @deet.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label "about_me" %><br>
+    <%= f.text_field "about_me" %>
+  </div>
+  <%= f.label "lifestyle" %><br>
+  <%= f.select("lifestyle",[['adventurer', 'adventurer'], ['athletic', 'athletic'], ['intellectual', 'intellectual'], ['professional', 'professional'], ['traveller', 'traveller'], ['party animal', 'party animal'], ['chill', 'chill']]) %>
+  <div>
+    <%= f.label "profession" %><br>
+    <%= f.text_field "profession" %>
+  </div>
+  <div>
+    <%= f.submit "Submit" %> 
+  </div>
+<% end %>
