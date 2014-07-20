@@ -5,6 +5,7 @@ class DeetsController < ApplicationController
 
     def show
       @user = User.find(params[:id])
+      @deet = @user.deet.id
     end
 
     def new
@@ -23,6 +24,7 @@ class DeetsController < ApplicationController
   end
 
     def edit
+      @deet = Deet.find(current_user.id)
     end
 
   protected

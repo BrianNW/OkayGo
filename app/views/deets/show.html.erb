@@ -1,5 +1,14 @@
 <h1>My Profile Page</h1>
 
-<%=@user.username%>
-<%=@user.deet.about_me%>
-<%@user.deet.lifestyle%>
+<h4>
+  Username: <%= @user.username %><br>
+</h4>
+
+<h1>Details:</h1>
+
+<h4>
+  About Me: <%= @user.deet.about_me %><br>
+  Lifestyle: <%= @user.deet.lifestyle %><br>
+  Profession: <%= @user.deet.profession %><br>
+  <%= link_to 'Edit Details', edit_deet_path(@deet) %>
+</h4>
