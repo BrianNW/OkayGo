@@ -5,10 +5,9 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(username: params[:username])
-
     if user
       session[:user_id] = user.id
-      redirect_to root_path, notice: "Welcome back, #{user.username}!"
+      redirect_to users_path, notice: "Welcome back, #{user.username}!"
     else
       flash.now[:alert] = "Log in failed..."
       render :new
@@ -17,6 +16,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to users_path, notice: "Adios!"
+    redirect_to root_path, notice: "Adios!"
   end
 end
