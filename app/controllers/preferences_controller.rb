@@ -27,6 +27,16 @@ class PreferencesController < ApplicationController
     @preference = Preference.find(current_user.id)
   end
 
+   def update
+    @preference = Preference.find(current_user.id)
+
+    if @preference.update_attributes(preference_params)
+      redirect_to deet_path(@preference), notice: 'Done!'
+    else
+      render :edit
+    end
+  end
+
   protected
 
   def preference_params

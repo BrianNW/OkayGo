@@ -28,6 +28,16 @@ class DeetsController < ApplicationController
       @deet = Deet.find(current_user.id)
     end
 
+   def update
+    @deet = Deet.find(current_user.id)
+
+      if @deet.update_attributes(deet_params)
+        redirect_to deet_path(@deet), notice: 'Done!'
+      else
+        render :edit
+      end
+    end
+
   protected
 
     def deet_params

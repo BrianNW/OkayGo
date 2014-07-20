@@ -10,7 +10,7 @@
   About Me: <%= @user.deet.about_me %><br>
   Lifestyle: <%= @user.deet.lifestyle %><br>
   Profession: <%= @user.deet.profession %><br><br>
-  <%= link_to 'Edit Details', edit_deet_path(@deet) %>
+  <%= link_to 'Update Details', edit_deet_path(@deet) %>
 </h4>
 
 <h1>Preferences:</h1>
@@ -18,4 +18,4 @@
    <br>
    Ideally, I would like to to go on a <%= @user.preference.date_type_pref %> date.
    </p>
-   <%= link_to 'Edit Date Preferences', edit_preference_path(@preference) %>
+   <%= link_to 'Update Date Preferences', edit_preference_path(@preference) %>
