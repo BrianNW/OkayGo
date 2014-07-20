@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :deets
 
   resources :users
+  get 'deets/:id' => 'deets#show'
 
   resources :preferences
 

@@ -4,7 +4,8 @@
       <%= link_to image_tag("http://www.iconarchive.com/download/i59784/firstfear/whistlepuff/home.ico"), root_path %>
       <br>
 <% if current_user %>
-  Logged in as <%= current_user.username %>.
+  Logged in as <%=current_user.username %>.
+  <%= link_to "My Profile", deet_path(current_user.id) %>
   <%= link_to "Log Out", logout_path %>
 <% else %>
   <%= link_to "Sign Up", signup_path %> or
