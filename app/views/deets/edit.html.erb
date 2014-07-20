@@ -1,2 +1,5 @@
-<h1>Deets#edit</h1>
-<p>Find me in app/views/deets/edit.html.erb</p>
+<h2>Edit My Deets</h2>
+
+<%= link_to "Back to my profile", deet_path(current_user.id) %>
+
+<%= render 'form' %>

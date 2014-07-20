@@ -6,6 +6,7 @@ class DeetsController < ApplicationController
     def show
       @user = User.find(params[:id])
       @deet = @user.deet.id
+      @preference = @user.preference.id
     end
 
     def new

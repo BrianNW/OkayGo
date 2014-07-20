@@ -24,6 +24,7 @@ class PreferencesController < ApplicationController
   end
 
   def edit
+    @preference = Preference.find(current_user.id)
   end
 
   protected

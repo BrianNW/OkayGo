@@ -9,6 +9,13 @@
 <h4>
   About Me: <%= @user.deet.about_me %><br>
   Lifestyle: <%= @user.deet.lifestyle %><br>
-  Profession: <%= @user.deet.profession %><br>
+  Profession: <%= @user.deet.profession %><br><br>
   <%= link_to 'Edit Details', edit_deet_path(@deet) %>
 </h4>
+
+<h1>Preferences:</h1>
+   <p> I am looking for a <%= @user.preference.gender_pref %> between the  ages of <%= @user.preference.min_age %> and <%= @user.preference.max_age %>. 
+   <br>
+   Ideally, I would like to to go on a <%= @user.preference.date_type_pref %> date.
+   </p>
+   <%= link_to 'Edit Date Preferences', edit_preference_path(@preference) %>
