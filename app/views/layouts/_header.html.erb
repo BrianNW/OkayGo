@@ -3,11 +3,13 @@
   <small>
       <%= link_to image_tag("http://www.iconarchive.com/download/i59784/firstfear/whistlepuff/home.ico"), root_path %>
       <br>
-  <% if current_user %>
-      Signed in as <%= current_user.username %> (<%= link_to "Log out", session_path("current"), method: :delete %>)
-    <% else %>
-      <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
-    <% end %>
+<% if current_user %>
+  Logged in as <%= current_user.username %>.
+  <%= link_to "Log Out", logout_path %>
+<% else %>
+  <%= link_to "Sign Up", signup_path %> or
+  <%= link_to "Log In", login_path %>
+<% end %>
   </small>
   <br>
   </div>
