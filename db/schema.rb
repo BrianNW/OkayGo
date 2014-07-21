@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140721171214) do
+ActiveRecord::Schema.define(version: 20140721172632) do
 
   create_table "deets", force: true do |t|
     t.string   "about_me"
@@ -53,7 +53,6 @@ ActiveRecord::Schema.define(version: 20140721171214) do
     t.string   "gender_pref"
     t.integer  "min_age"
     t.integer  "max_age"
-    t.string   "date_type_pref"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
