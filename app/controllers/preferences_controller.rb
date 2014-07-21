@@ -10,6 +10,7 @@ class PreferencesController < ApplicationController
 
   def new
     @preference = Preference.new
+    @first_date = FirstDate.all
   end
 
   def create
