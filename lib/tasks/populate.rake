@@ -14,9 +14,9 @@ namespace :db do
    lifestyle_array = ['adventurer',
     'athletic',
     'intellectual',
-    'professional', 
-    'traveller', 
-    'party animal', 
+    'professional',
+    'traveller',
+    'party animal',
     'chill'].each do |types|
       types = Lifestyle.where(:types => types).first_or_create!({
         :types => types
