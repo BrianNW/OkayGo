@@ -1,6 +1,6 @@
-class CreateUserLifestylePrefs < ActiveRecord::Migration
+class CreateLifestylePrefs < ActiveRecord::Migration
   def change
-    create_table :user_lifestyle_prefs do |t|
+    create_table :lifestyle_prefs do |t|
       t.integer :user_id
       t.integer :lifestyle_id
 
