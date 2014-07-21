@@ -1,11 +1,13 @@
-<h1>User Test Index</h1>
+<h1>User Match Page</h1>
 
 <hr>
 <% @user.each do |user| %>
-  <h3><%= user.username %></h3>
+  <h2><%= link_to user.username, user_path(user) %>
+  <br>
   <img src="<%=user.img%>" width="270px" height="170px">
   <h2><%= user.age %></h2>
   <h2><%= user.gender %></h2>
+  <p>Click on the username to view this person's profile</p>
   <hr>
 <% end %>
 
