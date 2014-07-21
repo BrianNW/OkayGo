@@ -38,6 +38,15 @@ class DeetsController < ApplicationController
       end
     end
 
+    def search
+      request = Location.new(
+         :city => 'San Francisco',
+         :state => 'CA',
+         :category => ['donuts', 'icecream'])
+      response = client.search(request)
+      response
+    end
+
   protected
 
     def deet_params

@@ -28,10 +28,12 @@ gem 'spring',        group: :development
 
 gem 'tux'
 gem 'kaminari'
-
+gem 'yelp', require: 'yelp'
+gem 'yelpster'
 gem 'populator'
 gem 'faker'
 gem 'bootstrap-sass'
+gem 'geocoder'
 # gem 'rack-offline'
 # gem "factory_girl_rails", "~> 4.0"
 

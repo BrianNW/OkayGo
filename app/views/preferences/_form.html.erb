@@ -21,6 +21,10 @@
     <%= f.label "max_age" %><br>
     <%= f.select "max_age", options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n} ) %>
   </div>
+    <div>
+    <%= f.label "address" %><br>
+    <%= f.text_field "address" %>
+  </div>
   <div>
     <%= f.label "date_type_pref" %><br>
     <%= f.text_field "date_type_pref" %>

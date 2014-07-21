@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140717224846) do
+ActiveRecord::Schema.define(version: 20140721002950) do
 
   create_table "deets", force: true do |t|
     t.string   "about_me"
@@ -36,6 +36,9 @@ ActiveRecord::Schema.define(version: 20140717224846) do
     t.string   "date_type_pref"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "preferences", ["user_id"], name: "index_preferences_on_user_id"

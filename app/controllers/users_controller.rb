@@ -35,7 +35,10 @@ class UsersController < ApplicationController
 
   def ultimate_matches
     @user = User.where(:gender => current_user.preference.gender_pref,
-      :age => current_user.preference.min_age..current_user.preference.max_age).page(params[:page]).per(1)
+      :age => current_user
+      .preference.min_age..current_user
+      .preference.max_age)
+      .page(params[:page]).per(1)
   end
 end
 
