@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140717224846) do
+ActiveRecord::Schema.define(version: 20140721171214) do
 
   create_table "deets", force: true do |t|
     t.string   "about_me"
@@ -20,6 +20,26 @@ ActiveRecord::Schema.define(version: 20140717224846) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "first_date_prefs", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "first_date_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "first_dates", force: true do |t|
+    t.string   "types"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "lifestyle_prefs", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "lifestyle_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "lifestyles", force: true do |t|
@@ -34,15 +54,6 @@ ActiveRecord::Schema.define(version: 20140717224846) do
     t.integer  "min_age"
     t.integer  "max_age"
     t.string   "date_type_pref"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "preferences", ["user_id"], name: "index_preferences_on_user_id"
-
-  create_table "user_lifestyle_prefs", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "lifestyle_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

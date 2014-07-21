@@ -1,7 +1,7 @@
 class CreatePreferences < ActiveRecord::Migration
   def change
     create_table :preferences do |t|
-      t.references :user, index: true
+      t.integer :user_id
       t.string :gender_pref
       t.integer :min_age
       t.integer :max_age

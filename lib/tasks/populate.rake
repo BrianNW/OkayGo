@@ -11,12 +11,14 @@ namespace :db do
 
     lifestyle = []
 
-   lifestyle_array = ['adventurer',
+    first_date = []
+
+    lifestyle_array = ['adventurer',
     'athletic',
     'intellectual',
-    'professional', 
-    'traveller', 
-    'party animal', 
+    'professional',
+    'traveller',
+    'party animal',
     'chill'].each do |types|
       types = Lifestyle.where(:types => types).first_or_create!({
         :types => types
@@ -40,7 +42,7 @@ namespace :db do
         )
       preference = Preference.create({
       :user_id => user.id,
-      :gender_pref => 'female',
+      :gender_pref => ['female', 'male'].sample,
       :min_age => 20 + rand(10),
       :max_age => 65,
       :date_type_pref => date_types[rand(4)]
@@ -51,7 +53,7 @@ namespace :db do
         :lifestyle => lifestyle_array[rand(7)],
         :profession => profession[rand(8)]
         })
-      user_lifestyle_pref = UserLifestylePref.create({
+      lifestyle_pref = LifestylePref.create({
         :user_id => user.id,
         :lifestyle_id => [1,2,3,4,5,6,7].sample
         })
@@ -70,7 +72,7 @@ namespace :db do
         )
       preference = Preference.create({
       :user_id => user.id,
-      :gender_pref => 'male',
+      :gender_pref => ['female', 'male'].sample,
       :min_age => 20 + rand(10),
       :max_age => 65,
       :date_type_pref => date_types[rand(4)]
@@ -81,7 +83,7 @@ namespace :db do
         :lifestyle => lifestyle_array[rand(7)],
         :profession => profession[rand(8)]
         })
-      user_lifestyle_pref = UserLifestylePref.create({
+      lifestyle_pref = LifestylePref.create({
         :user_id => user.id,
         :lifestyle_id => [1,2,3,4,5,6,7].sample
         })
@@ -141,11 +143,11 @@ namespace :db do
   #     p.max_age = 30
   #     p.date_type_pref = ['coffee', 'dinner', 'show', 'drinks']
   #   end
-  #   UserLifestylePref.populate 1 do |p|
+  #   LifestylePref.populate 1 do |p|
   #     p.user_id = 1..200
   #     p.lifestyle_id = 4
   #   end
-  #   UserLifestylePref.populate 1 do |p|
+  #   LifestylePref.populate 1 do |p|
   #     p.user_id = 1..200
   #     p.lifestyle_id = 3
   #   end
@@ -170,11 +172,11 @@ namespace :db do
   #       p.max_age = 30
   #       p.date_type_pref = ['coffee', 'dinner', 'show', 'drinks']
   #     end
-  #     UserLifestylePref.populate 1 do |p|
+  #     LifestylePref.populate 1 do |p|
   #       p.user_id = 1..100
   #       p.lifestyle_id = 4
   #     end
-  #     UserLifestylePref.populate 1 do |p|
+  #     LifestylePref.populate 1 do |p|
   #       p.user_id = 1..100
   #       p.lifestyle_id = 3
   #     end
