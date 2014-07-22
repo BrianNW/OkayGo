@@ -13,8 +13,7 @@
   <%= link_to 'Update Details', edit_deet_path(@deet) %>
 </h4>
 
-<h1>Preferences:</
-h1>
+<h1>Preferences:</h1>
    <p> I am looking for a <%= @user.preference.gender_pref %> between the  ages of <%= @user.preference.min_age %> and <%= @user.preference.max_age %>.
    <br>
    First date? I'd be down to go for:<br>
@@ -26,7 +25,10 @@ h1>
    <%= link_to 'Update Date Preferences', edit_preference_path(@preference) %>
 
 <h1>View My Matches</h1>
-<%= link_to 'My Matches', users_path %><br><br>
+<%= link_to 'My Matches', users_path %>
+<br>
+<br>
 Your date is going to be at:
 <h1><%= @business_name %></h1>
-
+<br>
+<img src="<%=@img%>" width="270px" height="170px"><br><br>
