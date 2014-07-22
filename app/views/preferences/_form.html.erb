@@ -22,8 +22,10 @@
     <%= f.select "max_age", options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n} ) %>
   </div>
   <div>
-    <%= f.label "date_type_pref" %><br>
-    <%= f.text_field "date_type_pref" %>
+  <%= collection_check_boxes(:user, :first_dates, @first_date, :id, :types) %>
+  </div>
+    <div>
+  <%= collection_check_boxes(:user, :lifestyles, @lifestyle, :id, :types) %>
   </div>
   <div>
     <%= f.submit "Submit" %>
