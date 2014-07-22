@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140721194944) do
+ActiveRecord::Schema.define(version: 20140722172507) do
 
   create_table "deets", force: true do |t|
     t.string   "about_me"
@@ -61,6 +61,9 @@ ActiveRecord::Schema.define(version: 20140721194944) do
     t.integer  "max_age"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "users", force: true do |t|
