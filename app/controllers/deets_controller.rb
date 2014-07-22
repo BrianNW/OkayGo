@@ -10,7 +10,8 @@ class DeetsController < ApplicationController
 
       parameters = { term: 'coffee', limit: 1 }
       @first_dates = Yelp.client.search('San Francisco', parameters)
-      # render :show
+      @hash = JSON.parse(@first_dates.to_json)
+      @business_name = @hash["businesses"][0]["name"]
     end
 
     def new
