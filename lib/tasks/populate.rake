@@ -52,14 +52,6 @@ namespace :db do
     end
 
 
-    #RANDOM DATE TYPES FOR USERS
-    date_types = ['coffee',
-      'drinks',
-      'show',
-      'active',
-      'dinner',
-      'choose for me']
-
     #RANDOM PROFESSIONS FOR USERS
     profession = ['doctor',
       'lawyer',

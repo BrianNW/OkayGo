@@ -12,9 +12,9 @@
 </h4>
 
 <h1>Preferences:</h1>
-   <p> I am looking for a <%= @user.preference.gender_pref %> between the  ages of <%= @user.preference.min_age %> and <%= @user.preference.max_age %>. 
+   <p> I am looking for a <%= @user.preference.gender_pref %> between the  ages of <%= @user.preference.min_age %> and <%= @user.preference.max_age %>.
    <br>
-   Ideally, I would like to to go on a <%= @user.preference.date_type_pref %> date.
+   Ideally, I would like to to go on a <%= FirstDatePref.where(user_id: @user.id) %> date.
    </p>
 
 <%= link_to 'Back to My Matches', users_path %>

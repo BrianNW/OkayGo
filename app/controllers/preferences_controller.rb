@@ -41,7 +41,7 @@ class PreferencesController < ApplicationController
 
   def preference_params
     params.require(:preference).permit(
-      :gender_pref, :min_age, :max_age, :date_type_pref, :lifestyle_pref)
+      :gender_pref, :min_age, :max_age, :lifestyle_pref)
   end
 
 end

@@ -7,6 +7,6 @@
 <hr>
 <% @preference.each do |preference| %>
   <h2><%= preference.gender_pref %></h2>
-  <h3><%= preference.date_type_pref %></h3>
+  <h3><%= FirstDatePref.where(user_id: @user.id) %></h3>
   <hr>
 <% end %>
