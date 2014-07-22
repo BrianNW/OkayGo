@@ -107,6 +107,10 @@ namespace :db do
         :user_id => user.id,
         :first_date_id => [1,2,3,4,5,6,7].sample
       })
+      FirstDatePref.create({
+        :user_id => user.id,
+        :first_date_id => [1,2,3,4,5,6,7].sample
+      })
     end
 
 
@@ -148,6 +152,10 @@ namespace :db do
       })
 
       #FAKER FEMALE USER DATE TYPE PREF
+      FirstDatePref.create({
+        :user_id => user.id,
+        :first_date_id => [1,2,3,4,5,6,7].sample
+      })
       FirstDatePref.create({
         :user_id => user.id,
         :first_date_id => [1,2,3,4,5,6,7].sample
