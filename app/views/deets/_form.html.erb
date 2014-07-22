@@ -1,4 +1,7 @@
-<%= form_for @deet do |f| %>
+<!-- DEET FORM -->
+  <%= form_for @deet, :html => {:id => 'saveoffline'} do |f| %>
+
+  <!-- RAISE EXCEPTION -->
   <% if @deet.errors.any? %>
     <div>
       <%= pluralize(@deet.errors.count, "error") %> prevented this deet from being submitted:
@@ -9,17 +12,27 @@
       </ul>
     </div>
   <% end %>
+
+  <!-- ABOUT ME -->
   <div>
     <%= f.label "about_me" %><br>
     <%= f.text_field "about_me" %>
   </div>
+
+  <!-- LIFESTYLE CHECK BOX -->
+  <p>How would you describe your lifestyle:</p>
   <%= f.label "lifestyle" %><br>
   <%= f.select("lifestyle",[['adventurer', 'adventurer'], ['athletic', 'athletic'], ['intellectual', 'intellectual'], ['professional', 'professional'], ['traveller', 'traveller'], ['party animal', 'party animal'], ['chill', 'chill']]) %>
+
+  <!-- PROFESSION -->
   <div>
+    <p>What do you do:</p>
     <%= f.label "profession" %><br>
     <%= f.text_field "profession" %>
   </div>
+
+  <!-- SUBMIT FORM -->
   <div>
-    <%= f.submit "Submit" %> 
+    <%= f.submit "Submit" %>
   </div>
 <% end %>
