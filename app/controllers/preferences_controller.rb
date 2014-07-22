@@ -29,7 +29,7 @@ class PreferencesController < ApplicationController
   end
 
   def edit
-    @preference = Preference.find(current_user.id)
+    @preference = current_user.preference
     @first_date = FirstDate.all
     @lifestyle = Lifestyle.all
     # @first_date = FirstDate.where(id: params[:user][:first_dates])
@@ -44,6 +44,7 @@ class PreferencesController < ApplicationController
     current_user.lifestyles = Lifestyle.where(id: params[:user][:lifestyles])
     
     if @preference.update_attributes(preference_params)
+      search
       redirect_to deet_path(@preference), notice: 'Done!'
     else
       render :edit

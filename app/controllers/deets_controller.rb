@@ -7,11 +7,8 @@ class DeetsController < ApplicationController
       @user = User.find(params[:id])
       @deet = @user.deet.id
       @preference = @user.preference.id
-
-      parameters = { term: 'coffee', limit: 1 }
-      @first_dates = Yelp.client.search('San Francisco', parameters)
-      @hash = JSON.parse(@first_dates.to_json)
-      @business_name = @hash["businesses"][0]["name"]
+      search
+      # @date_sample = user_first_date_array.sample
     end
 
     def new
