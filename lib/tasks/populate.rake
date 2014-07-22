@@ -6,18 +6,17 @@ namespace :db do
 
     Rake::Task['db:reset'].invoke
 
-    date_types = ['coffee', 'drinks', 'show', 'active', 'dinner', 'I dunno!']
-    profession = ['doctor', 'lawyer', 'developer', 'artist', 'unemployed', 'bartender', 'server', 'accountant']
 
+    #LIFESTYLE TABLE CONTENT
     lifestyle = []
 
-   lifestyle_array = ['adventurer',
-    'athletic',
-    'intellectual',
-    'professional', 
-    'traveller', 
-    'party animal', 
-    'chill'].each do |types|
+    lifestyle_array = ['adventurer',
+      'athletic',
+      'intellectual',
+      'professional',
+      'traveller',
+      'party animal',
+      'chill'].each do |types|
       types = Lifestyle.where(:types => types).first_or_create!({
         :types => types
         })
@@ -29,7 +28,45 @@ namespace :db do
       lifestyle << types
     end
 
+
+    #FIRST DATE TABLE CONTENT
+    first_date = []
+
+    first_date_array = ['coffee',
+    'drinks',
+    'comedy show',
+    'hiking',
+    'lunch',
+    'skydiving',
+    'dinner',
+    'choose for me'].each do |types|
+      types = FirstDate.where(:types => types).first_or_create!({
+        :types => types
+        })
+      if types.new_record?
+        if !types.save
+          raise "Could not save types"
+        end
+      end
+      first_date << types
+    end
+
+
+    #RANDOM PROFESSIONS FOR USERS
+    profession = ['doctor',
+      'lawyer',
+      'developer',
+      'artist',
+      'unemployed',
+      'bartender',
+      'server',
+      'accountant']
+
+
+    #FAKER MALE USERS
     50.times do |n|
+
+      #BASIC INFO
       username = Faker::Internet.user_name
       password = "password"
       user = User.create!(:username => username,
@@ -37,27 +74,46 @@ namespace :db do
         :password => 'password',
         :age => 20 + rand(20),
         :gender => 'male'
-        )
-      preference = Preference.create({
-      :user_id => user.id,
-      :gender_pref => 'female',
-      :min_age => 20 + rand(10),
-      :max_age => 65,
-      :date_type_pref => date_types[rand(4)]
+      )
+
+      #FAKER MALE USERS PREFERENCE
+      Preference.create({
+        :user_id => user.id,
+        :gender_pref => ['female', 'male', 'both'].sample,
+        :min_age => 20 + rand(10),
+        :max_age => 65,
       })
-      deet = Deet.create({
+
+      #FAKER MALE USERS DEETS
+      Deet.create({
         :user_id => user.id,
         :about_me => Faker::Lorem.sentence,
         :lifestyle => lifestyle_array[rand(7)],
         :profession => profession[rand(8)]
-        })
-      user_lifestyle_pref = UserLifestylePref.create({
+      })
+
+      #FAKER MALE USERS LIFESTYLE PREFS
+      LifestylePref.create({
         :user_id => user.id,
         :lifestyle_id => [1,2,3,4,5,6,7].sample
-        })
+      })
+      LifestylePref.create({
+        :user_id => user.id,
+        :lifestyle_id => [1,2,3,4,5,6,7].sample
+      })
+
+      #FAKER MALE USERS DATE TYPE PREFS
+      FirstDatePref.create({
+        :user_id => user.id,
+        :first_date_id => [1,2,3,4,5,6,7].sample
+      })
     end
 
-      50.times do |n|
+
+      #FAKER FEMALE USERS
+    50.times do |n|
+
+      #BASIC INFO
       username = Faker::Internet.user_name
       password = "password"
       user = User.create!(:username => username,
@@ -67,24 +123,35 @@ namespace :db do
         :password => 'password',
         :age => 20 + rand(20),
         :gender => 'female'
-        )
-      preference = Preference.create({
-      :user_id => user.id,
-      :gender_pref => 'male',
-      :min_age => 20 + rand(10),
-      :max_age => 65,
-      :date_type_pref => date_types[rand(4)]
+      )
+
+      #FAKER FEMALE USER PREFERENCES
+      Preference.create({
+        :user_id => user.id,
+        :gender_pref => ['female', 'male', 'both'].sample,
+        :min_age => 20 + rand(10),
+        :max_age => 65,
       })
-      deet = Deet.create({
+
+      #FAKER FEMALE USER DEETS
+      Deet.create({
         :user_id => user.id,
         :about_me => Faker::Lorem.sentence,
         :lifestyle => lifestyle_array[rand(7)],
         :profession => profession[rand(8)]
-        })
-      user_lifestyle_pref = UserLifestylePref.create({
+      })
+
+      #FAKER FEMALE USER LIFESTYLE PREF
+      LifestylePref.create({
         :user_id => user.id,
         :lifestyle_id => [1,2,3,4,5,6,7].sample
-        })
+      })
+
+      #FAKER FEMALE USER DATE TYPE PREF
+      FirstDatePref.create({
+        :user_id => user.id,
+        :first_date_id => [1,2,3,4,5,6,7].sample
+      })
     end
 
     # image = File.open(Dir.glob(File.join(Rails.root, 'app/assets/images', '*')).sample),
@@ -141,11 +208,11 @@ namespace :db do
   #     p.max_age = 30
   #     p.date_type_pref = ['coffee', 'dinner', 'show', 'drinks']
   #   end
-  #   UserLifestylePref.populate 1 do |p|
+  #   LifestylePref.populate 1 do |p|
   #     p.user_id = 1..200
   #     p.lifestyle_id = 4
   #   end
-  #   UserLifestylePref.populate 1 do |p|
+  #   LifestylePref.populate 1 do |p|
   #     p.user_id = 1..200
   #     p.lifestyle_id = 3
   #   end
@@ -170,11 +237,11 @@ namespace :db do
   #       p.max_age = 30
   #       p.date_type_pref = ['coffee', 'dinner', 'show', 'drinks']
   #     end
-  #     UserLifestylePref.populate 1 do |p|
+  #     LifestylePref.populate 1 do |p|
   #       p.user_id = 1..100
   #       p.lifestyle_id = 4
   #     end
-  #     UserLifestylePref.populate 1 do |p|
+  #     LifestylePref.populate 1 do |p|
   #       p.user_id = 1..100
   #       p.lifestyle_id = 3
   #     end

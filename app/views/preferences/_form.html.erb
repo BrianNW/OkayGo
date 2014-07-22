@@ -26,10 +26,12 @@
     <%= f.text_field "address" %>
   </div>
   <div>
-    <%= f.label "date_type_pref" %><br>
-    <%= f.text_field "date_type_pref" %>
+  <%= collection_check_boxes(:user, :first_dates, @first_date, :id, :types) %>
+  </div>
+    <div>
+  <%= collection_check_boxes(:user, :lifestyles, @lifestyle, :id, :types) %>
   </div>
   <div>
-    <%= f.submit "Submit" %> 
+    <%= f.submit "Submit" %>
   </div>
 <% end %>

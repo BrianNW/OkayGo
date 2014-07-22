@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140721002950) do
+=======
+ActiveRecord::Schema.define(version: 20140721194944) do
+>>>>>>> da52bfbd70830d62567bdc59e74bde6afc80bcae
 
   create_table "deets", force: true do |t|
     t.string   "about_me"
@@ -22,8 +26,37 @@ ActiveRecord::Schema.define(version: 20140721002950) do
     t.integer  "user_id"
   end
 
+  create_table "first_date_prefs", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "first_date_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "first_dates", force: true do |t|
+    t.string   "types"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "lifestyle_prefs", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "lifestyle_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "lifestyles", force: true do |t|
     t.string   "types"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+  end
+
+  create_table "likes", force: true do |t|
+    t.boolean  "up"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -33,19 +66,6 @@ ActiveRecord::Schema.define(version: 20140721002950) do
     t.string   "gender_pref"
     t.integer  "min_age"
     t.integer  "max_age"
-    t.string   "date_type_pref"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "address"
-    t.float    "latitude"
-    t.float    "longitude"
-  end
-
-  add_index "preferences", ["user_id"], name: "index_preferences_on_user_id"
-
-  create_table "user_lifestyle_prefs", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "lifestyle_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -59,5 +79,12 @@ ActiveRecord::Schema.define(version: 20140721002950) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "users_likes", id: false, force: true do |t|
+    t.integer "likes_id"
+    t.integer "user_id"
+  end
+
+  add_index "users_likes", ["likes_id", "user_id"], name: "index_users_likes_on_likes_id_and_user_id"
 
 end
