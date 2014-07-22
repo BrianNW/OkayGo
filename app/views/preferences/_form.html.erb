@@ -28,6 +28,10 @@
   <%= collection_check_boxes(:user, :lifestyles, @lifestyle, :id, :types) %>
   </div>
   <div>
+    <%= f.label "address" %><br>
+    <%= f.text_field "address" %>
+  </div>
+  <div>
     <%= f.submit "Submit" %>
   </div>
 <% end %>
