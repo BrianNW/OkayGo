@@ -13,11 +13,16 @@
   <%= link_to 'Update Details', edit_deet_path(@deet) %>
 </h4>
 
-<h1>Preferences:</h1>
+<h1>Preferences:</
+h1>
    <p> I am looking for a <%= @user.preference.gender_pref %> between the  ages of <%= @user.preference.min_age %> and <%= @user.preference.max_age %>.
    <br>
-   Ideally, I would like to to go on a <%= @user.first_dates %> date.
+   First date? I'd be down to go for:<br>
+   <% @user.first_dates.each do |first_date| %>
+   <%= first_date.types %><br>
+   <% end %>
    </p>
+
    <%= link_to 'Update Date Preferences', edit_preference_path(@preference) %>
 
 <h1>View My Matches</h1>
