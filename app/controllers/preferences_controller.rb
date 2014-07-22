@@ -42,7 +42,7 @@ class PreferencesController < ApplicationController
 
     current_user.first_dates = FirstDate.where(id: params[:user][:first_dates])
     current_user.lifestyles = Lifestyle.where(id: params[:user][:lifestyles])
-
+    
     if @preference.update_attributes(preference_params)
       redirect_to deet_path(@preference), notice: 'Done!'
     else
@@ -54,7 +54,7 @@ class PreferencesController < ApplicationController
 
   def preference_params
     params.require(:preference).permit(
-      :gender_pref, :min_age, :max_age, first_date_attributes: [:first_date_id], lifestyle_attributes: [:lifestyle_id])
+      :gender_pref, :min_age, :max_age, :date_type_pref, :lifestyle_pref, first_date_attributes: [:first_date_id], lifestyle_attributes: [:lifestyle_id])
   end
 
 end
