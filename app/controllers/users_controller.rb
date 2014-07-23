@@ -34,8 +34,13 @@ class UsersController < ApplicationController
   end
 
   def ultimate_matches
+    #STRAIGHT PEOPLE ALGORITHM
+    if current_user.preference.gender_pref == "both"
+      @user = User.all
+    else
     @user = User.where(:gender => current_user.preference.gender_pref,
       :age => current_user.preference.min_age..current_user.preference.max_age).page(params[:page]).per(1)
+    end
   end
 end
 

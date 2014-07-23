@@ -1,8 +1,12 @@
-<h1>My Profile Page</h1>
+<h1>Profile Page</h1>
+
+
 
 <h4>
-  Username: <%= @user.username %><br>
+  Hey <%= @user.username %>!<br>
 </h4>
+
+<img src="<%= @user.img %>">
 
 <h1>Details:</h1>
 
@@ -14,7 +18,7 @@
 </h4>
 
 <h1>Preferences:</h1>
-   <p> I am looking for a <%= @user.preference.gender_pref %> between the  ages of <%= @user.preference.min_age %> and <%= @user.preference.max_age %>.
+   <p> I am looking for a <%= @user.preference.gender_pref %> between the ages of <%= @user.preference.min_age %> and <%= @user.preference.max_age %>.
    <br>
    First date? I'd be down to go for:<br>
    <% @user.first_dates.each do |first_date| %>

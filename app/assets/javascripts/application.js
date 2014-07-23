@@ -15,8 +15,56 @@
 //= require turbolinks
 //= require_tree .
 
+var serotonin = {
+  formData: {},
+  save: function() {
+    localStorage.setItem('serotonin', JSON.stringify(serotonin.formData));
+  },
+  load: function() {
+    serotonin.formData = JSON.parse(localStorage.getItem('serotonin'));
+    $.each(Object.keys(serotonin.formData), serotonin.defaultValues);
+  },
+  storeData: function() {
+    var box = $(this),
+        label = box.attr('name');
+
+    if (box.attr('type') == 'checkbox') {
+        var values = [];
+
+        values.push(box.val());
+        box.siblings('input[type="checkbox"]:checked').each(function() {
+          values.push($(this).val());
+        });
+        serotonin.formData[label] = values;
+    } else {
+      serotonin.formData[label]  = box.val();
+    }
+
+    serotonin.save();
+  },
+  defaultValues: function(key, value) {
+    var box = $('[name="'+value+'"]'),
+        value = serotonin.formData[value];
+
+    if (box.attr('type') != 'submit') {
+      if (typeof box == 'Array') {
+        box.each(function() {
+          if ($.inArray($(this).val(), value)) {
+            $(this).attr('checked', 'checked');
+          }
+        });
+      } else {
+        box.val(value);
+      }
+    }
+  }
+};
+
 $(function() {
-  $(window.applicationCache).bind("error", function() {
-    alert("There was an error when loading the cache manifest.");
-  });
+
+  var saveOffline = $('#saveoffline');
+
+  serotonin.load();
+
+  saveOffline.find('input, select').on('change', serotonin.storeData);
 });
