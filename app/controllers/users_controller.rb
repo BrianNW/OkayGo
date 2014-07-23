@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    @matches = ultimate_matches
+    ultimate_matches
   end
 
   def show
@@ -33,15 +33,52 @@ class UsersController < ApplicationController
       :username, :password, :img, :age, :gender, :bio)
   end
 
-  def ultimate_matches
-    #STRAIGHT PEOPLE ALGORITHM
-    if current_user.preference.gender_pref == "both"
-      @user = User.all
-    else
-    @user = User.where(:gender => current_user.preference.gender_pref,
-      :age => current_user.preference.min_age..current_user.preference.max_age).page(params[:page]).per(1)
+  ## GENDER AND AGE MATCHES ##
+  def basic_matches
+    matches = []
+    list = User.where(:gender => current_user.preference.gender_pref,
+      :age => current_user.preference.min_age..current_user.preference.max_age)
+    matches << list
+
+    # matches.each do |m|
+    #   @user = m
+    # end
+  end
+
+  ## LISTS CURRENT USER LIFESTYLE PREFERENCES ##
+  def all_lifestyles
+    current_user.lifestyles.each do |lifestyle|
+      lifestyle
     end
   end
+
+  ## LOOPS THROUGH TO LIST LIFESTYLE PREFERENCES AS STRING ##
+  def lifestyle_matches
+    all_lifestyles.each do |l|
+      puts l.types
+    end
+  end
+
+  def ultimate_matches
+    @user = basic_matches[0].deet.where(:lifestyle => "chill")
+  end
+
+  # def ultimate_matches
+  #   matches = []
+  #   basic_matches[0].each do |m|
+  #     if m.deet.lifestyle == "chill"
+  #       matches << m
+  #     end
+  #   end
+  #   @user = matches
+  # end
+
+
+
+## FILTERS BASIC MATCHES BASED ON LIFESTYLE ##
+#   def ultimate_matches
+#     @user = basic_matches.where( => lifestyle_matches)
+#   end
 end
 
   # if current_user.preference.gender_pref == 'female'

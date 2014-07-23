@@ -44,7 +44,7 @@ class PreferencesController < ApplicationController
     current_user.lifestyles = Lifestyle.where(id: params[:user][:lifestyles])
     
     if @preference.update_attributes(preference_params)
-      search
+      # search
       redirect_to deet_path(@preference), notice: 'Done!'
     else
       render :edit
