@@ -35,51 +35,110 @@ class UsersController < ApplicationController
 
   ## GENDER AND AGE MATCHES ##
   def basic_matches
-    matches = []
-    list = User.where(:gender => current_user.preference.gender_pref,
-      :age => current_user.preference.min_age..current_user.preference.max_age)
-    matches << list
-
-    # matches.each do |m|
-    #   @user = m
-    # end
+    User.where(:gender => current_user.preference.gender_pref,
+      :age => current_user.preference.min_age..current_user.preference.max_age) 
   end
 
-  ## LISTS CURRENT USER LIFESTYLE PREFERENCES ##
-  def all_lifestyles
-    current_user.lifestyles.each do |lifestyle|
-      lifestyle
-    end
-  end
-
-  ## LOOPS THROUGH TO LIST LIFESTYLE PREFERENCES AS STRING ##
-  def lifestyle_matches
-    all_lifestyles.each do |l|
-      puts l.types          
-    end
-  end
-
-  def ultimate_matches
-    @user = basic_matches[0].deet.where(:lifestyle => "chill")
-  end
-
-  # def ultimate_matches
-  #   matches = []
-  #   basic_matches[0].each do |m|
-  #     if m.deet.lifestyle == "chill"
-  #       matches << m
-  #     end
+  ## LISTS CURRENT USER LIFESTYLE PREFERENCES AS OBJECTS ##
+  # def all_lifestyles
+  #   current_user.lifestyles.each do |lifestyle|
+  #     lifestyle
   #   end
-  #   @user = matches
   # end
 
-  
+
+  ## LISTS CURRENT USER LIFESTYLE TYPES INDIVIDUALLY AND SAVES IT INTO ARRAY TYPE##
+  def lifestyle_types
+    # type = []
+    # all_lifestyles.each do |l|
+    #   type << l.types
+    # end
+    # type
+    current_user.lifestyles.map(&:types)
+  end
+
+  ## MATCHES CURRENT USER LIFESTYLE_PREF WITH USERS LIFESTYLE ##
+
+  def ultimate_matches
+    # matches = []
+    # basic_matches.each do |m|
+    #   lifestyle_types.each do |t|
+    #     if m.deet.lifestyle == t
+    #       matches << m          
+    #     end
+    #   end
+    # end
+    # @user = matches
+    # basic_matches.joins(:deet).where(lifestyles: lifestyle_types)
+    @user = Deet.where(lifestyle: lifestyle_types).where(user: basic_matches).map(&:user)
+  end
+
+  # LISTS CURRENT USER FIRST DATE PREFERENCES AS OBJECTS ##
+  # def all_first_dates
+  #   current_user.first_dates.each do |first_dates|
+  #     first_dates
+  #   end
+  # end
+
+  ## LISTS CURRENT USER FIRST DATE TYPES INDIVIDUALLY AND SAVES IT INTO ARRAY TYPE##
+  # def first_date_types
+  #   type = []
+  #   all_first_dates.each do |f|
+  #     type << f.types
+  #   end
+  #   type
+  # end
+
+
+# we have a method to filter current_user first_date as objects (all_first_dates)
+# we have a method to filter all_first_dates down to an array of first_date.types
+# we need a method to loop through each user from lifestyle_matches and store their first_date.types in an array
+# we need a method to loop through that array of lifestyle_matches first_date.types and compare it with current_user first_date_types
+# we need to loop through lifestyle_matches
+
+  ## LISTS ALL USERS FROM LIFESTYLE_MATCHES AND SAVES FIRST_DATE.TYPES INTO ARRAY TYPE##
+  # def first_date_matches
+  #   users = []
+  #   lifestyle_matches.each do |m|
+  #     # m.first_dates.each do |f|
+  #     #       binding.pry
+  #       if m.first_dates.select{|fd| fd.types == "drinks"}
+  #         user << m
+  #       end
+  #     end
+  #   end
+  #   users
+  # end
+
+  # def ultimate_matches
+  #   @user = first_date_matches  
+  # end
+
+
+
+
+end
+
+
+
+
+   # def ultimate_matches
+  #   @user = basic_matches[0].deet.where(:lifestyle => "chill")
+
+  #   #where user id matches basic matches user id && lifestyle matches current user
+  # end
+
+  # def type_match(chill)
+  #   matches = []
+  #   basic_matches.each do |match|
+  #     if 'type' == match.deets.lifestyle
+  # end
 
 ## FILTERS BASIC MATCHES BASED ON LIFESTYLE ##
 #   def ultimate_matches
 #     @user = basic_matches.where( => lifestyle_matches)
 #   end
-end
+
 
   # if current_user.preference.gender_pref == 'female'
   #   @user = User.where(:gender => 'female')
