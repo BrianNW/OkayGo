@@ -7,7 +7,7 @@ class DeetsController < ApplicationController
       @user = User.find(params[:id])
       @deet = @user.deet.id
       @preference = @user.preference.id
-      search
+      # search
       # @date_sample = user_first_date_array.sample
     end
 
