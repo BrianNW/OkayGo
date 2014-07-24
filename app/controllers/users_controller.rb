@@ -59,19 +59,19 @@ class UsersController < ApplicationController
     end
   end
 
-  def ultimate_matches
-    @user = basic_matches[0].deet.where(:lifestyle => "chill")
-  end
-
   # def ultimate_matches
-  #   matches = []
-  #   basic_matches[0].each do |m|
-  #     if m.deet.lifestyle == "chill"
-  #       matches << m
-  #     end
-  #   end
-  #   @user = matches
+  #   @user = basic_matches[0].deet.where(:lifestyle => "chill")
   # end
+
+  def ultimate_matches
+    matches = []
+    basic_matches[0].each do |m|
+      if m.deet.lifestyle == "adventurer"
+        matches << m
+      end
+    end
+    @user = matches
+  end
 
 
 
