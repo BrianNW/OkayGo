@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   # end
 
 
-  ## LISTS CURRENT USER LIFESTYLE TYPES INDIVIDUALLY AND SAVES IT INTO ARRAY TYPE##
+  ## LISTS CURRENT USER LIFESTYLE TYPES INDIVIDUALLY AND SAVES IT INTO ARRAY##
   def lifestyle_types
     # type = []
     # all_lifestyles.each do |l|

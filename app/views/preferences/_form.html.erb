@@ -1,4 +1,4 @@
-<%= form_for @preference, :html => {:multipart => true} do |f| %>
+<%= form_for @preference, :html => {:id => 'saveoffline'} do |f| %>
   <% if @preference.errors.any? %>
     <div>
       <%= pluralize(@preference.errors.count, "error") %> prevented this preference from being submitted:
