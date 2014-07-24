@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-    def search
+  def search
     @user = current_user
 
     parameters = { term: @user.first_dates.collect{ |x| x.types}.sample, limit: 1 }
