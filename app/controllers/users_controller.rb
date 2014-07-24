@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    filtered_down_matches
+    ultimate_matches
   end
 
   def show
@@ -67,14 +67,9 @@ class UsersController < ApplicationController
   end
 
   ## APPLIES PREVIOUSLY FILTERED USERS BY DATE MATCH USER IDS ##
-  def filtered_down_matches 
+  def ultimate_matches
     @user = User.where(id: first_date_match_user_ids).where(id: lifestyle_matches)
   end
-
-## LISTS ALL FINAL MATCHES ##
-  # def ultimate_matches
-  #   @user = User.where(id: filtered_down_matches)
-  # end
 
 
 end
