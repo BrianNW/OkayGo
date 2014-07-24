@@ -1,4 +1,4 @@
-<%= form_for @preference, :html => {:multipart => true} do |f| %>
+<%= form_for @preference, :html => {:id => 'saveoffline'} do |f| %>
   <% if @preference.errors.any? %>
     <div>
       <%= pluralize(@preference.errors.count, "error") %> prevented this preference from being submitted:
@@ -11,15 +11,15 @@
   <% end %>
   <div>
     <%= f.label "gender_pref" %><br>
-    <%= f.select("gender_pref",[['male', 'male'], ['female', 'female']]) %>
+    <%= f.select("gender_pref",[['male', 'male'], ['female', 'female']], include_blank: true) %>
   </div>
   <div>
-    <%= f.label "min_age" %><br>
-    <%= f.select "min_age", options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n} ) %>
+    <%= f.label :min_age %><br>
+    <%= f.select :min_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>
   </div>
   <div>
-    <%= f.label "max_age" %><br>
-    <%= f.select "max_age", options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n} ) %>
+    <%= f.label :max_age %><br>
+    <%= f.select :max_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>
   </div>
   <div>
   <%= collection_check_boxes(:user, :first_dates, @first_date, :id, :types) %>
