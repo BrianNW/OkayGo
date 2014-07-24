@@ -64,7 +64,7 @@ namespace :db do
 
 
     #FAKER MALE USERS
-    50.times do |n|
+    200.times do |n|
 
       #BASIC INFO
       username = Faker::Internet.user_name
@@ -115,7 +115,7 @@ namespace :db do
 
 
       #FAKER FEMALE USERS
-    50.times do |n|
+    200.times do |n|
 
       #BASIC INFO
       username = Faker::Internet.user_name
