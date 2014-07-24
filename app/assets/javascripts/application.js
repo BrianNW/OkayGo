@@ -13,14 +13,17 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require_self
 //= require_tree .
 
 var serotonin = {                                                                                    
   formData: {},                                                                                      
-  save: function() {                                                                                 
+  save: function() { 
+    console.log('saving data', serotonin.formData);                                                                                
     localStorage.setItem('serotonin', JSON.stringify(serotonin.formData));                           
   },
   load: function() {
+    console.log('loading data');
     serotonin.formData = JSON.parse(localStorage.getItem('serotonin'));
     if (serotonin.formData) {
       $.each(Object.keys(serotonin.formData), serotonin.defaultValues);
@@ -61,14 +64,14 @@ var serotonin = {
         box.val(value);
       }
     }
-  } 
+  },
+  init: function() {
+    console.log('blah hello');
+    var saveOffline = $('#saveoffline');                                                               
+    serotonin.load(); 
+      
+    saveOffline.find('input, select').on('change', serotonin.storeData);                               
+  }
 };  
     
-$(function() {
-    
-  var saveOffline = $('#saveoffline');                                                               
-    
-  serotonin.load(); 
-    
-  saveOffline.find('input, select').on('change', serotonin.storeData);                               
-}); 
+$(document).on('ready page:change', serotonin.init); 
