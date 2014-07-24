@@ -70,7 +70,7 @@ namespace :db do
       username = Faker::Internet.user_name
       password = "password"
       user = User.create!(:username => username,
-        :img => ['http://photo.elsoar.com/wp-content/images/Joyful-man-face.jpg', 'http://cache3.asset-cache.net/xc/180525263.jpg?v=1&c=IWSAsset&k=2&d=B53F616F4B95E5538F86874878D58FC9F0CED0C3C0E8AFD3A01D3299CB6E2D99', 'http://blog.bonehealthnow.com/wp-content/uploads/2014/06/healthy-guy.jpg'].sample,
+        :img => ['assets/male1.jpg', 'assets/male2.jpg', 'assets/male3.jpg', 'assets/male4.jpg', 'assets/male5.jpg', 'assets/male6.jpg', 'assets/male7.jpg', 'assets/male8.jpg', 'assets/male9.jpg', 'assets/male10.jpg'].sample,
         :password => 'password',
         :age => 20 + rand(20),
         :gender => 'male'
@@ -121,9 +121,7 @@ namespace :db do
       username = Faker::Internet.user_name
       password = "password"
       user = User.create!(:username => username,
-        :img => ['http://4.bp.blogspot.com/-RDLJQzuB9JE/URDO8LGUyCI/AAAAAAAAAEU/YUxLKtcxKsI/s1600/girl%2B4.jpeg',
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdzO1sx1XUcnnA-M1ILmMSIdM6vO1oDM4RzcNiPkKB-Za8L6jSXQ',
-          'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR00iA9UW4oVoD4arZ-Yx15iznEwFQXjHF8p3pnm3od73TwiIO_Sw'].sample,
+        :img => ['assets/female1.jpg', 'assets/female2.jpg', 'assets/female3.jpg', 'assets/female4.jpg', 'assets/female5.jpg', 'assets/female6.jpg', 'assets/female7.jpg', 'assets/female8.jpg', 'assets/female9.jpg', 'assets/female10.jpg'].sample,
         :password => 'password',
         :age => 20 + rand(20),
         :gender => 'female'

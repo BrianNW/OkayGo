@@ -1,0 +1,33 @@
+<div>
+  <small>
+    <a href="/">
+      <%= image_tag "logo.png", :class => "small_logo" %>
+    </a>
+
+  <h4>
+    Hey <%= @user.username %>!<br>
+  </h4>
+
+  <img class="profilepic" src="<%= @user.img %>">
+
+  <h1>Details:</h1>
+
+  <h4>
+    About Me: <%= @user.deet.about_me %><br>
+    Lifestyle: <%= @user.deet.lifestyle %><br>
+    Profession: <%= @user.deet.profession %><br><br>
+    <%= link_to 'Update Details', edit_deet_path(@deet) %>
+  </h4>
+
+  <h1>Preferences:</h1>
+     <p> I am looking for a <%= @user.preference.gender_pref %> between the ages of <%= @user.preference.min_age %> and <%= @user.preference.max_age %>.
+     <br>
+     First date? I'd be down to go for:<br>
+     <% @user.first_dates.each do |first_date| %>
+     <%= first_date.types %><br>
+     <% end %>
+     </p>
+
+     <%= link_to 'Update Date Preferences', edit_preference_path(@preference) %>
+
+</div>

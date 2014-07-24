@@ -13,8 +13,34 @@
  *= require_tree .
  *= require_self
  */
+/* * {
+  border-style: solid;
+  border-width: 1px;
+} */
 
- img {
-  max-width: 50px;
-  max-height: 50px
- }
+.profilepic {
+  height: 200px;
+  width: 200px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+header {
+  height: 50px;
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.small_logo {
+  float: right;
+  height: 80px;
+  margin-top: 1em;
+  margin-right: 1em;
+}
+
+.login {
+  margin-top: 1em;
+  float: left;
+}

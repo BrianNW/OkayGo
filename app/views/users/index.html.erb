@@ -4,7 +4,7 @@
 <% @user.each do |user| %>
   <h2><%= link_to user.username, user_path(user) %>
   <br>
-  <img src="<%=user.img%>" width="270px" height="170px">
+  <img class="profilepic" src="<%=user.img%>">
   <h2><%= user.age %></h2>
   <h2><%= user.gender %></h2>
   <p>Click on the username to view this person's profile</p>
