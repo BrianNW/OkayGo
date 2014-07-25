@@ -1,26 +1,14 @@
-<%= render 'layouts/sidebar' %>
-
 <div id="page-content-wrapper">
     <div class="container-fluid" style="margin-left:20%">
-
-<hr>
-<% @user.each do |user| %>
-  <h2><%= link_to user.username, user_path(user) %>
-  <br>
-  <img class="profilepic" src="<%=user.img%>">
-  <h2><%= user.age %></h2>
-  <h2><%= user.gender %></h2>
-  <%= button_to 'Like', {:controller => "likes", :action => "create", :target_id => user.id} , :method=>:post  %>
-  <% end %>
-  <p>Click on the username to view this person's profile</p>
-  <hr>
+<%= render 'layouts/sidebar' %>
 
     <% @user.each do |user| %>
-      <div class="col-xs-6, col-md-4 portfolio-item">
+      <div class="col-md-4 portfolio-item">
           <a href="#">
             <img class="profilepic" src="<%=user.img%>">
           </a>
           <h3><%= link_to user.username, user_path(user) %></h3>
+          <p>  <%= button_to 'Like', {:controller => "likes", :action => "create", :target_id => user.id} , :method=>:post  %></p>
       </div>
 
   <% end %>

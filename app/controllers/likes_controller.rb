@@ -1,4 +1,7 @@
 class LikesController < ApplicationController
+
+  before_filter :restrict_access
+  
   def show
   end
 

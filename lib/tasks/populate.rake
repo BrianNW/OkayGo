@@ -70,7 +70,7 @@ namespace :db do
       username = Faker::Internet.user_name
       password = "password"
       user = User.create!(:username => username,
-        :img => ['assets/male1.jpg', 'assets/male2.jpg', 'assets/male3.jpg', 'assets/male4.jpg', 'assets/male5.jpg', 'assets/male6.jpg', 'assets/male7.jpg', 'assets/male8.jpg', 'assets/male9.jpg', 'assets/male10.jpg'].sample,
+        :img => ['assets/male1.jpg', 'assets/male2.jpg', 'assets/male3.jpg', 'assets/male4.jpg', 'assets/male5.jpg', 'assets/male6.jpg', 'assets/male7.jpg', 'assets/male8.jpg', 'assets/male9.jpg', 'assets/male10.jpg', 'assets/male11.jpg'].sample,
         :password => 'password',
         :age => 20 + rand(20),
         :gender => 'male'
