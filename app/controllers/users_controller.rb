@@ -72,6 +72,10 @@ class UsersController < ApplicationController
     @user = User.where(id: first_date_match_user_ids).where(id: lifestyle_matches)
   end
 
+  # def flag
+  #   (params[:user]).increment!(:flag)
+  # end
+
 ## METHOD FOR DETERMINING IF THIS USER HAS BEEN LIKED OR NOT (NOT WORKING) ##
   # def liked?
   #   user_likes = current_user.likes.map(&:target_id)
