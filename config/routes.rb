@@ -39,6 +39,6 @@ Rails.application.routes.draw do
 #   #   match "/application.manifest" => offline
 #   # end
 
-  root to: 'preferences#new'
+  root to: 'deets#index'
 
 end

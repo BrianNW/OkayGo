@@ -34,7 +34,7 @@ class DeetsController < ApplicationController
     @deet = Deet.find(current_user.id)
 
       if @deet.update_attributes(deet_params)
-        redirect_to deet_path(@deet), notice: 'Done!'
+        redirect_to users_path, notice: 'Done!'
       else
         render :edit
       end
