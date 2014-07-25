@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   def index
     ultimate_matches
+    # liked?
   end
 
   def show
@@ -71,5 +72,17 @@ class UsersController < ApplicationController
     @user = User.where(id: first_date_match_user_ids).where(id: lifestyle_matches)
   end
 
+  # def flag
+  #   (params[:user]).increment!(:flag)
+  # end
+
+## METHOD FOR DETERMINING IF THIS USER HAS BEEN LIKED OR NOT (NOT WORKING) ##
+  # def liked?
+  #   user_likes = current_user.likes.map(&:target_id)
+  #   @liked_users = Like.where(user_id: user_likes)(&:user_id)
+  # end
+  # @liked_users.each do |id|
+  # if id == user.id 
+  # I have liked this user
 
 end
