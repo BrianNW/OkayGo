@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140725025323) do
+ActiveRecord::Schema.define(version: 20140725031554) do
 
   create_table "deets", force: true do |t|
     t.string   "about_me"

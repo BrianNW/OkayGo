@@ -1,5 +1,7 @@
 class DeetsController < ApplicationController
 
+  before_filter :restrict_access
+
     def index
     end
 
@@ -27,11 +29,11 @@ class DeetsController < ApplicationController
   end
 
     def edit
-      @deet = Deet.find(current_user.id)
+      @deet = Deet.find(current_user.deet.id)
     end
 
    def update
-    @deet = Deet.find(current_user.id)
+    @deet = Deet.find(current_user.deet.id)
 
       if @deet.update_attributes(deet_params)
         redirect_to users_path, notice: 'Done!'

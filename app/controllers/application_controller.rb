@@ -5,6 +5,13 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def restrict_access
+    if !current_user
+      flash[:alert] = "You must fill in your details first."
+      redirect_to new_preference_path
+    end
+  end
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end

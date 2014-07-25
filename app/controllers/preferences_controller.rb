@@ -37,7 +37,7 @@ class PreferencesController < ApplicationController
   end
 
   def update
-    @preference = Preference.find(current_user.id)
+    @preference = Preference.find(current_user.preference.id)
     @preference.user_id = current_user.id
 
     current_user.first_dates = FirstDate.where(id: params[:user][:first_dates])

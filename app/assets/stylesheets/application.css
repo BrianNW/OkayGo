@@ -95,6 +95,7 @@ header {
 #sidebar-wrapper {
     z-index: 1000;
     position: fixed;
+    float: left;
     left: 250px;
     width: 0;
     height: 100%;
