@@ -1,5 +1,11 @@
-<h2>Edit My Deets</h2>
+<div id="page-content-wrapper">
+  <div class="container-fluid" style="margin-left:20%">
 
-<%= link_to "Back to my profile", deet_path(current_user.id) %>
+      <h2>Edit My Deets</h2>
 
-<%= render 'form' %>
+      <%= link_to "Back to my profile", deet_path(current_user.id) %>
+
+      <%= render 'form' %>
+
+  </div>
+</div>
