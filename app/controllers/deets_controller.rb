@@ -5,7 +5,7 @@ class DeetsController < ApplicationController
 
     def show
       @user = User.find(params[:id])
-      @deet = @user.deet.id
+      @deet = @user.deet
       @preference = @user.preference.id
       # search
       # @date_sample = user_first_date_array.sample
@@ -43,7 +43,7 @@ class DeetsController < ApplicationController
   protected
 
     def deet_params
-      params.require(:deet).permit(:about_me, :lifestyle, :profession)
+      params.require(:deet).permit(:about_me, :lifestyle, :profession, :img)
     end
 
 end

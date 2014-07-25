@@ -1,7 +1,7 @@
 <%= render 'layouts/sidebar' %>
 
 <!-- DEET FORM -->
-  <%= form_for @deet, :html => {:id => 'saveoffline'} do |f| %>
+  <%= form_for @deet,  :html => {:multipart => true, :id => 'saveoffline'} do |f| %>
 
   <!-- RAISE EXCEPTION -->
   <% if @deet.errors.any? %>
@@ -14,6 +14,12 @@
       </ul>
     </div>
   <% end %>
+
+  <br>
+
+  <p>
+    <%= f.file_field :img %>
+  </p>
 
   <!-- ABOUT ME -->
   <div>
