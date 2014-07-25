@@ -5,7 +5,7 @@ class DeetsController < ApplicationController
 
     def show
       @user = User.find(params[:id])
-      @deet = @user.deet.id
+      @deet = @user.deet
       @preference = @user.preference.id
       # search
       # @date_sample = user_first_date_array.sample
@@ -34,7 +34,7 @@ class DeetsController < ApplicationController
     @deet = Deet.find(current_user.id)
 
       if @deet.update_attributes(deet_params)
-        redirect_to deet_path(@deet), notice: 'Done!'
+        redirect_to users_path, notice: 'Done!'
       else
         render :edit
       end
@@ -43,7 +43,7 @@ class DeetsController < ApplicationController
   protected
 
     def deet_params
-      params.require(:deet).permit(:about_me, :lifestyle, :profession)
+      params.require(:deet).permit(:about_me, :lifestyle, :profession, :img)
     end
 
 end

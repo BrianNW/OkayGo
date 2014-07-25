@@ -18,6 +18,41 @@
   border-width: 1px;
 } */
 
+#homepage {
+  position: relative;
+  text-align:center;
+  color: #F0B900;
+  font-size: 100px;
+  margin-bottom: 10%;
+}
+
+#logo-box {
+  padding-top: 1px;
+  margin-top: 13%;
+  margin-right: auto;
+  margin-left: auto;
+  height: 350px;
+  width: 460px;
+  background-color: rgba(0, 0, 0, 0.58);
+}
+
+.morepics {
+  height: 80px;
+}
+
+
+.btn {
+  border-radius: 0;
+}
+
+.full {
+  background: url(https://dl.dropboxusercontent.com/u/998959/fm2ugifs/date-night-615.gif) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .profilepic {
   height: 200px;
   width: 200px;

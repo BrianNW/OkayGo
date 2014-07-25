@@ -11,13 +11,20 @@
 
 <img class="profilepic" src="<%= @user.img %>">
 
+<br><br>
+
+<div>
+<%= image_tag(@deet.img_url, :class => "morepics") %>
+</div>
+
+
 <h1>Details:</h1>
 
 <h4>
   About Me: <%= @user.deet.about_me %><br>
   Lifestyle: <%= @user.deet.lifestyle %><br>
   Profession: <%= @user.deet.profession %><br><br>
-  <%= link_to 'Update Details', edit_deet_path(@deet) %>
+  <%= link_to 'Update Details', edit_deet_path(@deet.id) %>
 </h4>
 
 <h1>Preferences:</h1>
