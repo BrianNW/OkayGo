@@ -7,11 +7,7 @@
   <img class="profilepic" src="<%=user.img%>">
   <h2><%= user.age %></h2>
   <h2><%= user.gender %></h2>
-<%= button_to 'Like', {:controller => "likes", :action => "create", :target_id => user.id} , :method=>:post  %>
+  <%= button_to 'Like', {:controller => "likes", :action => "create", :target_id => user.id} , :method=>:post  %>
+  <% end %>
   <p>Click on the username to view this person's profile</p>
   <hr>
-<% end %>
-
-
-
-<!--  paginate @matches -->
