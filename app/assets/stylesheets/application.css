@@ -45,7 +45,12 @@ margin-left: 10%
   margin-right: 35%
 }
 
-/*PREFERENCES/NEW PAGE*/
+/*USERS PAGE*/
+#bolt-header {
+  margin-top: 10px;
+  color: #F0B900;
+  font-size: 90px;
+}
 
 /*HOMEPAGE*/
 

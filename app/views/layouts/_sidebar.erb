@@ -3,7 +3,7 @@
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
         <li class="sidebar-brand">
-          <h2 id="bolt-header"><%= link_to "bolt", root_path %></h2>
+         <%= link_to "bolt", root_path, id: 'bolt-header' %>
         </li>
         <li>
             <img class="profilepic" src="<%= current_user.img %>">

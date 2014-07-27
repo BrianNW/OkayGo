@@ -10,25 +10,26 @@
       </ul>
     </div>
   <% end %>
-  <p> 
+
+  <div class='form group'>
   I am looking for a 
-  <%= f.select("gender_pref",[['male', 'male'], ['female', 'female']], include_blank: true) %>
+  <%= f.select("gender_pref",[['male', 'male'], ['female', 'female']], include_blank: true, class: 'form-control', id: 'select') %>
    between <%= f.select :min_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>
   and
     <%= f.select :max_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>.
-  </p>
- <p>
- I would consider the following options for a first-date:
- </p>
-  <%= collection_check_boxes(:user, :first_dates, @first_date, :id, :types) %>
-  <p>
-  I would describe my lifestyle as:
-  </p>
-  <%= collection_check_boxes(:user, :lifestyles, @lifestyle, :id, :types) %>
-  <p>My preferred date location would be:
-    <%= f.text_field "address" %></p>
-    
-    <%= f.submit "Submit" %>
+  </div>
+   <p>
+   I would consider the following options for a first-date:
+   </p>
+    <%= collection_check_boxes(:user, :first_dates, @first_date, :id, :types) %>
+    <p>
+    I would describe my lifestyle as:
+    </p>
+    <%= collection_check_boxes(:user, :lifestyles, @lifestyle, :id, :types) %>
+    <p>My preferred date location would be:
+      <%= f.text_field "address", class: 'form-control', placeholder: 'Gastown, Vancouver, BC' %></p>
+      
+      <%= f.submit "Submit" %>
   </div>
 <% end %>
 </div>

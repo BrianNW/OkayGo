@@ -28,7 +28,7 @@
   <div class="form-group">
     <%= f.label "lifestyle", class: "col-lg-2 control-label" %>
     <div class="col-lg-10">
-    <%= f.select("lifestyle",[['Adventurer', 'adventurer'], ['Athletic', 'athletic'], ['Intellectual', 'intellectual'], ['Professional', 'professional'], ['Traveller', 'traveller'], ['Party Animal', 'party animal'], ['Chill', 'chill']], {}, { :class => 'form-control', :id => 'select'} ) %>
+    <%= f.select("lifestyle",[['Adventurer', 'adventurer'], ['Athletic', 'athletic'], ['Intellectual', 'intellectual'], ['Professional', 'professional'], ['Traveller', 'traveller'], ['Party Animal', 'party animal'], ['Chill', 'chill']], {}, { :class => 'form-control', :id => 'select', include_blank: true} ) %>
     </div>
   </div>
 

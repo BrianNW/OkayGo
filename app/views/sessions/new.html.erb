@@ -1,13 +1,13 @@
-<!-- <div class="full"> PUT THIS IN IF WE WANT THE BACKGROUND TO SHOW UP--> 
+<!-- <div class="full"> PUT THIS IN IF WE WANT THE BACKGROUND TO SHOW UP-->
   <div id="page-content-wrapper">
       <div class="container-fluid">
         
-        <form class="form-horizontal">
+<!--         <form class="form-horizontal"> -->
         <legend>Log In</legend>
           <fieldset>
             
 
-              <div class="form-group">
+              <div class="form-group, field">
                 <%= form_tag sessions_path do %>
                 <%= label_tag :username, nil, class: 'col-xs-2 control-label' %>
                 <div class="col-lg-4">
@@ -15,10 +15,10 @@
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group, field">
                 <%= label_tag :password, nil, class: 'col-lg-2 control-label' %>
                 <div class="col-lg-1">
-                  <%= password_field_tag :password, class: 'form-control', id: 'inputPassword' %>
+                  <%= password_field_tag :password, class: 'form-control'%>
                 </div>
               </div>
 
@@ -29,7 +29,8 @@
             <% end %>
 
           </fieldset>
-        </form>
+<!--         </form> -->
       </div>
   </div>
-<!-- </div> -->
+
+<!-- </div>
