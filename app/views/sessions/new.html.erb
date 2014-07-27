@@ -1,33 +1,35 @@
-<div id="page-content-wrapper">
-    <div class="container-fluid">
-      
-      <form class="form-horizontal">
-      <legend>Log In</legend>
-        <fieldset>
-          
+<!-- <div class="full"> PUT THIS IN IF WE WANT THE BACKGROUND TO SHOW UP--> 
+  <div id="page-content-wrapper">
+      <div class="container-fluid">
+        
+        <form class="form-horizontal">
+        <legend>Log In</legend>
+          <fieldset>
+            
 
-            <div class="form-group">
-              <%= form_tag sessions_path do %>
-              <%= label_tag :username, nil, class: 'col-xs-2 control-label' %> <br />
-              <div class="col-lg-4">
-                <%= text_field_tag :username, params[:username], class: 'form-control', id: 'inputUsername', placeholder: 'Username' %>
+              <div class="form-group">
+                <%= form_tag sessions_path do %>
+                <%= label_tag :username, nil, class: 'col-xs-2 control-label' %>
+                <div class="col-lg-4">
+                  <%= text_field_tag :username, params[:username], class: 'form-control', id: 'inputUsername', placeholder: 'Username' %>
+                </div>
               </div>
-            </div>
 
-            <div class="form-group">
-              <%= label_tag :password, nil, class: 'col-lg-2 control-label' %><br />
-              <div class="col-lg-1">
-                <%= password_field_tag :password, class: 'form-control', id: 'inputPassword' %>
+              <div class="form-group">
+                <%= label_tag :password, nil, class: 'col-lg-2 control-label' %>
+                <div class="col-lg-1">
+                  <%= password_field_tag :password, class: 'form-control', id: 'inputPassword' %>
+                </div>
               </div>
-            </div>
 
-            <div class="actions">
-              <%= submit_tag "Log In", class: 'btn btn-warning' %>
-            </div>
+              <div class="actions">
+                <%= submit_tag "Log In", class: 'btn btn-warning' %>
+              </div>
 
-          <% end %>
+            <% end %>
 
-        </fieldset>
-      </form>
-    </div>
-</div>
+          </fieldset>
+        </form>
+      </div>
+  </div>
+<!-- </div> -->
