@@ -1,3 +1,4 @@
+
 <%= form_for @preference, :html => {:id => 'saveoffline'} do |f| %>
   <% if @preference.errors.any? %>
     <div>
@@ -9,29 +10,25 @@
       </ul>
     </div>
   <% end %>
-  <div>
-    <%= f.label "gender_pref" %><br>
-    <%= f.select("gender_pref",[['male', 'male'], ['female', 'female']], include_blank: true) %>
-  </div>
-  <div>
-    <%= f.label :min_age %><br>
-    <%= f.select :min_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>
-  </div>
-  <div>
-    <%= f.label :max_age %><br>
-    <%= f.select :max_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>
-  </div>
-  <div>
+  <p> 
+  I am looking for a 
+  <%= f.select("gender_pref",[['male', 'male'], ['female', 'female']], include_blank: true) %>
+   between <%= f.select :min_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>
+  and
+    <%= f.select :max_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>.
+  </p>
+ <p>
+ I would consider the following options for a first-date:
+ </p>
   <%= collection_check_boxes(:user, :first_dates, @first_date, :id, :types) %>
-  </div>
-    <div>
+  <p>
+  I would describe my lifestyle as:
+  </p>
   <%= collection_check_boxes(:user, :lifestyles, @lifestyle, :id, :types) %>
-  </div>
-  <div>
-    <%= f.label "address" %><br>
-    <%= f.text_field "address" %>
-  </div>
-  <div>
+  <p>My preferred date location would be:
+    <%= f.text_field "address" %></p>
+    
     <%= f.submit "Submit" %>
   </div>
 <% end %>
+</div>

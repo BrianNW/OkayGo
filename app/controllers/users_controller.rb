@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :restrict_access
+  before_filter :authorize, only: [:edit, :update]
 
   def index
     ultimate_matches

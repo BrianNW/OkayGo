@@ -1,6 +1,6 @@
 class LikesController < ApplicationController
 
-  before_filter :restrict_access
+  before_filter :authorize
   
   def show
   end

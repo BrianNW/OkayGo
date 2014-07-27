@@ -18,17 +18,37 @@
   border-width: 1px;
 } */
 
+/*SETS BODY AND HTML FOR BACKGROUND - DO NOT EDIT*/
+html, body, .full {
+  width: 100%;
+  height: 100%;
+}
+
+.full { 
+  background: url(https://dl.dropboxusercontent.com/u/998959/fm2ugifs/date-night-615.gif) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+form {
+display: block;
+margin-top: 2em;
+margin-right: 40%;
+margin-left: 40%
+}
+
+/*PREFERENCES/NEW PAGE*/
+
+/*HOMEPAGE*/
+
 #homepage {
   position: relative;
   text-align:center;
   color: #F0B900;
   font-size: 100px;
   margin-bottom: 10%;
-}
-
-form {
-    display: block;
-    margin: 0 auto
 }
 
 #logo-box {
@@ -53,6 +73,8 @@ color: white;
   width: 100px;
 }
 
+/*SIDEBAR NAV*/
+
 h2 .sidebar-nav {
   color: #F0B900;
 }
@@ -66,19 +88,6 @@ h2 .sidebar-nav {
 
 .btn {
   border-radius: 0;
-}
-
-html, body, .full {
-  width: 100%;
-  height: 100%;
-}
-
-.full { 
-  background: url(https://dl.dropboxusercontent.com/u/998959/fm2ugifs/date-night-615.gif) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
 }
 
 .profilepic {
@@ -240,13 +249,6 @@ header {
     margin-bottom: 25px;
     text-align: center;
 }
-
-
-.newbutton >li {
-  display: inline;
-  margin: 20px;
-  padding:20px;
-  background-color: yellow;
 
 }
 

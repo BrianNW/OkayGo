@@ -8,5 +8,14 @@ class User < ActiveRecord::Base
   has_many :likes, :class_name => 'Like', :foreign_key => 'user_id'
   has_many :liked_by, :class_name => 'Like', :foreign_key => 'target_id'
 
-  # has_secure_password
+  has_secure_password
+    
+  validates_uniqueness_of :username
+  # def self.authenticate(user, password)
+  #   find_by_username(username).try(:authenticate, password)
+
+    def user_params
+      params.require(:user).permit(:username, :password, :password_confirmation)
+    end
+
 end
