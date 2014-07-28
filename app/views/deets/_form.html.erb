@@ -1,5 +1,5 @@
 <!-- DEET FORM -->
-  <%= form_for @deet,  :html => {:multipart => true, :id => 'saveoffline'} do |f| %>
+ <%= form_for @deet, html: { multipart: true, class: "form-horizontal", id: 'saveoffline'} do |f| %>
 
   <!-- RAISE EXCEPTION -->
   <% if @deet.errors.any? %>
@@ -13,32 +13,36 @@
     </div>
   <% end %>
 
-  <br>
-
-  <p>
+  <div class='form group' 'col-lg-2 control-label'>    
     <%= f.file_field :img %>
-  </p>
-
-  <!-- ABOUT ME -->
-  <div>
-    <%= f.label "about_me" %><br>
-    <%= f.text_field "about_me" %>
+  </div>
+    <!-- ABOUT ME -->
+  <div class='form-group'>
+    <%= f.label "about_me", class: 'col-lg-2 control-label' %>
+    <div class="col-lg-4">
+      <%= f.text_area "about_me", class: 'form-control', rows: '3', id: 'textArea', placeholder: 'I play lacrosse for the Darkstar HuffleStops' %>
+    </div>
   </div>
 
-  <!-- LIFESTYLE CHECK BOX -->
-  <p>How would you describe your lifestyle:</p>
-  <%= f.label "lifestyle" %><br>
-  <%= f.select("lifestyle",[['adventurer', 'adventurer'], ['athletic', 'athletic'], ['intellectual', 'intellectual'], ['professional', 'professional'], ['traveller', 'traveller'], ['party animal', 'party animal'], ['chill', 'chill']]) %>
-
-  <!-- PROFESSION -->
-  <div>
-    <p>What do you do:</p>
-    <%= f.label "profession" %><br>
-    <%= f.text_field "profession" %>
+    <!-- LIFESTYLE CHECK BOX -->
+  <div class="form-group">
+    <%= f.label "lifestyle", class: "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+    <%= f.select("lifestyle",[['Adventurer', 'adventurer'], ['Athletic', 'athletic'], ['Intellectual', 'intellectual'], ['Professional', 'professional'], ['Traveller', 'traveller'], ['Party Animal', 'party animal'], ['Chill', 'chill']], {}, { :class => 'form-control', :id => 'select', include_blank: true} ) %>
+    </div>
   </div>
 
-  <!-- SUBMIT FORM -->
-  <div>
-    <%= f.submit "Submit" %>
+    <!-- PROFESSION -->
+  <div class="form-group">
+    <%= f.label "profession", class: "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+    <%= f.text_field "profession", class: 'form-control', id: "inputEmail", placeholder: 'Profession' %>
+    </div>
   </div>
-<% end %>
+
+    <!-- SUBMIT FORM -->
+    <div>
+      <%= f.submit "Submit", class: 'btn btn-warning' %>
+    </div>
+  <% end %>
+</div>

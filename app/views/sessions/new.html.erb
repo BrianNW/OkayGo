@@ -1,18 +1,37 @@
-<div id="page-content-wrapper">
-    <div class="container-fluid" style="margin-left:20%">
+<!-- <div class="full"> PUT THIS IN IF WE WANT THE BACKGROUND TO SHOW UP-->
+  <div id="page-content-wrapper">
+      <div class="container-fluid">
+        
+<!--         <form class="form-horizontal"> -->
+        <legend>Log In</legend>
+          <fieldset>
+            
 
-<h1>Log In</h1>
-<%= form_tag sessions_path do %>
-  <div>
-    <%= label_tag "username" %><br/>
-    <%= text_field_tag "username" %>
-  </div>
-  <div>
-    <%= label_tag :password %><br/>
-    <%= password_field_tag :password %>
-  </div>
-  <div><%= submit_tag "Log In" %></div>
-<% end %>
+              <div class="form-group, field">
+                <%= form_tag sessions_path, class: 'form-horizontal' do %>
+                
+                <%= label_tag :username, nil, class: 'col-xs-2 control-label' %>
+                <div class="col-lg-4">
+                  <%= text_field_tag :username, params[:username], class: 'form-control', id: 'inputUsername', placeholder: 'Username' %>
+                </div>
+              </div>
 
+              <div class="form-group, field">
+                <%= label_tag :password, nil, class: 'col-xs-2 control-label' %>
+                <div class="col-lg-4">
+                  <%= password_field_tag :password, class: 'form-control', id: 'inputPassword', placeholder: 'Password' %>
+                </div>
+              </div>
+              <br>
+              <div>
+                <%= submit_tag "Log In", class: 'actions, btn btn-warning' %>
+              </div>
+
+            <% end %>
+
+          </fieldset>
+<!--         </form> -->
+      </div>
   </div>
-</div>
+
+<!-- </div>

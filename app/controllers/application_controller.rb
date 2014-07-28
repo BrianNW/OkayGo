@@ -26,6 +26,12 @@ class ApplicationController < ActionController::Base
     @img = @hash["businesses"][0]["image_url"]
   end
 
+  private
+
+  def authorize
+    redirect_to login_url, alert: "Not authorized" if current_user.nil?
+  end
+
   helper_method :search
   helper_method :current_user
   
