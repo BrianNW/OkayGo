@@ -17,7 +17,6 @@
    between <%= f.select :min_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>
   and
     <%= f.select :max_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>.
-  </div>
    <p>
    I would consider the following options for a first-date:
    </p>
@@ -30,6 +29,5 @@
       <%= f.text_field "address", class: 'form-control', placeholder: 'Gastown, Vancouver, BC' %></p>
       
       <%= f.submit "Submit", class: 'btn btn-warning' %>
-  </div>
 <% end %>
 </div>
