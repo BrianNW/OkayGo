@@ -3,8 +3,24 @@
 <head>
   <title>Serotonin</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application', :defaults %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+ <script> var speed = 'fast';
+
+$('html, body').hide();
+$(document).ready(function() {
+    $('html, body').fadeIn(speed, function() {
+        $('a[href], button[href]').click(function(event) {
+            var url = $(this).attr('href');
+            if (url.indexOf('#') == 0 || url.indexOf('javascript:') == 0) return;
+            event.preventDefault();
+            $('html, body').fadeOut(speed, function() {
+                window.location = url;
+            });
+        });
+    });
+});</script>
 </head>
 <body>
 

@@ -2,12 +2,10 @@
 
 <div id="page-content-wrapper">
   <div class="container-fluid" style="margin-left:20%">
-
-      <h2>Edit My Deets</h2>
-
+      <legend>Edit My Deets</legend>
+      <fieldset>
       <%= link_to "Back to my profile", deet_path(current_user.id) %>
-
       <%= render 'form' %>
-
+      </fieldset>
   </div>
 </div>

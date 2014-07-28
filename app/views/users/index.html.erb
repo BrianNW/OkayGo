@@ -1,17 +1,23 @@
 <div id="page-content-wrapper">
-    <div class="container-fluid" style="margin-left:20%">
-<%= render 'layouts/sidebar' %>
+  <div class="container-fluid" style="margin-left:20%">
 
-    <% @user.each do |user| %>
-      <div class="col-md-4 portfolio-item">
+      <%= render 'layouts/sidebar' %>
+
+      <% @user.each do |user| %>
+        <div class="col-md-4 portfolio-item">
           <a href="#">
             <img class="profilepic" src="<%=user.img%>">
           </a>
           <h3><%= link_to user.username, user_path(user) %></h3>
-          <p>  <%= button_to 'Like', {:controller => "likes", :action => "create", :target_id => user.id} , :method=>:post  %></p>
-      </div>
-  <% end %>
-</div>
+
+          <p>
+          <%= button_to 'Like', {:controller => "likes", :action => "create", :target_id => user.id} , :method=>:post, class: 'btn btn-warning'  %>
+          <%= button_to 'Flag', {:controller => "flags", :action => "create", :target_id => user.id} , :method=>:post, class: 'btn btn-danger' %>
+          </p>
+
+        </div>
+        <% end %>
+  </div>
 </div>
 
 <!-- PREFERENCES Modal -->

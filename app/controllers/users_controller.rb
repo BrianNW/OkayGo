@@ -1,10 +1,14 @@
 class UsersController < ApplicationController
 
-  before_filter :restrict_access
+  before_filter :authorize, only: [:edit, :update]
 
   def index
     ultimate_matches
     # liked?
+  end
+
+  def matches
+    final_matches
   end
 
   def show
@@ -73,6 +77,26 @@ class UsersController < ApplicationController
   def ultimate_matches
     @user = User.where(id: first_date_match_user_ids).where(id: lifestyle_matches)
   end
+
+## FINDS IDS OF ULTIMATE MATCHES ##
+  def ultimate_match_ids
+    ultimate_matches.map(&:id)
+  end
+
+## FINDS USERS FROM ULTIMATE MATCH LIST WHERE TARGET ID IS SAME AS CURRENT USER ID ##
+  def mutual_matches
+    Like.where(user_id: ultimate_match_ids).where(target_id: current_user.id).map(&:user_id)
+  end
+
+  ## FINDS CURRENTS USERS LIKES AND FILTERS BY MUTUAL MATCHES, RETURNS USER ID ##
+  def mutual_match_user_ids
+    likes = Like.where(user_id: current_user.id).where(target_id: mutual_matches).map(&:target_id)
+  end
+
+  def final_matches
+    @user = User.where(id: mutual_match_user_ids)
+  end
+
 
   # def flag
   #   (params[:user]).increment!(:flag)

@@ -1,12 +1,11 @@
 <div id="wrapper">
-
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
         <li class="sidebar-brand">
-          <h2 style="color:#F0B900">bolt</h2>
+         <%= link_to "bolt", root_path, id: 'bolt-header' %>
         </li>
         <li>
-            <img class="profilepic" src="<%= current_user.img %>">
+        <%= link_to image_tag(current_user.img, class: 'profilepic'), profile_path %>
         </li>
         <li>
             About Me: <%= current_user.deet.about_me %>
@@ -30,8 +29,11 @@
             <%= link_to "Update First Date", edit_preference_path(current_user.id)%>
         </li>
         <li>
+            <%= link_to "Mutual Matches", matches_path %>
+        </li>
+        <li>
           <% if current_user %>
-          <%= link_to "My Matches", users_path %>
+          <%= link_to "All Matches", users_path %>
           <%= link_to "Log Out", logout_path %>
           <% else %>
           <%= link_to "Sign Up", signup_path %> or
