@@ -1,5 +1,5 @@
 
-<%= form_for @preference, :html => {:id => 'saveoffline'} do |f| %>
+<%= form_for @preference, :html => {:class => 'form-horizontal', :id => 'saveoffline'} do |f| %>
   <% if @preference.errors.any? %>
     <div>
       <%= pluralize(@preference.errors.count, "error") %> prevented this preference from being submitted:
@@ -29,7 +29,7 @@
     <p>My preferred date location would be:
       <%= f.text_field "address", class: 'form-control', placeholder: 'Gastown, Vancouver, BC' %></p>
       
-      <%= f.submit "Submit" %>
+      <%= f.submit "Submit", class: 'btn btn-warning' %>
   </div>
 <% end %>
 </div>
