@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :likes, only: [:show, :new, :create, :destroy]
+  resources :flags, only: [:show, :new, :create, :destroy]
 
   resources :deets
 
