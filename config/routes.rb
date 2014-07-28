@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :users
   get 'matches', to: 'users#matches', as: 'matches'
+  get 'my_profile', to: 'users#my_profile', as: 'profile'
   get 'deets/:id' => 'deets#show'
 
   resources :preferences

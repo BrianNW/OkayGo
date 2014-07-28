@@ -5,7 +5,7 @@
          <%= link_to "bolt", root_path, id: 'bolt-header' %>
         </li>
         <li>
-            <img class="profilepic" src="<%= current_user.img %>">
+        <%= link_to image_tag(current_user.img, class: 'profilepic'), profile_path %>
         </li>
         <li>
             About Me: <%= current_user.deet.about_me %>
