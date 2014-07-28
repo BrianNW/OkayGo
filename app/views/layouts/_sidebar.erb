@@ -1,5 +1,4 @@
 <div id="wrapper">
-
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
         <li class="sidebar-brand">
@@ -28,6 +27,9 @@
         </li>
         <li>
             <%= link_to "Update First Date", edit_preference_path(current_user.id)%>
+        </li>
+        <li>
+            <%= link_to "Mutual Matches", matches_path %>
         </li>
         <li>
           <% if current_user %>

@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   has_secure_password
     
-  validates_uniqueness_of :username
+  # validates_uniqueness_of :username
   # def self.authenticate(user, password)
   #   find_by_username(username).try(:authenticate, password)
 

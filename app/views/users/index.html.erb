@@ -2,7 +2,6 @@
   <div class="container-fluid" style="margin-left:20%">
 
       <%= render 'layouts/sidebar' %>
-      <% if current_user %>
 
       <% @user.each do |user| %>
         <div class="col-md-4 portfolio-item">
@@ -12,9 +11,6 @@
           <h3><%= link_to user.username, user_path(user) %></h3>
           <p>  <%= button_to 'Like', {:controller => "likes", :action => "create", :target_id => user.id} , :method=>:post  %></p>
         </div>
-        <% end %>
-        <% else %>
-        <% redirect_to deets_path %>
         <% end %>
   </div>
 </div>
