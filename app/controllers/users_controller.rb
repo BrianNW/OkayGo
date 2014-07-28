@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   ## GENDER AND AGE MATCHES ##
   def basic_matches
     User.where(:gender => current_user.preference.gender_pref,
-      :age => current_user.preference.min_age..current_user.preference.max_age) 
+      :age => current_user.preference.min_age..current_user.preference.max_age)
   end
 
 
@@ -84,7 +84,7 @@ class UsersController < ApplicationController
   #   @liked_users = Like.where(user_id: user_likes)(&:user_id)
   # end
   # @liked_users.each do |id|
-  # if id == user.id 
+  # if id == user.id
   # I have liked this user
 
 end

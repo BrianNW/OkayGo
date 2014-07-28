@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'message/index'
+
+  get 'message/create'
+
   resources :likes, only: [:show, :new, :create, :destroy]
 
   resources :deets
