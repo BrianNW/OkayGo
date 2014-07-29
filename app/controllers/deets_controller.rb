@@ -30,7 +30,6 @@ class DeetsController < ApplicationController
 
     def edit
       @deet = Deet.find(current_user.deet)
-      @image = Image.find(current_user.images)
     end
 
    def update

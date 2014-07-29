@@ -74,5 +74,5 @@ var serotonin = {
   }
 };  
     
-$(document).on('ready page:change', serotonin.init); 
+$(document).on('ready page:change', serotonin.init);
 
