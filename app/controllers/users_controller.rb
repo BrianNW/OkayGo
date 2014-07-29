@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def index
     ultimate_matches
-    mutual_first_date_match_user_ids
+    final_mutual_matches
     # liked?
   end
 
@@ -35,6 +35,11 @@ class UsersController < ApplicationController
   end
 
   protected
+
+
+  # def banned_users
+  #   if current_user.flags.length
+  # end
 
   def user_params
     params.require(:user).permit(
@@ -86,13 +91,28 @@ class UsersController < ApplicationController
   #   final_matches.all.map(&:lifestyles)
   # end
 
-  ###--- ONE LIFESTYLE TYPE IN THE ARRAY OF USERS ---###
-  def mutual_lifestyle_matches
-    @users = LifestylePref.where(lifestyle_id: current_user_lifestyle_id).where(user_id: mutual_first_date_match_user_ids)(&:user_id)
+  
+
+  #grabbing the current_user.deet.lifestyle
+  #match with types in lifestyles to find what the id would be
+  #return lifestyle_id (&:id)
+  #list of user_ids from lifestyle_prefs table
+  #match user_ids with final matches to return array of user
+
+
+  def current_user_lifestyle_id
+    lifestyle_string = current_user.deet.lifestyle
+    Lifestyle.where(types: lifestyle_string).map(&:id)
   end
 
-  #MATCH WHERE one lifestyle type (string) in Users.all matches
-  #the current_user.deet.lifestyle
+  def mutual_lifestyle_matches
+    @users = LifestylePref.where(lifestyle_id: current_user_lifestyle_id).where(user_id: mutual_first_date_match_user_ids).map(&:user_id)
+  end
+
+  def final_mutual_matches
+    @user = User.where(id: mutual_lifestyle_matches).where(id: ultimate_match_ids)
+  end
+
 
   # lifetyle_prefs
 
