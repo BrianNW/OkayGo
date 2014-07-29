@@ -31,19 +31,28 @@ class PreferencesController < ApplicationController
   end
 
   def edit
-    @preference = current_user.preference
-    @first_date = FirstDate.all
-    @lifestyle = Lifestyle.all
+    # if current_user.preference.nil?
+    #   render :new
+    # else
+      @preference = current_user.preference
+      @first_date = FirstDate.all
+      @lifestyle = Lifestyle.all
     # @first_date = FirstDate.where(id: params[:user][:first_dates])
     # @lifestyle = Lifestyle.where(id: params[:user][:lifestyles])
+    # end
   end
 
   def update
-    @preference = Preference.find(current_user.preference.id)
-    @preference.user_id = current_user.id
+    @preference = current_user.preference
 
     current_user.first_dates = FirstDate.where(id: params[:user][:first_dates])
+
     current_user.lifestyles = Lifestyle.where(id: params[:user][:lifestyles])
+
+    # @first_date = current_user.first_dates
+    # @lifestyle = current_user.lifestyles
+    # @first_date = FirstDate.where(id: params[:user][:first_dates])
+    # @lifestyle = Lifestyle.where(id: params[:user][:lifestyles])
 
     if @preference.update_attributes(preference_params)
       # search

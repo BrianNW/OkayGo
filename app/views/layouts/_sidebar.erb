@@ -17,7 +17,10 @@
             Profession: <%= current_user.deet.profession %>
         </li>
         <li>
-          <%= link_to "Update Deets", edit_deet_path(current_user.id) %>
+        <!-- deet modal -->
+        <button class="btn btn-warning" data-toggle="modal" data-target="#deetModal">
+          Update Deets
+        </button>
         </li>
         <li>
             Looking for: <%= current_user.preference.gender_pref %>
@@ -26,7 +29,13 @@
             Between: <%= current_user.preference.min_age %> - <%= current_user.preference.max_age %>
         </li>
         <li>
-            <%= link_to "Update First Date", edit_preference_path(current_user.id)%>
+        <!-- deet modal -->
+        <button class="btn btn-warning" data-toggle="modal" data-target="#firstdateModal">
+          Update First Date
+        </button>
+        </li>
+        <li>
+            <%= link_to "Upload More Images", new_image_path %>
         </li>
         <li>
             <%= link_to "Mutual Matches", matches_path %>
@@ -40,11 +49,6 @@
           <%= link_to "Log In", login_path %>
           <% end %>
         </li>
-
-        <!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
 
     </ul>
   </div>

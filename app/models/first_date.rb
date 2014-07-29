@@ -3,6 +3,6 @@ class FirstDate < ActiveRecord::Base
   has_many :users, through: :first_date_prefs
 
   def self.test
-    
+
   end
 end
