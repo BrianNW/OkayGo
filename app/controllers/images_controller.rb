@@ -2,14 +2,15 @@ class ImagesController < ApplicationController
 
     def new
       @image = Image.new
+      @images = Image.all
     end
 
     def create
-      @image = current_user.build_image(image_params)
+      @image = current_user.images.create(image_params)
       @image.user_id = current_user.id
 
       if @image.save
-        redirect_to users_path, notice: "Image created successfully!"
+        redirect_to users_path, notice: "Image added successfully!"
       else
         render :new
       end
@@ -32,7 +33,7 @@ class ImagesController < ApplicationController
   protected
 
     def image_params
-      params.require(:image).permit(:image)
+      params.require(:image).permit(:image, :user_id)
     end
 
 end
