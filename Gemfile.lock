@@ -114,6 +114,7 @@ GEM
       rack (>= 1.0)
       rack-test (~> 0.6.2)
       ripl (>= 0.7.0)
+    rmagick (2.13.2)
     rspec-core (3.0.2)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.2)
@@ -192,6 +193,7 @@ DEPENDENCIES
   pry
   rack-offline
   rails (= 4.1.2)
+  rmagick
   rspec-rails
   sdoc (~> 0.4.0)
   spring

@@ -29,7 +29,8 @@ class DeetsController < ApplicationController
   end
 
     def edit
-      @deet = Deet.find(current_user.deet.id)
+      @deet = Deet.find(current_user.deet)
+      @image = Image.find(current_user.images)
     end
 
    def update
