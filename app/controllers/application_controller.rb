@@ -34,5 +34,5 @@ class ApplicationController < ActionController::Base
 
   helper_method :search
   helper_method :current_user
-  
+
 end

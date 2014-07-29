@@ -16,9 +16,10 @@
         <li>
             Profession: <%= current_user.deet.profession %>
         </li>
-        <li>
-          <%= link_to "Update Deets", edit_deet_path(current_user.id) %>
-        </li>
+        <!-- Button trigger modal -->
+        <button class="btn btn-warning" data-toggle="modal" data-target="#myModal">
+          Update Deets
+        </button>
         <li>
             Looking for: <%= current_user.preference.gender_pref %>
         </li>
@@ -40,11 +41,6 @@
           <%= link_to "Log In", login_path %>
           <% end %>
         </li>
-
-        <!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
 
     </ul>
   </div>

@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ActiveRecord::Base  
   has_one :deet
   has_one :preference
   has_many :lifestyle_prefs
@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :flagged_by, :class_name => 'Flag', :foreign_key => 'target_id'
 
   has_secure_password
-    
+
   # validates_uniqueness_of :username
   # def self.authenticate(user, password)
   #   find_by_username(username).try(:authenticate, password)

@@ -3,8 +3,9 @@ class UsersController < ApplicationController
   before_filter :authorize, only: [:edit, :update]
 
   def index
-    ultimate_matches
+    @deet = Deet.find(current_user.deet)
     # liked?
+    ultimate_matches
   end
 
   def matches
