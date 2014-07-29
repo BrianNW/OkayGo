@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def index
     ultimate_matches
-    mutual_basic_matches
+    mutual_first_date_match_user_ids
     # liked?
   end
 
@@ -57,6 +57,9 @@ class UsersController < ApplicationController
     current_user.lifestyles.map(&:types)
   end
 
+  def lifestyle_types
+    current_user.lifestyles.map(&:types)
+  end
   ##++ LISTS CURRENT USER FIRST DATES ++##
   def first_dates_types
     current_user.first_dates.map(&:types)
@@ -72,10 +75,41 @@ class UsersController < ApplicationController
     @user = Deet.where(lifestyle: lifestyle_types).where(user: basic_matches).map(&:user_id)
   end
 
+  # def current_user_lifestyle_id
+  #   lifestyle_type = current_user.lifestyle
+  #   Lifestyles.where(:types lifestyle_type)(&)
+  # end
+
+
+  ####--- ALL USERS LIFESTYLES ARE PUT IN AN ARRAY ---###
+  # def users_lifestyles_array
+  #   final_matches.all.map(&:lifestyles)
+  # end
+
+  ###--- ONE LIFESTYLE TYPE IN THE ARRAY OF USERS ---###
+  def mutual_lifestyle_matches
+    @users = LifestylePref.where(lifestyle_id: current_user_lifestyle_id).where(user_id: mutual_first_date_match_user_ids)(&:user_id)
+  end
+
+  #MATCH WHERE one lifestyle type (string) in Users.all matches
+  #the current_user.deet.lifestyle
+
+  # lifetyle_prefs
+
+  #lifestyle id of current user lifestyle
+  # types = Lifestyle.where(:type current_user.lifestyle)(&:lifestyle_id)
+
+  #filter all lifestyle_prefs 
+
 
   ##+++ LISTS ALL USER IDS WITH SAME DATE PREFERENCES AS CURRENT USER +++##
   def first_date_match_user_ids
     @user = FirstDatePref.where(first_date_id: first_date_types_id).map(&:user_id)
+  end
+
+  ###--- LISTS USERS WHERE DATE PREF MATCHES CURRENT USER DATE PREFS ---###
+  def mutual_first_date_match_user_ids
+    @users = FirstDatePref.where(first_date_id: first_date_types_id).where(user_id: mutual_basic_matches).map(&:user_id)
   end
 
   ##+++ APPLIES PREVIOUSLY FILTERED USERS BY DATE MATCH USER IDS +++##
@@ -83,7 +117,7 @@ class UsersController < ApplicationController
     @user = User.where(id: first_date_match_user_ids).where(id: lifestyle_matches)
   end
 
-##+++ FINDS IDS OF ULTIMATE MATCHES +++##
+  ##+++ FINDS IDS OF ULTIMATE MATCHES +++##
   def ultimate_match_ids
     ultimate_matches.map(&:id)
   end
