@@ -56,7 +56,7 @@ class UsersController < ApplicationController
       :age => current_user.preference.min_age..current_user.preference.max_age)
   end
 
-  ####--- USERS THAT MATCH THE CURRENT USER AGE AND GENDER ---####
+  ####--- MUTUTAL GENDER AND AGE MATCHES ---####
   def mutual_basic_matches
     Preference.where('gender_pref = ? AND min_age <= ? AND max_age >= ?', current_user.gender, current_user.age, current_user.age).map(&:user_id)
   end
@@ -66,9 +66,6 @@ class UsersController < ApplicationController
     current_user.lifestyles.map(&:types)
   end
 
-  def lifestyle_types
-    current_user.lifestyles.map(&:types)
-  end
   ##++ LISTS CURRENT USER FIRST DATES ++##
   def first_dates_types
     current_user.first_dates.map(&:types)
