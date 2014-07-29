@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def index
     ultimate_matches
+    mutual_basic_matches
     # liked?
   end
 
@@ -40,55 +41,59 @@ class UsersController < ApplicationController
       :username, :password, :img, :age, :gender, :bio)
   end
 
-  ## GENDER AND AGE MATCHES ##
+  ##+++ GENDER AND AGE MATCHES +++##
   def basic_matches
     User.where(:gender => current_user.preference.gender_pref,
       :age => current_user.preference.min_age..current_user.preference.max_age) 
   end
 
+  ####--- USERS THAT MATCH THE CURRENT USER AGE AND GENDER ---####
+  def mutual_basic_matches
+    Preference.where('gender_pref = ? AND min_age <= ? AND max_age >= ?', current_user.gender, current_user.age, current_user.age).map(&:user_id)
+  end
 
-  ## LISTS CURRENT USER LIFESTYLE TYPES INDIVIDUALLY AND SAVES IT INTO ARRAY##
+  ##+++ LISTS CURRENT USER LIFESTYLE TYPES INDIVIDUALLY AND SAVES IT INTO ARRAY +++##
   def lifestyle_types
     current_user.lifestyles.map(&:types)
   end
 
-  ## LISTS CURRENT USER FIRST DATES ##
+  ##++ LISTS CURRENT USER FIRST DATES ++##
   def first_dates_types
     current_user.first_dates.map(&:types)
   end
 
-  ## LISTS CURRENT USER FIRST DATE IDS ##
+  ##++ LISTS CURRENT USER FIRST DATE IDS ++##
   def first_date_types_id
     current_user.first_date_prefs.map(&:first_date_id)
   end
 
-  ## MATCHES CURRENT USER LIFESTYLE_PREF WITH USERS LIFESTYLE RETURNS LIFESTYLE MATCHES ##
+  ##+++ MATCHES CURRENT USER LIFESTYLE_PREF WITH USERS LIFESTYLE RETURNS LIFESTYLE MATCHES +++##
   def lifestyle_matches
     @user = Deet.where(lifestyle: lifestyle_types).where(user: basic_matches).map(&:user_id)
   end
 
 
-  ## LISTS ALL USER IDS WITH SAME DATE PREFERENCES AS CURRENT USER ##
+  ##+++ LISTS ALL USER IDS WITH SAME DATE PREFERENCES AS CURRENT USER +++##
   def first_date_match_user_ids
     @user = FirstDatePref.where(first_date_id: first_date_types_id).map(&:user_id)
   end
 
-  ## APPLIES PREVIOUSLY FILTERED USERS BY DATE MATCH USER IDS ##
+  ##+++ APPLIES PREVIOUSLY FILTERED USERS BY DATE MATCH USER IDS +++##
   def ultimate_matches
     @user = User.where(id: first_date_match_user_ids).where(id: lifestyle_matches)
   end
 
-## FINDS IDS OF ULTIMATE MATCHES ##
+##+++ FINDS IDS OF ULTIMATE MATCHES +++##
   def ultimate_match_ids
     ultimate_matches.map(&:id)
   end
 
-## FINDS USERS FROM ULTIMATE MATCH LIST WHERE TARGET ID IS SAME AS CURRENT USER ID ##
+##+++ FINDS USERS FROM ULTIMATE MATCH LIST WHERE TARGET ID IS SAME AS CURRENT USER ID +++##
   def mutual_matches
     Like.where(user_id: ultimate_match_ids).where(target_id: current_user.id).map(&:user_id)
   end
 
-  ## FINDS CURRENTS USERS LIKES AND FILTERS BY MUTUAL MATCHES, RETURNS USER ID ##
+  ##++++ FINDS CURRENTS USERS LIKES AND FILTERS BY MUTUAL MATCHES, RETURNS USER ID +++##
   def mutual_match_user_ids
     likes = Like.where(user_id: current_user.id).where(target_id: mutual_matches).map(&:target_id)
   end

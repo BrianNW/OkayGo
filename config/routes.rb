@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :flags, only: [:show, :new, :create, :destroy]
 
   resources :deets
+  resources :images
 
   resources :users
   get 'matches', to: 'users#matches', as: 'matches'

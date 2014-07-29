@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :liked_by, :class_name => 'Like', :foreign_key => 'target_id'
   has_many :flags, :class_name => 'Flag', :foreign_key => 'user_id'
   has_many :flagged_by, :class_name => 'Flag', :foreign_key => 'target_id'
+  has_many :images
 
   has_secure_password
     

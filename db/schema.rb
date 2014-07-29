@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140728185030) do
+ActiveRecord::Schema.define(version: 20140728210023) do
 
   create_table "deets", force: true do |t|
     t.string   "about_me"
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20140728185030) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "img"
   end
 
   create_table "first_date_prefs", force: true do |t|
@@ -39,6 +38,13 @@ ActiveRecord::Schema.define(version: 20140728185030) do
   create_table "flags", id: false, force: true do |t|
     t.integer  "user_id"
     t.integer  "target_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "images", force: true do |t|
+    t.integer  "user_id"
+    t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
