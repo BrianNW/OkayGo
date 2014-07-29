@@ -45,8 +45,13 @@ class PreferencesController < ApplicationController
   def update
     @preference = current_user.preference
 
-    @first_date = FirstDate.where(id: params[:user][:first_dates])
-    @lifestyle = Lifestyle.where(id: params[:user][:lifestyles])
+    current_user.first_dates = FirstDate.where(id: params[:user][:first_dates])
+
+    current_user.lifestyles = Lifestyle.where(id: params[:user][:first_dates])
+    # @first_date = current_user.first_dates
+    # @lifestyle = current_user.lifestyles
+    # @first_date = FirstDate.where(id: params[:user][:first_dates])
+    # @lifestyle = Lifestyle.where(id: params[:user][:lifestyles])
 
     if @preference.update_attributes(preference_params)
       # search

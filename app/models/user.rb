@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base  
+class User < ActiveRecord::Base
   has_one :deet
   has_one :preference
   has_many :lifestyle_prefs

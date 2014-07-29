@@ -1,5 +1,8 @@
+<!-- PREFERENCE FORM -->
 
 <%= form_for @preference, :html => {:class => 'form-horizontal', :id => 'saveoffline'} do |f| %>
+
+  <!-- VALIDATION FOR FORM SUBMISSION -->
   <% if @preference.errors.any? %>
     <div>
       <%= pluralize(@preference.errors.count, "error") %> prevented this preference from being submitted:
@@ -11,24 +14,40 @@
     </div>
   <% end %>
 
+
+  <!-- GENDER PREFERENCE -->
   <div class='form group'>
   I am looking for a
   <%= f.select("gender_pref",[['male', 'male'], ['female', 'female']], include_blank: true, class: 'form-control', id: 'select') %>
+
+   <!-- MIN AGE PREFERENCE -->
    between <%= f.select :min_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>
   and
+
+  <!-- MAX AGE PREFERENCE -->
     <%= f.select :max_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>.
   </div>
+
+  <!-- FIRST DATE PREFERENCE -->
+  <!-- CHECKBOXES -->
    <p>
    I would consider the following options for a first-date:
    </p>
     <%= collection_check_boxes(:user, :first_dates, @first_date, :id, :types) %>
+
+    <!-- LIFESTYLE PREFERENCE -->
+    <!-- CHECKBOXES -->
     <p>
     I would describe my lifestyle as:
     </p>
     <%= collection_check_boxes(:user, :lifestyles, @lifestyle, :id, :types) %>
+
+
+    <!-- LOCATION PREFERENCE -->
     <p>My preferred date location would be:
       <%= f.text_field "address", class: 'form-control', placeholder: 'Gastown, Vancouver, BC' %></p>
 
+      <!-- SUBMIT BUTTON -->
       <%= f.submit "Submit", class: 'btn btn-warning' %>
   </div>
 <% end %>

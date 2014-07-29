@@ -3,12 +3,25 @@ class UsersController < ApplicationController
   before_filter :authorize, only: [:edit, :update]
 
   def index
+    #TO RENDER DEET MODAL
     @deet = Deet.find(current_user.deet)
-    # liked?
     ultimate_matches
+    #TO RENDER FIRST DATE MODAL
+    # @preference = current_user.preference
+    # @first_date = @current_user.first_dates
+    # current_user.first_dates = FirstDate.where(id: params[:user][:first_dates])
+
+    # @first_date = FirstDate.where(id: current_user.first_dates)
+    # @lifestyle = Lifestyle.where(id: current_user.lifestyles)
+
+    # liked?
   end
 
   def matches
+    #TO RENDER DEET MODAL
+    @deet = Deet.find(current_user.deet)
+    ultimate_matches
+
     final_matches
   end
 
