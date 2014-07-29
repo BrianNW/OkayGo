@@ -64,7 +64,7 @@ namespace :db do
 
 
     #FAKER MALE USERS
-    200.times do |n|
+    500.times do |n|
 
       #BASIC INFO
       username = Faker::Internet.user_name
@@ -112,7 +112,7 @@ namespace :db do
         :first_date_id => [1,2,3,4,5,6,7].sample
       })
       #MALE LIKES
-      10.times do |n|
+      3.times do |n|
        Like.create({
         :user_id => user.id,
         :target_id => (1..200).to_a.sample
@@ -122,7 +122,7 @@ namespace :db do
 
 
       #FAKER FEMALE USERS
-    200.times do |n|
+    500.times do |n|
 
       #BASIC INFO
       username = Faker::Internet.user_name
@@ -166,7 +166,7 @@ namespace :db do
         :first_date_id => [1,2,3,4,5,6,7].sample
       })
       #FEMALE LIKES
-      10.times do |n|
+      3.times do |n|
        Like.create({
         :user_id => user.id,
         :target_id => (1..200).to_a.sample

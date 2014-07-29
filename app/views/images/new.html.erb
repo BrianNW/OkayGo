@@ -1,0 +1,13 @@
+<%= render 'layouts/sidebar' %>
+<div id="page-content-wrapper">
+  <div class="container-fluid" style="margin-left:20%">
+
+<%= render 'images/form' %>
+
+      <% @images.each do |image| %>
+        <div class="col-md-4 portfolio-item">
+          <h3><%= image_tag image.image, class: 'profilepic' %></h3>
+          <% end %>
+
+      </div>
+  </div>

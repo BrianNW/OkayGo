@@ -29,7 +29,7 @@ class DeetsController < ApplicationController
   end
 
     def edit
-      @deet = Deet.find(current_user.deet.id)
+      @deet = Deet.find(current_user.deet)
     end
 
    def update

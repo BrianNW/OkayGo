@@ -26,7 +26,6 @@
 
   <!-- MAX AGE PREFERENCE -->
     <%= f.select :max_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>.
-  </div>
 
   <!-- FIRST DATE PREFERENCE -->
   <!-- CHECKBOXES -->
@@ -49,6 +48,5 @@
 
       <!-- SUBMIT BUTTON -->
       <%= f.submit "Submit", class: 'btn btn-warning' %>
-  </div>
 <% end %>
 </div>

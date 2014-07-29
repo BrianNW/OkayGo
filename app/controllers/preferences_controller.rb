@@ -47,7 +47,8 @@ class PreferencesController < ApplicationController
 
     current_user.first_dates = FirstDate.where(id: params[:user][:first_dates])
 
-    current_user.lifestyles = Lifestyle.where(id: params[:user][:first_dates])
+    current_user.lifestyles = Lifestyle.where(id: params[:user][:lifestyles])
+
     # @first_date = current_user.first_dates
     # @lifestyle = current_user.lifestyles
     # @first_date = FirstDate.where(id: params[:user][:first_dates])
