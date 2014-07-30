@@ -44,7 +44,6 @@ class PreferencesController < ApplicationController
 
   def update
     @preference = current_user.preference
-
     current_user.first_dates = FirstDate.where(id: params[:user][:first_dates])
 
     current_user.lifestyles = Lifestyle.where(id: params[:user][:lifestyles])

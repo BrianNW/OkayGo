@@ -4,10 +4,15 @@ class UsersController < ApplicationController
 
   def index
     #TO RENDER DEET MODAL
-    @deet = Deet.find(current_user.deet)
     ultimate_matches
     final_mutual_matches
-    # liked?
+
+    @deet = Deet.find(current_user.deet)
+    @preference = current_user.preference
+    @first_date = FirstDate.all
+    @lifestyle = Lifestyle.all
+    # @first_date = current_user.first_dates
+    # @lifestyle = current_user.lifestyles
   end
 
   def matches
@@ -170,5 +175,6 @@ class UsersController < ApplicationController
   # @liked_users.each do |id|
   # if id == user.id
   # I have liked this user
+
 
 end
