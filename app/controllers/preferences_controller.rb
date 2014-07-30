@@ -2,6 +2,7 @@ class PreferencesController < ApplicationController
 
   before_filter :authorize, only: [:edit, :update]
 
+
   def index
     @preference = Preference.all.page(params[:page]).per(5)
   end

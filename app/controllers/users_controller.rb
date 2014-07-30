@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :authorize, only: [:edit, :update]
+  helper_method :mid_point_geolocation
 
   def index
     ultimate_matches
@@ -33,6 +34,13 @@ class UsersController < ApplicationController
 
   def edit
   end
+
+  def mid_point_geolocation(other_user)
+    my_address = current_user.preference.address
+    their_address = other_user.preference.address
+    mid_point = Geocoder::Calculations.geographic_center([my_address, their_address])
+  end
+
 
   protected
 

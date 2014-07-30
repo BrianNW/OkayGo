@@ -26,7 +26,7 @@
     </p>
     <%= collection_check_boxes(:user, :lifestyles, @lifestyle, :id, :types) %>
     <p>My preferred date location would be:
-      <%= f.text_field "address", class: 'form-control', placeholder: 'Gastown, Vancouver, BC' %></p>
+    <%= f.text_field "address" %>
       
       <%= f.submit "Submit", class: 'btn btn-warning' %>
 <% end %>

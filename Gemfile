@@ -31,6 +31,7 @@ gem 'kaminari'
 gem 'yelp', require: 'yelp'
 gem 'populator'
 gem 'faker'
+gem 'google_places'
 # gem 'rack-offline'
 # gem "factory_girl_rails", "~> 4.0"
 

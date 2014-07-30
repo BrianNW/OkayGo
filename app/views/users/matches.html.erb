@@ -9,6 +9,7 @@
         <img class="profilepic" src="<%=user.img%>">
       </a>
       <h3><%= link_to user.username, user_path(user) %></h3>
+         <%= mid_point_geolocation(user) %>
       <p>  <%= button_to 'Chat' %></p>
     </div>
     <% end %>
