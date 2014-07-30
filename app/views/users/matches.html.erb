@@ -9,12 +9,18 @@
         <img class="profilepic" src="<%=user.img%>">
       </a>
       <h3><%= link_to user.username, user_path(user) %></h3>
-      <p>  <%= button_to 'Chat' %></p>
-    </div>
-    <% end %>
+
+      <!-- CHAT BUTTON -->
+      <button id="startChat" class="btn btn-warning">Chat</button>
 
     </div>
+    <% end %>
+    </div>
   </div>
+
+
+
+
 
 
   <!-- DEET MODAL -->
