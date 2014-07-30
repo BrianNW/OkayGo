@@ -23,7 +23,7 @@ $(document).on('ready page:change', function() {$("#saveoffline").elephant();});
 
 
 // OPEN CHAT
-// var startChat = document.getElementById('startChat');
+var startChat = document.getElementById('startChat');
 
 startChat.click(function(){
   window.open('www.google.ca', '_blank');
