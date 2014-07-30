@@ -16,7 +16,7 @@
           <%= button_to 'Like', {:controller => "likes", :action => "create", :target_id => user.id} , :method=>:post, class: 'btn btn-warning'  %>
           <%= button_to 'Flag', {:controller => "flags", :action => "create", :target_id => user.id} , :method=>:post, class: 'btn btn-danger' %>
           </p>
-          
+
 
         </div>
         <% end %>
