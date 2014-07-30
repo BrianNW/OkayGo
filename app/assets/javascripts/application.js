@@ -25,7 +25,7 @@ $(document).on('ready page:change', function() {$("#saveoffline").elephant();});
 // OPEN CHAT
 // var startChat = document.getElementById('startChat');
 
-startChat.click(function(){
-  window.open('www.google.ca', '_blank');
+$('#startChat').click(function(){
+  window.open('https://romilabarryman.com', '_blank');
   return false;
 });
