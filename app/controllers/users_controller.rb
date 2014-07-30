@@ -43,6 +43,10 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def my_profile
+    search
+  end
+
   protected
 
 
@@ -163,18 +167,6 @@ class UsersController < ApplicationController
   end
 
 
-  # def flag
-  #   (params[:user]).increment!(:flag)
-  # end
-
-## METHOD FOR DETERMINING IF THIS USER HAS BEEN LIKED OR NOT (NOT WORKING) ##
-  # def liked?
-  #   user_likes = current_user.likes.map(&:target_id)
-  #   @liked_users = Like.where(user_id: user_likes)(&:user_id)
-  # end
-  # @liked_users.each do |id|
-  # if id == user.id
-  # I have liked this user
 
 
 end

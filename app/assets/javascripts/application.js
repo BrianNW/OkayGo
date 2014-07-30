@@ -23,9 +23,16 @@ $(document).on('ready page:change', function() {$("#saveoffline").elephant();});
 
 
 // OPEN CHAT
-var startChat = document.getElementById('startChat');
 
-$('#startChat').click(function(){
-  window.open('https://romilabarryman.com', '_blank');
-  return false;
+$('#startChat').click(function(event){
+  var startChat = document.getElementById('startChat');
+  event.preventDefault();
+  window.open($(this).attr("href"),'https://romilabarryman.com', '_blank');
+  // return false;
 });
+
+
+// $('#popup').click(function(event) {
+//     event.preventDefault();
+//     window.open($(this).attr("href"), "popupWindow", "width=600,height=600,scrollbars=yes");
+// });
