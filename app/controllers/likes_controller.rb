@@ -1,7 +1,7 @@
 class LikesController < ApplicationController
 
   before_filter :authorize
-  
+
   def show
   end
 
@@ -18,6 +18,10 @@ class LikesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def update
+
   end
 
   def destroy

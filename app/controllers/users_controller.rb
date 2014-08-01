@@ -19,7 +19,51 @@ class UsersController < ApplicationController
     #TO RENDER DEET MODAL
     @deet = Deet.find(current_user.deet)
     final_matches
+    @room = Array.new(5){rand 10}.join.to_i
   end
+
+  def chatid
+
+      other_user_id = (params[:otheruserid]).to_i
+
+      @chat_code = ("#{current_user.id}"+ "#{other_user_id}").to_i
+
+      # this query finds current_user's like row
+ @current_user_likes = Like.where(user_id: current_user, target_id: other_user_id).first
+
+ @current_user_likes.update_attribute(:code_chat, @chat_code)
+
+      # this query finds other user like row
+ @current_user_liked_by = Like.where(user_id: other_user_id, target_id: current_user).first
+
+ @current_user_liked_by.update_attribute(:code_chat, @chat_code)
+
+  urlcode = {:chatID => @chat_code}
+
+  render :json => urlcode.to_json
+
+  end
+
+  # THIS GRABS THE FOLLOWING:
+  # current_user img + username
+  # mutual like img + username
+  def userinfo
+
+    # turns code_chat into integer
+    @code_chat = (params[:chatid]).to_i
+
+    # finds Likes based on code_chat id
+    chat_data = Like.find_by(code_chat: @code_chat)
+
+    # finds Users based on chat_data query
+    @user_data = User.where(id: [chat_data.target_id, chat_data.user_id])
+
+    # formats javascript
+    respond_to do |format|
+      format.js { render 'chat.js.erb' }
+    end
+  end
+
 
   def show
     @user = User.find(params[:id])
@@ -175,6 +219,5 @@ class UsersController < ApplicationController
   # @liked_users.each do |id|
   # if id == user.id
   # I have liked this user
-
 
 end

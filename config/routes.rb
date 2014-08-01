@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'message/create'
 
-  resources :likes, only: [:show, :new, :create, :destroy]
+  resources :likes
   resources :flags, only: [:show, :new, :create, :destroy]
 
   resources :deets
@@ -12,6 +12,13 @@ Rails.application.routes.draw do
 
   resources :users
   get 'matches', to: 'users#matches', as: 'matches'
+
+  get 'getChatID/:otheruserid', to: 'users#chatid', as:
+  'chatid'
+
+  get 'getUserInfo/:chatid', to: 'users#userinfo', as:
+  'userinfo', :defaults => { :format => :js }
+
   get 'my_profile', to: 'users#my_profile', as: 'profile'
   get 'deets/:id' => 'deets#show'
 
