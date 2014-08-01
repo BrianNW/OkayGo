@@ -3,7 +3,7 @@
 <!--     <form class="form-horizontal"> -->
 
 <%= render 'layouts/navbar' %>
-      <legend>Add your deets!</legend>
+      <legend>Tell us about yourself.</legend>
         <fieldset>
            <%= form_for @deet, html: { multipart: true, class: "form-horizontal", id: 'saveoffline'} do |f| %>
 
@@ -27,7 +27,7 @@
   </div>
 
     <!-- LIFESTYLE CHECK BOX -->
-  <div class="form-group">
+  <div class="checkbox">
     <%= f.label "lifestyle", class: "col-lg-2 control-label" %>
     <div class="col-lg-10">
     <%= f.select("lifestyle",[['Adventurer', 'adventurer'], ['Athletic', 'athletic'], ['Intellectual', 'intellectual'], ['Professional', 'professional'], ['Traveller', 'traveller'], ['Party Animal', 'party animal'], ['Chill', 'chill']], {}, { :class => 'form-control', :id => 'select', include_blank: true} ) %>
