@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+  
+
   has_one :deet
   has_one :preference
   has_many :lifestyle_prefs
@@ -11,6 +14,8 @@ class User < ActiveRecord::Base
   has_many :flagged_by, :class_name => 'Flag', :foreign_key => 'target_id'
   has_many :images
 
+  accepts_nested_attributes_for :deet, :preference
+
   has_secure_password
 
   # validates_uniqueness_of :username
@@ -18,7 +23,8 @@ class User < ActiveRecord::Base
   #   find_by_username(username).try(:authenticate, password)
 
     def user_params
-      params.require(:user).permit(:username, :password, :password_confirmation)
+      params.require(:user)
+        .permit(:username, :password, :password_confirmation)
     end
 
 end

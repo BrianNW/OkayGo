@@ -5,7 +5,8 @@
 <%= render 'layouts/navbar' %>
       <legend>Tell us about yourself.</legend>
         <fieldset>
-           <%= form_for @deet, html: { multipart: true, class: "form-horizontal", id: 'saveoffline'} do |f| %>
+        <%= form_for :user do |f| %>
+           <%= f.fields_for @deet, html: { multipart: true, class: "form-horizontal", id: 'saveoffline'} do |f| %>
 
   <!-- RAISE EXCEPTION -->
   <% if @deet.errors.any? %>
@@ -43,6 +44,7 @@
     <%= link_to 'Back', new_preference_path, class: 'btn btn-warning' %>
     <%= link_to 'Next!', new_user_path, class: 'btn btn-warning' %>
     <br>
+    <% end %>
     <% end %>
     </div>
   </div>

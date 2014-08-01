@@ -7,8 +7,8 @@
       <!-- <form class="form-horizontal"> -->
       <legend>Add your Preferences!</legend>
       <fieldset>
-      
-<%= form_for @preference, :html => {:class => 'form-horizontal', :id => 'saveoffline'} do |f| %>
+      <%= form_for :user do |f| %>
+<%= f.fields_for @preference, :html => {:class => 'form-horizontal', :id => 'saveoffline'} do |f| %>
   <% if @preference.errors.any? %>
     <div>
       <%= pluralize(@preference.errors.count, "error") %> prevented this preference from being submitted:
@@ -38,6 +38,7 @@
     <%= f.text_field "address" %><br><hr>
       <%= link_to 'Back', root_path, class: 'btn btn-warning' %>
       <%= link_to 'Next!', new_deet_path, class: 'btn btn-warning' %>
+<% end %>
 <% end %>
       </fieldset>
      <!--  </form> -->

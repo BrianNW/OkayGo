@@ -34,6 +34,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      puts "THE USER ID IS #{@user.id}"
       session[:user_id] = @user.id
       redirect_to users_path, notice: "Welcome aboard, #{@user.username}!"
     else
@@ -59,8 +60,12 @@ class UsersController < ApplicationController
   # end
 
   def user_params
-    params.require(:user).permit(
-      :username, :password, :img, :age, :gender, :bio)
+    params
+      .require(:user)
+        .permit(:username, :password, :img, :age, :gender, :bio, 
+          { :preference => [ :max_age, :min_age, :gender_pref, :address ] },
+          { :deet => [ :lifestyle, :image, :about_me, :profession ] }
+        )
   end
 
   ##+++ GENDER AND AGE MATCHES +++##
