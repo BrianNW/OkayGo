@@ -88,10 +88,18 @@ function convertToArray() {
 // parse item
 // post to database
 
+
 // OPEN CHAT
 // var startChat = document.getElementById('startChat');
 
 // $('#startChat').click(function(){
-//   window.open('https://romilabarryman.com', '_blank');
+//   window.open('http://localhost:8080/', '_blank');
 //   return false;
 // });
+
+
+		// // Generate unique id for the room
+		// var id = Math.round((Math.random() * 1000000));
+    //
+		// // Redirect to the random room
+		// res.redirect('/chat/'+id);

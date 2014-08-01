@@ -116,7 +116,7 @@ namespace :db do
       3.times do |n|
        Like.create({
         :user_id => user.id,
-        :target_id => (1001).to_a.sample
+        :target_id => 1001
       })
      end
     end
@@ -175,7 +175,7 @@ namespace :db do
       3.times do |n|
        Like.create({
         :user_id => user.id,
-        :target_id => (1001).to_a.sample
+        :target_id => 1001
       })
      end
     end

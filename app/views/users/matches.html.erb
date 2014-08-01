@@ -1,24 +1,99 @@
+<script>
+
+// click event on .chatLink
+// grabs user_id of match
+// randomizes chat code
+// grabs current userID
+// interpolates current user_id onto url
+
+$(function() {
+
+    $(".chatLink").on('click', function(evt) {
+
+      // set .data
+      var userID = $(this).data('otheruserid');
+
+      $.getJSON('/getChatID/'+userID, function(data) {
+
+      //make iframe code here CHAT BOX
+      //URL - 'http://localhost:8080/'+data.chatID
+        $("#iframeModal").find("iframe").attr('src', 'http://localhost:8080/chat/'+data.chatID)
+
+      });
+
+    });
+
+});
+
+
+</script>
 
 <div id="page-content-wrapper">
   <div class="container-fluid" style="margin-left:20%">
     <%= render 'layouts/sidebar' %>
     <h1>Mutual Matches page</h1>
+
     <% @user.each do |user| %>
+
     <div class="col-md-4 portfolio-item">
       <a href="#">
+
+    <!-- JAVASCRIPT TAG -->
+        <%= content_tag "div", id: "products", data: {otheruserid: user.id} do %>
+
+        <!-- profile pic -->
         <img class="profilepic" src="<%=user.img%>">
       </a>
+
+      <!-- username -->
       <h3><%= link_to user.username, user_path(user) %></h3>
+
+      <!--  GEOLOCATOR -->
          <%= mid_point_geolocation(user) %>
 
+<% end %>
+    <!-- /JAVASCRIPT TAG -->
+
+
       <!-- CHAT BUTTON -->
-      <button id="startChat" class="btn btn-warning">Chat</button>
+      <!-- connected to script tag -->
+      <button id="startChat" class="btn btn-warning chatLink"  data-toggle="modal" data-target="#iframeModal" data-otheruserid="<%=user.id%>">Chat</button>
+
+
     </div>
     <% end %>
     </div>
   </div>
 
+<!-- IFRAME MODAL -->
 
+  <div class="modal fade" id="iframeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <!-- close modal x -->
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+          <!-- modal title -->
+          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        </div>
+
+        <!-- model content -->
+        <div class="modal-body">
+
+          <iframe width="550" height="298" seamless scrolling="no">
+          </iframe>
+        </div>
+
+        <!-- buttons -->
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
 
 
 
