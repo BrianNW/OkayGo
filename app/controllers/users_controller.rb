@@ -7,7 +7,6 @@ class UsersController < ApplicationController
     #TO RENDER DEET MODAL
     ultimate_matches
     final_mutual_matches
-
     @deet = Deet.find(current_user.deet)
     @preference = current_user.preference
     @first_date = FirstDate.all
@@ -24,25 +23,23 @@ class UsersController < ApplicationController
   end
 
   def chatid
+    other_user_id = (params[:otheruserid]).to_i
 
-      other_user_id = (params[:otheruserid]).to_i
+    @chat_code = ("#{current_user.id}"+ "#{other_user_id}").to_i
 
-      @chat_code = ("#{current_user.id}"+ "#{other_user_id}").to_i
+    # this query finds current_user's like row
+     @current_user_likes = Like.where(user_id: current_user, target_id: other_user_id).first
 
-      # this query finds current_user's like row
- @current_user_likes = Like.where(user_id: current_user, target_id: other_user_id).first
+     @current_user_likes.update_attribute(:code_chat, @chat_code)
 
- @current_user_likes.update_attribute(:code_chat, @chat_code)
+          # this query finds other user like row
+     @current_user_liked_by = Like.where(user_id: other_user_id, target_id: current_user).first
 
-      # this query finds other user like row
- @current_user_liked_by = Like.where(user_id: other_user_id, target_id: current_user).first
+     @current_user_liked_by.update_attribute(:code_chat, @chat_code)
 
- @current_user_liked_by.update_attribute(:code_chat, @chat_code)
+      urlcode = {:chatID => @chat_code}
 
-  urlcode = {:chatID => @chat_code}
-
-  render :json => urlcode.to_json
-
+      render :json => urlcode.to_json
   end
 
   # THIS GRABS THE FOLLOWING:

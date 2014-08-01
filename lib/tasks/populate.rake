@@ -82,7 +82,7 @@ namespace :db do
         :gender_pref => ['female', 'male'].sample,
         :min_age => 20 + rand(10),
         :max_age => 65,
-        :address => ['San Francisco, US', 'Gastown, Vancouver, BC'].sample
+        # :address => ['San Francisco, US', 'Gastown, Vancouver, BC'].sample
       })
 
       #FAKER MALE USERS DEETS
@@ -141,7 +141,7 @@ namespace :db do
         :gender_pref => ['female', 'male', 'both'].sample,
         :min_age => 20 + rand(10),
         :max_age => 65,
-        :address => ['San Francisco, US', 'Gastown, Vancouver, BC'].sample
+        # :address => ['San Francisco, US', 'Gastown, Vancouver, BC'].sample
       })
 
       #FAKER FEMALE USER DEETS

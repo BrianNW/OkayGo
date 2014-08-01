@@ -47,19 +47,16 @@ $(function() {
 
       <!-- username -->
       <h3><%= link_to user.username, user_path(user) %></h3>
-
-      <!--  GEOLOCATOR -->
-         <%= mid_point_geolocation(user) %>
-
-<% end %>
+<!--         mid_point_geolocation(user) -->
+      <% end %>
+      <!--  GEOLOCATOR --
     <!-- /JAVASCRIPT TAG -->
 
 
       <!-- CHAT BUTTON -->
       <!-- connected to script tag -->
       <button id="startChat" class="btn btn-warning chatLink"  data-toggle="modal" data-target="#iframeModal" data-otheruserid="<%=user.id%>">Chat</button>
-
-
+      <%= button_to 'Generate Date', {:controller => "flags", :action => "create", :target_id => user.id} , :method=>:post, class: 'btn btn-danger' %>
     </div>
     <% end %>
     </div>
