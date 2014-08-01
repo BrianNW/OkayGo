@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :images
 
   has_secure_password
-    
+
   # validates_uniqueness_of :username
   # def self.authenticate(user, password)
   #   find_by_username(username).try(:authenticate, password)

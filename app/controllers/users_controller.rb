@@ -4,12 +4,21 @@ class UsersController < ApplicationController
   helper_method :mid_point_geolocation
 
   def index
+    #TO RENDER DEET MODAL
     ultimate_matches
     final_mutual_matches
-    # liked?
+
+    @deet = Deet.find(current_user.deet)
+    @preference = current_user.preference
+    @first_date = FirstDate.all
+    @lifestyle = Lifestyle.all
+    # @first_date = current_user.first_dates
+    # @lifestyle = current_user.lifestyles
   end
 
   def matches
+    #TO RENDER DEET MODAL
+    @deet = Deet.find(current_user.deet)
     final_matches
   end
 
@@ -57,10 +66,10 @@ class UsersController < ApplicationController
   ##+++ GENDER AND AGE MATCHES +++##
   def basic_matches
     User.where(:gender => current_user.preference.gender_pref,
-      :age => current_user.preference.min_age..current_user.preference.max_age) 
+      :age => current_user.preference.min_age..current_user.preference.max_age)
   end
 
-  ####--- USERS THAT MATCH THE CURRENT USER AGE AND GENDER ---####
+  ####--- MUTUTAL GENDER AND AGE MATCHES ---####
   def mutual_basic_matches
     Preference.where('gender_pref = ? AND min_age <= ? AND max_age >= ?', current_user.gender, current_user.age, current_user.age).map(&:user_id)
   end
@@ -70,9 +79,6 @@ class UsersController < ApplicationController
     current_user.lifestyles.map(&:types)
   end
 
-  def lifestyle_types
-    current_user.lifestyles.map(&:types)
-  end
   ##++ LISTS CURRENT USER FIRST DATES ++##
   def first_dates_types
     current_user.first_dates.map(&:types)
@@ -99,7 +105,7 @@ class UsersController < ApplicationController
   #   final_matches.all.map(&:lifestyles)
   # end
 
-  
+
 
   #grabbing the current_user.deet.lifestyle
   #match with types in lifestyles to find what the id would be
@@ -127,7 +133,7 @@ class UsersController < ApplicationController
   #lifestyle id of current user lifestyle
   # types = Lifestyle.where(:type current_user.lifestyle)(&:lifestyle_id)
 
-  #filter all lifestyle_prefs 
+  #filter all lifestyle_prefs
 
 
   ##+++ LISTS ALL USER IDS WITH SAME DATE PREFERENCES AS CURRENT USER +++##
@@ -175,7 +181,8 @@ class UsersController < ApplicationController
   #   @liked_users = Like.where(user_id: user_likes)(&:user_id)
   # end
   # @liked_users.each do |id|
-  # if id == user.id 
+  # if id == user.id
   # I have liked this user
+
 
 end

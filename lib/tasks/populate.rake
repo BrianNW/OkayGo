@@ -57,7 +57,7 @@ namespace :db do
       'lawyer',
       'developer',
       'artist',
-      'unemployed',
+      'student',
       'bartender',
       'server',
       'accountant']
@@ -79,7 +79,7 @@ namespace :db do
       #FAKER MALE USERS PREFERENCE
       Preference.create({
         :user_id => user.id,
-        :gender_pref => ['female', 'male', 'both'].sample,
+        :gender_pref => ['female', 'male'].sample,
         :min_age => 20 + rand(10),
         :max_age => 65,
         :address => ['San Francisco, US', 'Gastown, Vancouver, BC'].sample
@@ -89,34 +89,34 @@ namespace :db do
       Deet.create({
         :user_id => user.id,
         :about_me => Faker::Lorem.sentence,
-        :lifestyle => lifestyle_array[rand(7)],
+        :lifestyle => lifestyle_array[rand(3)],
         :profession => profession[rand(8)]
       })
 
       #FAKER MALE USERS LIFESTYLE PREFS
       LifestylePref.create({
         :user_id => user.id,
-        :lifestyle_id => [1,2,3,4,5,6,7].sample
+        :lifestyle_id => [1,2,3].sample
       })
       LifestylePref.create({
         :user_id => user.id,
-        :lifestyle_id => [1,2,3,4,5,6,7].sample
+        :lifestyle_id => [1,2,3].sample
       })
 
       #FAKER MALE USERS DATE TYPE PREFS
       FirstDatePref.create({
         :user_id => user.id,
-        :first_date_id => [1,2,3,4,5,6,7].sample
+        :first_date_id => [1,2,3,4].sample
       })
       FirstDatePref.create({
         :user_id => user.id,
-        :first_date_id => [1,2,3,4,5,6,7].sample
+        :first_date_id => [4,5,6,7].sample
       })
       #MALE LIKES
       3.times do |n|
        Like.create({
         :user_id => user.id,
-        :target_id => (1..200).to_a.sample
+        :target_id => (1001).to_a.sample
       })
      end
     end
@@ -155,23 +155,27 @@ namespace :db do
       #FAKER FEMALE USER LIFESTYLE PREF
       LifestylePref.create({
         :user_id => user.id,
-        :lifestyle_id => [1,2,3,4,5,6,7].sample
+        :lifestyle_id => [1,2,3].sample
+      })
+      LifestylePref.create({
+        :user_id => user.id,
+        :lifestyle_id => [1,2,3].sample
       })
 
       #FAKER FEMALE USER DATE TYPE PREF
       FirstDatePref.create({
         :user_id => user.id,
-        :first_date_id => [1,2,3,4,5,6,7].sample
+        :first_date_id => [1,2,3,4].sample
       })
       FirstDatePref.create({
         :user_id => user.id,
-        :first_date_id => [1,2,3,4,5,6,7].sample
+        :first_date_id => [4,5,6,7].sample
       })
       #FEMALE LIKES
       3.times do |n|
        Like.create({
         :user_id => user.id,
-        :target_id => (1..200).to_a.sample
+        :target_id => (1001).to_a.sample
       })
      end
     end

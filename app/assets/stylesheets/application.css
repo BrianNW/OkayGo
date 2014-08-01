@@ -25,8 +25,9 @@ html, body, .full {
   font-family: 'Montserrat', sans-serif;
 }
 
-.full { 
-  background: url(http://i.imgur.com/jTc3Z.jpg) no-repeat center center fixed;
+/*  background: url(http://i.imgur.com/jTc3Z.jpg) no-repeat center center fixed;*/
+.full {
+  background: url(https://dl.dropboxusercontent.com/u/998959/fm2ugifs/date-night-615.gif) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -50,7 +51,7 @@ margin-left: 10%
 #bolt-header {
   margin-top: 10px;
   color: #F0B900;
-  font-size: 90px;
+  font-size: 40px;
 }
 
 /*HOMEPAGE*/
@@ -212,12 +213,12 @@ header {
     position: fixed;
     text-align: center;
     top: 0;
-    width: 300px;
+    width: 280px;
     height: 100%;
     margin: 0;
     padding: 0;
     list-style: none;
-    background-color: rgb(255, 255, 229);
+    background-color: #fff;
 }
 
 .sidebar-nav li {
@@ -291,3 +292,4 @@ header {
 }
 
 
+/* CHAT BUTTON CSS */

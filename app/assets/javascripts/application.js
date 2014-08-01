@@ -16,63 +16,16 @@
 //= require_self
 //= require_tree .
 
-var serotonin = {                                                                                    
-  formData: {},                                                                                      
-  save: function() { 
-    console.log('saving data', serotonin.formData);                                                                                
-    localStorage.setItem('serotonin', JSON.stringify(serotonin.formData));                           
-  },
-  load: function() {
-    console.log('loading data');
-    serotonin.formData = JSON.parse(localStorage.getItem('serotonin'));
-    if (serotonin.formData) {
-      $.each(Object.keys(serotonin.formData), serotonin.defaultValues);
-    } else {
-      serotonin.formData = {};
-    }
-  }, 
-  storeData: function() {
-    var box = $(this),                                                                               
-        label = box.attr('name');                                                                    
-        
-    if (box.attr('type') == 'checkbox') {
-        var values = [];
-            
-        values.push(box.val());
-        box.siblings('input[type="checkbox"]:checked').each(function() {                             
-          values.push($(this).val());                                                                
-        });
-        serotonin.formData[label] = values;                                                          
-    } else {
-      serotonin.formData[label]  = box.val();                                                        
-    }     
-          
-    serotonin.save();
-  },
-  defaultValues: function(key, value) {                                                              
-    var box = $('[name="'+value+'"]'),                                                               
-        value = serotonin.formData[value];                                                           
-    
-    if (box.attr('type') != 'submit') {                                                              
-      if (typeof box == 'Array') {                                                                   
-        box.each(function() {
-          if ($.inArray($(this).val(), value)) {                                                     
-            $(this).attr('checked', 'checked');                                                      
-          }
-        });
-      } else {
-        box.val(value);
-      }
-    }
-  },
-  init: function() {
-    console.log('blah hello');
-    var saveOffline = $('#saveoffline');                                                               
-    serotonin.load(); 
-      
-    saveOffline.find('input, select').on('change', serotonin.storeData);                               
-  }
-};  
-    
-$(document).on('ready page:change', serotonin.init);
+;(function(h,e,k){var g={key:"jquery-elephant"},f={},a={form:null,formData:{},save:function(){localStorage.setItem(f.key,JSON.stringify(a.formData))},load:function(){a.formData=JSON.parse(localStorage.getItem(f.key));a.formData?e.each(Object.keys(a.formData),a.defaultValues):a.formData={}},storeData:function(){var b=e(this),c=b.attr("name");if(b.is(":checkbox")||b.is(":radio")){var d=[];d.push(b.val());b.siblings(":checked").each(function(){d.push(e(this).val())});a.formData[c]=d}else a.formData[c]=b.val();a.save()},defaultValues:function(b,c){var d=a.form.find('[name="'+c+'"]');c=a.formData[c];"Array"==typeof d?d.filter('[value="'+c+'"]').prop("checked",!0):d.is(":submit")||d.val(c)}};e.fn.elephant=function(b){b=b||{};f=e.extend(g,b);a.form=e(this);a.load();a.form.find("input, select, textarea").on("change",a.storeData);return e(this)}})(window,jQuery);
 
+
+$(document).on('ready page:change', function() {$("#saveoffline").elephant();});
+
+
+// OPEN CHAT
+// var startChat = document.getElementById('startChat');
+
+$('#startChat').click(function(){
+  window.open('https://romilabarryman.com', '_blank');
+  return false;
+});
