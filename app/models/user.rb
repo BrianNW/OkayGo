@@ -11,14 +11,16 @@ class User < ActiveRecord::Base
   has_many :flagged_by, :class_name => 'Flag', :foreign_key => 'target_id'
   has_many :images
 
-  has_secure_password
+  accepts_nested_attributes_for :preference, :deet, :lifestyles, :first_dates
+
+  # has_secure_password
 
   # validates_uniqueness_of :username
   # def self.authenticate(user, password)
   #   find_by_username(username).try(:authenticate, password)
 
-    def user_params
-      params.require(:user).permit(:username, :password, :password_confirmation)
-    end
+    # def user_params
+    #   params.require(:user).permit(:username, :password, :password_confirmation)
+    # end
 
 end

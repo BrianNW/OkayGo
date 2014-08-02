@@ -3,67 +3,26 @@ class UsersController < ApplicationController
   before_filter :authorize, only: [:edit, :update]
 
   def index
-    #TO RENDER DEET MODAL
+    # MATCHING ALGORITHMS
     ultimate_matches
     final_mutual_matches
 
+    # RENDERED IN DEET MODAL
     @deet = Deet.find(current_user.deet)
+
+    # RENDERED IN PREFERENCES MODAL
     @preference = current_user.preference
     @first_date = FirstDate.all
     @lifestyle = Lifestyle.all
-    # @first_date = current_user.first_dates
-    # @lifestyle = current_user.lifestyles
   end
 
   def matches
-    #TO RENDER DEET MODAL
-    @deet = Deet.find(current_user.deet)
+    # MATCHING ALGORITHMS
     final_matches
-    @room = Array.new(5){rand 10}.join.to_i
+
+    # RENDERED IN DEET MODAL
+    @deet = Deet.find(current_user.deet)
   end
-
-  def chatid
-
-      other_user_id = (params[:otheruserid]).to_i
-
-      @chat_code = ("#{current_user.id}"+ "#{other_user_id}").to_i
-
-      # this query finds current_user's like row
- @current_user_likes = Like.where(user_id: current_user, target_id: other_user_id).first
-
- @current_user_likes.update_attribute(:code_chat, @chat_code)
-
-      # this query finds other user like row
- @current_user_liked_by = Like.where(user_id: other_user_id, target_id: current_user).first
-
- @current_user_liked_by.update_attribute(:code_chat, @chat_code)
-
-  urlcode = {:chatID => @chat_code}
-
-  render :json => urlcode.to_json
-
-  end
-
-  # THIS GRABS THE FOLLOWING:
-  # current_user img + username
-  # mutual like img + username
-  def userinfo
-
-    # turns code_chat into integer
-    @code_chat = (params[:chatid]).to_i
-
-    # finds Likes based on code_chat id
-    chat_data = Like.find_by(code_chat: @code_chat)
-
-    # finds Users based on chat_data query
-    @user_data = User.where(id: [chat_data.target_id, chat_data.user_id])
-
-    # formats javascript
-    respond_to do |format|
-      format.js { render 'chat.js.erb' }
-    end
-  end
-
 
   def show
     @user = User.find(params[:id])
@@ -87,17 +46,62 @@ class UsersController < ApplicationController
   def edit
   end
 
+  # JSON ROUTES
+
+  def chatid
+    # SAVES CHAT CODE TO DATABASE
+    
+    # converts otheruserid from string to integer
+    other_user_id = (params[:otheruserid]).to_i
+
+    # creates chat code
+    @chat_code = ("#{current_user.id}"+ "#{other_user_id}").to_i
+
+    # current user saves chat code in database
+    @current_user_likes = Like.where(user_id: current_user, target_id: other_user_id).first
+    @current_user_likes.update_attribute(:code_chat, @chat_code)
+
+     # other user saves chat code in database
+    @current_user_liked_by = Like.where(user_id: other_user_id, target_id: current_user).first
+    @current_user_liked_by.update_attribute(:code_chat, @chat_code)
+
+    # sends data as json
+    urlcode = {:chatID => @chat_code}
+    render :json => urlcode.to_json
+
+  end
+
+  def userinfo
+    # SENDS INFO TO NODE.JS
+
+    # turns code_chat into integer
+    @code_chat = (params[:chatid]).to_i
+
+    # finds likes based on code chat id
+    chat_data = Like.find_by(code_chat: @code_chat)
+
+    # finds users based on chat data query
+    @user_data = User.where(id: [chat_data.target_id, chat_data.user_id])
+
+    # sends data as raw javascript
+    respond_to do |format|
+      format.js { render 'chat.js.erb' }
+    end
+  end
+
+  
+
   protected
 
+  def user_params
+    params.require(:user).permit(:username, :password, :password_confirmation, :img, :age, :gender, :lifestyles, :first_dates)
+    params.require(:preference).permit( :max_age, :min_age, :gender_pref, :address)
+    params.require(:deet).permit(:lifestyle, :about_me, :profession)
+  end
 
   # def banned_users
   #   if current_user.flags.length
   # end
-
-  def user_params
-    params.require(:user).permit(
-      :username, :password, :img, :age, :gender, :bio)
-  end
 
   ##+++ GENDER AND AGE MATCHES +++##
   def basic_matches
