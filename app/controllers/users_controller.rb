@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to new_preference_path, notice: "Welcome aboard, #{@user.username}!"
+      redirect_to users_path, notice: "Welcome aboard, #{@user.username}!"
     else
       render :new
     end
@@ -89,14 +89,19 @@ class UsersController < ApplicationController
     end
   end
 
-  
 
   protected
 
   def user_params
-    params.require(:user).permit(:username, :password, :password_confirmation, :img, :age, :gender, :lifestyles, :first_dates)
-    params.require(:preference).permit( :max_age, :min_age, :gender_pref, :address)
-    params.require(:deet).permit(:lifestyle, :about_me, :profession)
+    # params.require(:user).permit(
+    #   :username, :password, :img, :age, :gender)
+    params.require(:user).permit(:username, 
+      :password, :password_confirmation, :img, :age, :gender,
+      :preference_attributes => [:max_age, :min_age, :gender_pref, :address],
+      :deet_attributes => [:lifestyle, :about_me, :profession]
+    )
+    # params.require(:preference).permit( :max_age, :min_age, :gender_pref, :address)
+    # params.require(:deet).permit(:lifestyle, :about_me, :profession)
   end
 
   # def banned_users

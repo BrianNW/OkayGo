@@ -1,6 +1,6 @@
 <!-- PREFERENCE FORM -->
 
-<%= form_for @preference, :html => {:class => 'form-horizontal', :id => 'saveoffline'} do |f| %>
+<%= form_for @preference, :as => "user[preference_attributes]", :html => {:class => 'form-horizontal', :id => 'saveoffline'} do |f| %>
 
   <!-- VALIDATION FOR FORM SUBMISSION -->
   <% if @preference.errors.any? %>

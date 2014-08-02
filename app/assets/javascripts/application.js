@@ -21,11 +21,12 @@
 
 $(document).on('ready page:change', function() {
   $("#saveoffline").elephant();
+// });
 
   $("#new_user").submit(function (e) {
 
-    var formData = $( this ).serialize();
-    console.log(formData);
+    // var formData = $( this ).serialize();
+    // console.log(formData);
     // gets the object from forms with id saveOffline
     // $.getJSON("#saveoffline");
 
@@ -42,15 +43,17 @@ $(document).on('ready page:change', function() {
         }
       return str.join("&");
     }
-    
-    var params = serialize(localData) + '&' + formData;
-    console.log(params);
+    var newFormUrl = $(this).attr('action') + '?' + serialize(localData);
+    $(this).attr('action', newFormUrl);
+    // var params = serialize(localData) + '&' + formData;
+    // console.log(params);
 
-    $.post('/users', params)
+    // $.post('/users', params)
 
     // prevents form from submitting
     e.stopImmediatePropagation();
-    return false;
+    console.log('done');
+    // return false;
   });
 });
 

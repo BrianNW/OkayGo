@@ -1,5 +1,5 @@
 <!-- DEET FORM -->
- <%= form_for @deet, html: { multipart: true, class: "form-horizontal", id: 'saveoffline'} do |f| %>
+ <%= form_for @deet, as: "user[deet_attributes]", html: { multipart: true, class: "form-horizontal", id: 'saveoffline'} do |f| %>
 
   <!-- RAISE EXCEPTION -->
   <% if @deet.errors.any? %>

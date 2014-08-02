@@ -55,6 +55,10 @@ $(function() {
       <!-- connected to script tag -->
       <button id="startChat" class="btn btn-warning chatLink"  data-toggle="modal" data-target="#iframeModal" data-otheruserid="<%=user.id%>">Chat</button>
 
+      <%= link_to first_date_path do %>
+          <%= button_tag "Generate Date", :class => "btn btn-danger" %>
+        <% end %>
+
     </div>
     <% end %>
     </div>
