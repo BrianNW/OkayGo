@@ -5,7 +5,7 @@
       <legend>Edit My Deets</legend>
       <fieldset>
       <%= link_to "Back to my profile", deet_path(current_user.id) %>
-      <%= render 'form' %>
+      <%= render f %>
       </fieldset>
       <div class="container-fluid" style="margin-left:20%">
       <!--       image_tag @image.image_url.to_s if @image -->

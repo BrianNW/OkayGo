@@ -1,44 +1,34 @@
-<!-- DEET FORM -->
- <%= form_for @deet, as: "user[deet_attributes]", html: { multipart: true, class: "form-horizontal", id: 'saveoffline'} do |f| %>
-
-  <!-- RAISE EXCEPTION -->
-  <% if @deet.errors.any? %>
-    <div>
-      <%= pluralize(@deet.errors.count, "error") %> prevented this deet from being submitted:
-      <ul>
-        <% @deet.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-    <!-- ABOUT ME -->
-  <div class='form-group'>
-    <%= f.label "about_me", class: 'col-lg-2 control-label' %>
-    <div class="col-lg-4">
-      <%= f.text_area "about_me", class: 'form-control', rows: '3', id: 'textArea', placeholder: 'I play lacrosse for the Darkstar HuffleStops' %>
-    </div>
+ <% if @deet.errors.any? %>
+  <div>
+    <%= pluralize(@deet.errors.count, "error") %> prevented this deet from being submitted:
+    <ul>
+      <% @deet.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
   </div>
+<% end %>
 
-    <!-- LIFESTYLE CHECK BOX -->
-  <div class="form-group">
-    <%= f.label "lifestyle", class: "col-lg-2 control-label" %>
-    <div class="col-lg-10">
-    <%= f.select("lifestyle",[['Adventurer', 'adventurer'], ['Athletic', 'athletic'], ['Intellectual', 'intellectual'], ['Professional', 'professional'], ['Traveller', 'traveller'], ['Party Animal', 'party animal'], ['Chill', 'chill']], {}, { :class => 'form-control', :id => 'select', include_blank: true} ) %>
-    </div>
+  <!-- ABOUT ME -->
+<div class='form-group'>
+  <%= form.label "about_me", class: 'col-lg-2 control-label' %>
+  <div class="col-lg-4">
+    <%= form.text_area "about_me", class: 'form-control', rows: '3', id: 'textArea', placeholder: 'I play lacrosse for the Darkstar HuffleStops' %>
   </div>
+</div>
 
-    <!-- PROFESSION -->
-  <div class="form-group">
-    <%= f.label "profession", class: "col-lg-2 control-label" %>
-    <div class="col-lg-10">
-    <%= f.text_field "profession", class: 'form-control', id: "inputEmail", placeholder: 'Profession' %>
-    </div>
+<!-- LIFESTYLE CHECK BOX -->
+<div class="checkbox">
+  <%= form.label "lifestyle", class: "col-lg-2 control-label" %>
+  <div class="col-lg-10">
+  <%= form.select("lifestyle",[['Adventurer', 'adventurer'], ['Athletic', 'athletic'], ['Intellectual', 'intellectual'], ['Professional', 'professional'], ['Traveller', 'traveller'], ['Party Animal', 'party animal'], ['Chill', 'chill']], {}, { :class => 'form-control', :id => 'select', include_blank: true} ) %>
   </div>
+</div>
 
-    <!-- SUBMIT FORM -->
-    <div>
-      <%= f.submit "Submit", class: 'btn btn-warning' %>
-    </div>
-  <% end %>
+<!-- PROFESSION -->
+<div class="form-group">
+  <%= form.label "profession", class: "col-lg-2 control-label" %>
+  <div class="col-lg-10">
+    <%= form.text_field "profession", class: 'form-control', id: "inputEmail", placeholder: 'Profession' %>    
+  </div>
 </div>

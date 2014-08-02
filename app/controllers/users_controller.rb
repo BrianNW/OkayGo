@@ -36,8 +36,12 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      # FIXME: Assumes that these 2 exist in the session. 
+      # Need to make sure that user has created these (before_filters)
+      @deet = Deet.find_by(id: session[:deet_id]).update(user: @user)
+      @preference = Preference.find_by(id: session[:preference_id]).update(user: @user)
       session[:user_id] = @user.id
-      redirect_to users_path, notice: "Welcome aboard, #{@user.username}!"
+      redirect_to new_preference_path, notice: "Welcome aboard, #{@user.username}!"
     else
       render :new
     end

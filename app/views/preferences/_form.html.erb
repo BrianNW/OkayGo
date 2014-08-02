@@ -1,31 +1,28 @@
-<!-- PREFERENCE FORM -->
-
-<%= form_for @preference, :as => "user[preference_attributes]", :html => {:class => 'form-horizontal', :id => 'saveoffline'} do |f| %>
-
-  <!-- VALIDATION FOR FORM SUBMISSION -->
-  <% if @preference.errors.any? %>
-    <div>
-      <%= pluralize(@preference.errors.count, "error") %> prevented this preference from being submitted:
-      <ul>
-        <% @preference.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<!-- VALIDATION FOR FORM SUBMISSION -->
+<% if @preference.errors.any? %>
+  <div>
+    <%= pluralize(@preference.errors.count, "error") %> prevented this preference from being submitted:
+    <ul>
+      <% @preference.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 
-  <!-- GENDER PREFERENCE -->
-  <div class='form group'>
+<!-- GENDER PREFERENCE -->
+<div class='form group'>
   I am looking for a
-  <%= f.select("gender_pref",[['male', 'male'], ['female', 'female']], include_blank: true, class: 'form-control', id: 'select') %>
+  <%= form.select("gender_pref",[['male', 'male'], ['female', 'female']], include_blank: true, class: 'form-control', id: 'select') %>
 
-   <!-- MIN AGE PREFERENCE -->
-   between <%= f.select :min_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>
+  <!-- MIN AGE PREFERENCE -->
+  between <%= form.select :min_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>
+
   and
 
   <!-- MAX AGE PREFERENCE -->
-    <%= f.select :max_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>.
+  <%= form.select :max_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>.
 
   <!-- FIRST DATE PREFERENCE -->
   <!-- CHECKBOXES -->
@@ -41,12 +38,9 @@
     </p>
     <%= collection_check_boxes(:user, :lifestyles, @lifestyle, :id, :types) %>
 
-
-    <!-- LOCATION PREFERENCE -->
-    <p>My preferred date location would be:
-      <%= f.text_field "address", class: 'form-control', placeholder: 'Gastown, Vancouver, BC' %></p>
-
-      <!-- SUBMIT BUTTON -->
-      <%= f.submit "Submit", class: 'btn btn-warning' %>
-<% end %>
+  <!-- LOCATION PREFERENCE -->
+  <p>
+    My preferred date location would be:
+    <%= form.text_field "address", class: 'form-control', placeholder: 'Gastown, Vancouver, BC' %>
+  </p>
 </div>

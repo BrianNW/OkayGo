@@ -4,37 +4,11 @@
       <!-- <form class="form-horizontal"> -->
      <legend>Add your Preferences!</legend>
       <fieldset>
-<%= form_for @preference, :as => "user[preference_attributes]", :html => {:class => 'form-horizontal', :id => 'saveoffline'} do |f| %>
-  <% if @preference.errors.any? %>
-    <div>
-      <%= pluralize(@preference.errors.count, "error") %> prevented this preference from being submitted:
-      <ul>
-        <% @preference.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+        <%= form_for @preference, :html => {:class => 'form-horizontal'} do |f| %>
+          <%= render f %>
+        <%= link_to 'Back', root_path, class: 'btn btn-warning' %>
+          <%= f.submit "Next", class: 'btn btn-warning' %>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class='form group'>
-  I am looking for a 
-  <%= f.select("gender_pref",[['male', 'male'], ['female', 'female']], include_blank: true, class: 'form-control', id: 'select') %>
-   between <%= f.select :min_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>
-  and
-    <%= f.select :max_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>.
-   <p>
-   I would consider the following options for a first-date:
-   </p>
-    <%= collection_check_boxes(:user, :first_dates, @first_date, :id, :types) %>
-    <p>
-    I would describe my lifestyle as:
-    </p>
-    <%= collection_check_boxes(:user, :lifestyles, @lifestyle, :id, :types) %>
-    <p>My preferred date location would be:
-    <%= f.text_field "address" %><br><hr>
-      <%= link_to 'Back', root_path, class: 'btn btn-warning' %>
-      <%= link_to 'Next!', new_deet_path, class: 'btn btn-warning' %>
-<% end %>
       </fieldset>
      <!--  </form> -->
     </div>

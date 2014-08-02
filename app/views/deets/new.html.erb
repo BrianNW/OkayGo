@@ -1,47 +1,14 @@
 <div id="page-content-wrapper">
   <div class="container-fluid" style="margin-left:20%">
 
-   <%= form_for @deet, as: "user[deet_attributes]", html: { multipart: true, class: "form-horizontal", id: 'saveoffline'} do |f| %>
-<!--     <form class="form-horizontal"> -->
- <% if @deet.errors.any? %>
-    <div>
-      <%= pluralize(@deet.errors.count, "error") %> prevented this deet from being submitted:
-      <ul>
-        <% @deet.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-    <!-- ABOUT ME -->
-  <div class='form-group'>
-    <%= f.label "about_me", class: 'col-lg-2 control-label' %>
-    <div class="col-lg-4">
-      <%= f.text_area "about_me", class: 'form-control', rows: '3', id: 'textArea', placeholder: 'I play lacrosse for the Darkstar HuffleStops' %>
-    </div>
-  </div>
-
-    <!-- LIFESTYLE CHECK BOX -->
-  <div class="checkbox">
-    <%= f.label "lifestyle", class: "col-lg-2 control-label" %>
-    <div class="col-lg-10">
-    <%= f.select("lifestyle",[['Adventurer', 'adventurer'], ['Athletic', 'athletic'], ['Intellectual', 'intellectual'], ['Professional', 'professional'], ['Traveller', 'traveller'], ['Party Animal', 'party animal'], ['Chill', 'chill']], {}, { :class => 'form-control', :id => 'select', include_blank: true} ) %>
-    </div>
-  </div>
-
-    <!-- PROFESSION -->
-  <div class="form-group">
-    <%= f.label "profession", class: "col-lg-2 control-label" %>
-    <div class="col-lg-10">
-    <%= f.text_field "profession", class: 'form-control', id: "inputEmail", placeholder: 'Profession' %>
-    <hr>
-    <%= link_to 'Back', new_preference_path, class: 'btn btn-warning' %>
-    <%= link_to 'Next!', new_user_path, class: 'btn btn-warning' %>
-    <br>
+<legend>Tell us about yourself.</legend>
+  <fieldset>
+     <%= form_for @deet, html: { multipart: true, class: "form-horizontal"} do |f| %>
+      <%= render f %>
+      <%= link_to 'Back', new_preference_path, class: 'btn btn-warning' %>
+      <%= f.submit 'Next!', class: 'btn btn-warning' %>
     <% end %>
-    </div>
-  </div>
-</fieldset>
-<!--     </form> -->
+  </fieldset>
+
   </div>
 </div>
