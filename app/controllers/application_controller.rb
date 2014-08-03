@@ -26,13 +26,6 @@ class ApplicationController < ActionController::Base
   #   @img = @hash["businesses"][0]["image_url"]
   # end
 
-  # def google_search
-  #   @client = GooglePlaces::Client.new('AIzaSyCoasaICICKYybkFQtEZtA4jHK2a7tnHSw')
-  #   @first_dates = @client.spots(-33.8670522, 151.1957362, :types => ['restaurant','food'])
-  #   @hash = JSON.parse(@first_dates.to_json).first
-  #   @name = @hash["name"]
-  # end
-
   private
 
   def authorize

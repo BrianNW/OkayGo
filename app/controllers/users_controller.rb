@@ -22,7 +22,6 @@ class UsersController < ApplicationController
 
     # RENDERED IN DEET MODAL
     @deet = Deet.find(current_user.deet)
-
     # @chat = Like.where(user_id: user.id, target_id: current_user).first.code_chat
 
 
@@ -113,9 +112,28 @@ class UsersController < ApplicationController
     # finds likes based on code chat id
     chat_data = Like.where(code_chat: @code_chat).first
 
+    @latitude = chat_data.latitude
+    @longitude = chat_data.longitude
+
+    first_array = User.find(chat_data.user_id).first_dates.map(&:types)
+    second_array = User.find(chat_data.target_id).first_dates.map(&:types)
+    
+    @date_type = (first_array & second_array).sample
+
+    google_search
+
   end
 
   protected
+
+  def google_search
+    @client = GooglePlaces::Client.new('AIzaSyCoasaICICKYybkFQtEZtA4jHK2a7tnHSw')
+    @first_dates = @client.spots(@latitude, @longitude, :types => ['restaurant', @date_type])
+    @hash = JSON.parse(@first_dates.to_json).first
+    @name = @hash["name"]
+    @address = @hash["vicinity"]
+    @icon = @hash["icon"]
+  end
 
   def user_params
     # params.require(:user).permit(
