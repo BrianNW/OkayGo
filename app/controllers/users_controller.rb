@@ -119,7 +119,7 @@ class UsersController < ApplicationController
     second_array = User.find(chat_data.target_id).first_dates.map(&:types)
 
     @date_type = (first_array & second_array).sample
-
+    @user = current_user
     google_search
     random_date
 
