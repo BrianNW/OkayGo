@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140730225148) do
+ActiveRecord::Schema.define(version: 20140803011214) do
+
+  create_table "dates", force: true do |t|
+    t.string   "name"
+    t.string   "img"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.date     "date"
+    t.time     "time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "deets", force: true do |t|
     t.string   "about_me"
@@ -68,6 +80,8 @@ ActiveRecord::Schema.define(version: 20140730225148) do
     t.integer  "target_id"
     t.integer  "user_id"
     t.integer  "code_chat"
+    t.float    "longitude"
+    t.float    "latitude"
   end
 
   create_table "preferences", force: true do |t|
@@ -80,6 +94,13 @@ ActiveRecord::Schema.define(version: 20140730225148) do
     t.string   "address"
     t.float    "latitude"
     t.float    "longitude"
+  end
+
+  create_table "user_dates", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "date_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

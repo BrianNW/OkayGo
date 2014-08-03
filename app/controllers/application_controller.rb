@@ -42,5 +42,6 @@ class ApplicationController < ActionController::Base
   helper_method :search
   helper_method :current_user
   helper_method :google_search
+  helper_method :mid_point_geolocation
 
 end
