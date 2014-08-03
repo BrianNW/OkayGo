@@ -34,6 +34,7 @@ $(function() {
     <h1>Mutual Matches page</h1>
 
     <% @user.each do |user| %>
+    
 
     <div class="col-md-4 portfolio-item">
       <a href="#">
@@ -47,6 +48,7 @@ $(function() {
 
       <!-- username -->
       <h3><%= link_to user.username, user_path(user) %></h3>
+      <%= mid_point_geolocation(user) %>
 <% end %>
     <!-- /JAVASCRIPT TAG -->
 
@@ -55,7 +57,7 @@ $(function() {
       <!-- connected to script tag -->
       <button id="startChat" class="btn btn-warning chatLink"  data-toggle="modal" data-target="#iframeModal" data-otheruserid="<%=user.id%>">Chat</button>
 
-      <%= link_to first_date_path do %>
+      <%= link_to users_path do %>
           <%= button_tag "Generate Date", :class => "btn btn-danger" %>
         <% end %>
 

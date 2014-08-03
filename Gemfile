@@ -39,6 +39,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem "rack-offline"
 gem "carrierwave"
 gem "rmagick"
+gem 'google_places'
 
 # Use unicorn as the app server
 # gem 'unicorn'

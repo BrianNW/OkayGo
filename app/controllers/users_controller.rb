@@ -22,6 +22,9 @@ class UsersController < ApplicationController
 
     # RENDERED IN DEET MODAL
     @deet = Deet.find(current_user.deet)
+    # @chat = Like.where(user_id: user.id, target_id: current_user).first.code_chat
+
+
   end
 
   def show
@@ -54,25 +57,33 @@ class UsersController < ApplicationController
 
   def chatid
     # SAVES CHAT CODE TO DATABASE
-    
+
     # converts otheruserid from string to integer
     other_user_id = (params[:otheruserid]).to_i
 
     # creates chat code
-    @chat_code = ("#{current_user.id}"+ "#{other_user_id}").to_i
+    @chat_code = current_user.id+ other_user_id
+
+    # find user as object
+    other_user = User.find(other_user_id)
+
+    # grabs longitude and latitude
+    longitude =  mid_point_geolocation(other_user)[1]
+    latitude = mid_point_geolocation(other_user)[0]
 
     # current user saves chat code in database
+    # current user saves midpoint in database
     @current_user_likes = Like.where(user_id: current_user, target_id: other_user_id).first
-    @current_user_likes.update_attribute(:code_chat, @chat_code)
+    @current_user_likes.update_attributes(:code_chat => @chat_code, :longitude => longitude, :latitude => latitude)
 
-     # other user saves chat code in database
+    # other user saves chat code in database
+    # other user saves midpoint in database
     @current_user_liked_by = Like.where(user_id: other_user_id, target_id: current_user).first
-    @current_user_liked_by.update_attribute(:code_chat, @chat_code)
+    @current_user_liked_by.update_attributes(:code_chat => @chat_code, :longitude => longitude, :latitude => latitude)
 
     # sends data as json
     urlcode = {:chatID => @chat_code}
     render :json => urlcode.to_json
-
   end
 
   def userinfo
@@ -93,8 +104,47 @@ class UsersController < ApplicationController
     end
   end
 
+  def first_date
+    # turns code_chat into integer
+    @code_chat = (params[:chatid]).to_i
+    # @user = User.find(params[:id])
+
+    # finds likes based on code chat id
+    chat_data = Like.where(code_chat: @code_chat).first
+
+    @latitude = chat_data.latitude
+    @longitude = chat_data.longitude
+
+    first_array = User.find(chat_data.user_id).first_dates.map(&:types)
+    second_array = User.find(chat_data.target_id).first_dates.map(&:types)
+    
+    @date_type = (first_array & second_array).sample
+
+    google_search
+    random_date
+
+  end
 
   protected
+
+  def google_search
+    @client = GooglePlaces::Client.new('AIzaSyCoasaICICKYybkFQtEZtA4jHK2a7tnHSw')
+    @first_dates = @client.spots(@latitude, @longitude, :types => ['restaurant', @date_type])
+    @hash = JSON.parse(@first_dates.to_json).first
+    @name = @hash["name"]
+    @address = @hash["vicinity"]
+    @icon = @hash["icon"]
+  end
+
+  def random_date
+    @day = Date.today+(7*rand())
+    @time = "7:00PM"
+   
+    if @date_type == "drinks"
+      @message = "Your date is on #{@day} at"
+    end
+  end
+
 
   def user_params
     # params.require(:user).permit(
@@ -106,6 +156,12 @@ class UsersController < ApplicationController
     )
     # params.require(:preference).permit( :max_age, :min_age, :gender_pref, :address)
     # params.require(:deet).permit(:lifestyle, :about_me, :profession)
+  end
+
+  def mid_point_geolocation(other_user)
+    my_address = current_user.preference.address
+    their_address = other_user.preference.address
+    mid_point = Geocoder::Calculations.geographic_center([my_address, their_address])
   end
 
   # def banned_users
