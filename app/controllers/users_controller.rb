@@ -22,6 +22,10 @@ class UsersController < ApplicationController
 
     # RENDERED IN DEET MODAL
     @deet = Deet.find(current_user.deet)
+
+    # @chat = Like.where(user_id: user.id, target_id: current_user).first.code_chat
+
+
   end
 
   def show
@@ -50,10 +54,6 @@ class UsersController < ApplicationController
   def edit
   end
 
-  def first_date
-        
-  end
-
   # JSON ROUTES
 
   def chatid
@@ -63,7 +63,7 @@ class UsersController < ApplicationController
     other_user_id = (params[:otheruserid]).to_i
 
     # creates chat code
-    @chat_code = ("#{current_user.id}"+ "#{other_user_id}").to_i
+    @chat_code = current_user.id+ other_user_id
 
     # find user as object
     other_user = User.find(other_user_id)
@@ -85,7 +85,6 @@ class UsersController < ApplicationController
     # sends data as json
     urlcode = {:chatID => @chat_code}
     render :json => urlcode.to_json
-
   end
 
   def userinfo
@@ -104,6 +103,16 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.js { render 'chat.js.erb' }
     end
+  end
+
+  def first_date
+    # turns code_chat into integer
+    @code_chat = (params[:chatid]).to_i
+    # @user = User.find(params[:id])
+
+    # finds likes based on code chat id
+    chat_data = Like.where(code_chat: @code_chat).first
+
   end
 
   protected
