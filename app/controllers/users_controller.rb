@@ -121,6 +121,7 @@ class UsersController < ApplicationController
     @date_type = (first_array & second_array).sample
 
     google_search
+    random_date
 
   end
 
@@ -134,6 +135,16 @@ class UsersController < ApplicationController
     @address = @hash["vicinity"]
     @icon = @hash["icon"]
   end
+
+  def random_date
+    @day = Date.today+(7*rand())
+    @time = "7:00PM"
+   
+    if @date_type == "drinks"
+      @message = "Your date is on #{@day} at"
+    end
+  end
+
 
   def user_params
     # params.require(:user).permit(
