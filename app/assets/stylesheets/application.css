@@ -22,10 +22,12 @@
 html, body, .full {
   width: 100%;
   height: 100%;
+  font-family: 'Montserrat', sans-serif;
 }
 
+/*  background: url(http://i.imgur.com/jTc3Z.jpg) no-repeat center center fixed;*/
 .full {
-  background: url(https://dl.dropboxusercontent.com/u/998959/fm2ugifs/date-night-615.gif) no-repeat center center fixed;
+  background: url(http://i.imgur.com/jTc3Z.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -57,19 +59,30 @@ margin-left: 10%
 #homepage {
   position: relative;
   text-align:center;
-  color: #F0B900;
+  color: #f0ad4e;
   font-size: 100px;
   margin-bottom: 10%;
 }
 
+#homepageh4 {
+  position: relative;
+  text-align:center;
+  color: white;
+  font-size: 50px;
+}
+
+.btn-homepage {
+color: #fff;
+background-color: transparent;
+border-color: #eea236;
+}
+
 #logo-box {
-  padding-top: 1px;
-  margin-top: 13%;
-  margin-right: auto;
-  margin-left: auto;
-  height: 350px;
-  width: 460px;
-  background-color: rgba(0, 0, 0, 0.58);
+margin-left: 10%;
+margin-right: 10%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.58);
+padding-bottom: 20px;
 }
 
 #logo-box p {
@@ -83,6 +96,21 @@ color: white;
   position: relative;
   width: 100px;
 }
+
+/*PREFERENCE NEW PAGE*/
+#pref-nav {
+  margin-top: 70px;
+  margin-right: 200px;
+  margin-left: 200px;
+}
+
+/*TOP NAV*/
+
+.navbar-default {
+background-color: #f0ad4e;
+color: white;
+}
+
 
 /*SIDEBAR NAV*/
 
@@ -268,11 +296,11 @@ header {
 
 .popUp
 {
-	position: absolute;
-	top: 1000px;
-	left: 200px;
-	text-align: center;
-	padding: 5px;
-	border: 1px solid black;
-	background: white;
+  position: absolute;
+  top: 1000px;
+  left: 200px;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid black;
+  background: white;
 }

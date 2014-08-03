@@ -17,13 +17,14 @@ class PreferencesController < ApplicationController
   end
 
   def create
-    @preference = current_user.build_preference(preference_params)
-    @preference.user_id = current_user.id
+    @preference = Preference.new(preference_params)
+    # @preference.user_id = current_user.id
 
-    current_user.first_dates = FirstDate.where(id: params[:user][:first_dates])
-    current_user.lifestyles = Lifestyle.where(id: params[:user][:lifestyles])
+    # current_user.first_dates = FirstDate.where(id: params[:user][:first_dates])
+    # current_user.lifestyles = Lifestyle.where(id: params[:user][:lifestyles])
 
     if @preference.save
+      session[:preference_id] = @preference.id
       redirect_to new_deet_path, notice: "Preference created successfully!"
     else
       render :new

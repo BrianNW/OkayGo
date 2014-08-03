@@ -16,15 +16,15 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  def search
-    @user = current_user
+  # def search
+  #   @user = current_user
 
-    parameters = { term: @user.first_dates.collect{ |x| x.types}.sample, limit: 1 }
-    @first_dates = Yelp.client.search('Vancouver', parameters)
-    @hash = JSON.parse(@first_dates.to_json)
-    @business_name = @hash["businesses"][0]["name"]
-    @img = @hash["businesses"][0]["image_url"]
-  end
+  #   parameters = { term: @user.first_dates.collect{ |x| x.types}.sample, limit: 1 }
+  #   @first_dates = Yelp.client.search('Vancouver', parameters)
+  #   @hash = JSON.parse(@first_dates.to_json)
+  #   @business_name = @hash["businesses"][0]["name"]
+  #   @img = @hash["businesses"][0]["image_url"]
+  # end
 
   private
 
@@ -34,5 +34,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :search
   helper_method :current_user
+  helper_method :google_search
+  helper_method :mid_point_geolocation
 
 end

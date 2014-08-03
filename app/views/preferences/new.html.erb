@@ -2,11 +2,14 @@
   <div id="page-content-wrapper">
     <div class="container-fluid">
       <!-- <form class="form-horizontal"> -->
-      <legend>Add your Preferences!</legend>
+     <legend>Add your Preferences!</legend>
       <fieldset>
-      <%= render 'form' %>
+        <%= form_for @preference, :html => {:class => 'form-horizontal'} do |f| %>
+          <%= render f %>
+        <%= link_to 'Back', root_path, class: 'btn btn-warning' %>
+          <%= f.submit "Next", class: 'btn btn-warning' %>
+        <% end %>
       </fieldset>
      <!--  </form> -->
     </div>
   </div> 
-<!-- </div> -->

@@ -1,44 +1,13 @@
 <div id="page-content-wrapper">
-    <div class="container-fluid" style="margin-left:20%">
+  <div class="container-fluid" style="margin-left:20%">
 
-<h1>Sign Up</h1>
-<%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-    <div>
-      <%= pluralize(@user.errors.count, "error") %> prevented the account from being created:
-      <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div>
-    <%= f.label "username" %><br>
-    <%= f.text_field "username" %>
-  </div>
-   <div>
-    <%= f.label "img" %><br>
-    <%= f.text_field "img" %>
-  </div>
-  <div>
-    <%= f.label "age" %><br>
-    <%= f.number_field "age" %>
-  </div>
-  <div>
-    <%= f.label "gender" %><br>
-    <%= f.text_field "gender" %>
-  </div>
-    <div>
-    <%= f.label "password" %><br>
-    <%= f.password_field "password" %>
-  </div>
-  <div>
-    <%= f.label "password_confirmation" %><br>
-    <%= f.password_field "password_confirmation" %>
-  </div>
-  <div><%= f.submit "Submit" %></div>
-<% end %>
+  <legend>Sign Up</legend>
+    <fieldset>
+      <%= form_for @user, html: { id: 'new_user'} do |f| %>
+      <%= render f %>
+        <div><%= f.submit "Next!", class: 'btn btn-warning'%></div>
+      <% end %>
+    </fieldset>
 
   </div>
 </div>

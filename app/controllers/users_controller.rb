@@ -3,67 +3,29 @@ class UsersController < ApplicationController
   before_filter :authorize, only: [:edit, :update]
 
   def index
-    #TO RENDER DEET MODAL
+    # MATCHING ALGORITHMS
     ultimate_matches
     final_mutual_matches
 
+    # RENDERED IN DEET MODAL
     @deet = Deet.find(current_user.deet)
+
+    # RENDERED IN PREFERENCES MODAL
     @preference = current_user.preference
     @first_date = FirstDate.all
     @lifestyle = Lifestyle.all
-    # @first_date = current_user.first_dates
-    # @lifestyle = current_user.lifestyles
   end
 
   def matches
-    #TO RENDER DEET MODAL
-    @deet = Deet.find(current_user.deet)
+    # MATCHING ALGORITHMS
     final_matches
-    @room = Array.new(5){rand 10}.join.to_i
-  end
 
-  def chatid
+    # RENDERED IN DEET MODAL
+    @deet = Deet.find(current_user.deet)
+    # @chat = Like.where(user_id: user.id, target_id: current_user).first.code_chat
 
-    other_user_id = (params[:otheruserid]).to_i
-
-    @chat_code = (current_user.id + other_user_id).to_i
-
-      # this query finds current_user's like row
-    @current_user_likes = Like.where(user_id: current_user, target_id: other_user_id).first
-
-    @current_user_likes.update_attribute(:code_chat, @chat_code)
-
-          # this query finds other user like row
-    @current_user_liked_by = Like.where(user_id: other_user_id, target_id: current_user).first
-
-        @current_user_liked_by.update_attribute(:code_chat, @chat_code)
-
-    urlcode = {:chatID => @chat_code}
-
-    render :json => urlcode.to_json
 
   end
-
-  # THIS GRABS THE FOLLOWING:
-  # current_user img + username
-  # mutual like img + username
-  def userinfo
-
-    # turns code_chat into integer
-    @code_chat = (params[:chatid]).to_i
-
-    # finds Likes based on code_chat id
-    chat_data = Like.find_by(code_chat: @code_chat)
-
-    # finds Users based on chat_data query
-    @user_data = User.where(id: [chat_data.target_id, chat_data.user_id])
-
-    # formats javascript
-    respond_to do |format|
-      format.js { render 'chat.js.erb' }
-    end
-  end
-
 
   def show
     @user = User.find(params[:id])
@@ -77,6 +39,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      # FIXME: Assumes that these 2 exist in the session.
+      # Need to make sure that user has created these (before_filters)
+      @deet = Deet.find_by(id: session[:deet_id]).update(user: @user)
+      @preference = Preference.find_by(id: session[:preference_id]).update(user: @user)
       session[:user_id] = @user.id
       redirect_to new_preference_path, notice: "Welcome aboard, #{@user.username}!"
     else
@@ -87,17 +53,120 @@ class UsersController < ApplicationController
   def edit
   end
 
+  # JSON ROUTES
+
+  def chatid
+    # SAVES CHAT CODE TO DATABASE
+
+    # converts otheruserid from string to integer
+    other_user_id = (params[:otheruserid]).to_i
+
+    # creates chat code
+    @chat_code = current_user.id+ other_user_id
+
+    # find user as object
+    other_user = User.find(other_user_id)
+
+    # grabs longitude and latitude
+    longitude =  mid_point_geolocation(other_user)[1]
+    latitude = mid_point_geolocation(other_user)[0]
+
+    # current user saves chat code in database
+    # current user saves midpoint in database
+    @current_user_likes = Like.where(user_id: current_user, target_id: other_user_id).first
+    @current_user_likes.update_attributes(:code_chat => @chat_code, :longitude => longitude, :latitude => latitude)
+
+    # other user saves chat code in database
+    # other user saves midpoint in database
+    @current_user_liked_by = Like.where(user_id: other_user_id, target_id: current_user).first
+    @current_user_liked_by.update_attributes(:code_chat => @chat_code, :longitude => longitude, :latitude => latitude)
+
+    # sends data as json
+    urlcode = {:chatID => @chat_code}
+    render :json => urlcode.to_json
+  end
+
+  def userinfo
+    # SENDS INFO TO NODE.JS
+
+    # turns code_chat into integer
+    @code_chat = (params[:chatid]).to_i
+
+    # finds likes based on code chat id
+    chat_data = Like.find_by(code_chat: @code_chat)
+
+    # finds users based on chat data query
+    @user_data = User.where(id: [chat_data.target_id, chat_data.user_id])
+
+    # sends data as raw javascript
+    respond_to do |format|
+      format.js { render 'chat.js.erb' }
+    end
+  end
+
+  def first_date
+    # turns code_chat into integer
+    @code_chat = (params[:chatid]).to_i
+    # @user = User.find(params[:id])
+
+    # finds likes based on code chat id
+    chat_data = Like.where(code_chat: @code_chat).first
+
+    @latitude = chat_data.latitude
+    @longitude = chat_data.longitude
+
+    first_array = User.find(chat_data.user_id).first_dates.map(&:types)
+    second_array = User.find(chat_data.target_id).first_dates.map(&:types)
+
+    @date_type = (first_array & second_array).sample
+
+    google_search
+    random_date
+
+  end
+
   protected
 
+  def google_search
+    @client = GooglePlaces::Client.new('AIzaSyCoasaICICKYybkFQtEZtA4jHK2a7tnHSw')
+    @first_dates = @client.spots(@latitude, @longitude, :types => ['restaurant', @date_type])
+    @hash = JSON.parse(@first_dates.to_json).first
+    @name = @hash["name"]
+    @address = @hash["vicinity"]
+    @icon = @hash["icon"]
+  end
+
+  def random_date
+    @day = Date.today+(7*rand())
+    @time = "7:00PM"
+
+    if @date_type == "drinks"
+      @message = "Your date is on #{@day} at"
+    end
+  end
+
+
+  def user_params
+    # params.require(:user).permit(
+    #   :username, :password, :img, :age, :gender)
+    params.require(:user).permit(:username,
+      :password, :password_confirmation, :img, :age, :gender,
+      :preference_attributes => [:max_age, :min_age, :gender_pref, :address],
+      :deet_attributes => [:lifestyle, :about_me, :profession]
+    )
+    # params.require(:preference).permit( :max_age, :min_age, :gender_pref, :address)
+    # params.require(:deet).permit(:lifestyle, :about_me, :profession)
+  end
+
+  def mid_point_geolocation(other_user)
+    my_address = current_user.preference.address
+    their_address = other_user.preference.address
+    mid_point = Geocoder::Calculations.geographic_center([my_address, their_address])
+  end
 
   # def banned_users
   #   if current_user.flags.length
   # end
-
-  def user_params
-    params.require(:user).permit(
-      :username, :password, :img, :age, :gender, :bio)
-  end
 
   ##+++ GENDER AND AGE MATCHES +++##
   def basic_matches
