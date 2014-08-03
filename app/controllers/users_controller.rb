@@ -62,7 +62,7 @@ class UsersController < ApplicationController
     other_user_id = (params[:otheruserid]).to_i
 
     # creates chat code
-    @chat_code = current_user.id+ other_user_id
+    @chat_code = current_user.id + other_user_id
 
     # find user as object
     other_user = User.find(other_user_id)
