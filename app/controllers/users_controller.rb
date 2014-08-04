@@ -131,7 +131,7 @@ class UsersController < ApplicationController
 
   def google_search
     @client = GooglePlaces::Client.new('AIzaSyCoasaICICKYybkFQtEZtA4jHK2a7tnHSw')
-    @first_dates = @client.spots(@latitude, @longitude, :types => ['bar', @date_type])
+    @first_dates = @client.spots(@latitude, @longitude, :name => @date_type)
     @hash = JSON.parse(@first_dates.to_json).first
     @name = @hash["name"]
     @address = @hash["vicinity"]
