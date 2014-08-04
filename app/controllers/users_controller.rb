@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :authorize, only: [:edit, :update]
+  helper_method :first_date
 
   def index
     # MATCHING ALGORITHMS
@@ -24,7 +25,7 @@ class UsersController < ApplicationController
     @deet = Deet.find(current_user.deet)
     # @chat = Like.where(user_id: user.id, target_id: current_user).first.code_chat
 
-
+    # creates chat code
   end
 
   def show
@@ -44,7 +45,7 @@ class UsersController < ApplicationController
       @deet = Deet.find_by(id: session[:deet_id]).update(user: @user)
       @preference = Preference.find_by(id: session[:preference_id]).update(user: @user)
       session[:user_id] = @user.id
-      redirect_to more_path, notice: "Welcome aboard, #{@user.username}!"
+      redirect_to prefs_path, notice: "Welcome aboard, #{@user.username}!"
     else
       render :new
     end
@@ -123,6 +124,7 @@ class UsersController < ApplicationController
     @user = current_user
     google_search
     random_date
+    @time = :noon
   end
 
   protected
@@ -162,7 +164,6 @@ class UsersController < ApplicationController
       @message = "#{@day} at #{@time}"
     elsif @date_type == "skydiving"
       @message = "#{@day} at #{@time}"
-    end
   end
 
 
@@ -218,7 +219,6 @@ class UsersController < ApplicationController
   def lifestyle_matches
     @user = Deet.where(lifestyle: lifestyle_types).where(user: basic_matches).map(&:user_id)
   end
-
   # def current_user_lifestyle_id
   #   lifestyle_type = current_user.lifestyle
   #   Lifestyles.where(:types lifestyle_type)(&)
@@ -294,7 +294,6 @@ class UsersController < ApplicationController
   def final_matches
     @user = User.where(id: mutual_match_user_ids)
   end
-
 
   # def flag
   #   (params[:user]).increment!(:flag)

@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   get 'deets/:id' => 'deets#show'
 
   resources :preferences
+  get 'lifestyle_firstdate', to: 'preferences#lifestyle_firstdate', as: 'prefs'
+  post 'lifestyle_firstdate', to: 'preferences#create_lifestyles_firstdates', as: 'create_prefs'
 
   resources :sessions, only: [:new, :create, :destroy]
 

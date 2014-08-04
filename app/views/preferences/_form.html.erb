@@ -17,17 +17,18 @@
   <%= form.select("gender_pref",[['male', 'male'], ['female', 'female']], include_blank: true, class: 'form-control', id: 'select') %>
 
   <!-- MIN AGE PREFERENCE -->
+  <div class="checkbox">
   between <%= form.select :min_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>
 
   and
 
   <!-- MAX AGE PREFERENCE -->
-  <%= form.select :max_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>.
-
+  <%= form.select :max_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>
+  </div>
 
   <!-- LOCATION PREFERENCE -->
   <p>
-    My preferred date location would be:
+   to go on a date in:
     <%= form.text_field "address", class: 'form-control', placeholder: 'Gastown, Vancouver, BC' %>
   </p>
 </div>

@@ -1,11 +1,14 @@
 <div id="page-content-wrapper">
-  <div class="container-fluid" style="margin-left:20%">
+  <div class="container-fluid" id="pref-nav">
 
-  <legend>Sign Up</legend>
+  <%= render 'layouts/navbar' %>
+  <legend id='center-legend'>Nearly done...</legend>
     <fieldset>
       <%= form_for @user, html: { id: 'new_user'} do |f| %>
       <%= render f %>
-        <div><%= f.submit "Next!", class: 'btn btn-warning'%></div>
+        <div>
+        <%= f.submit "Next!", class: 'btn btn-warning'%></div>
+        <%= link_to 'Back', new_deet_path, class: 'btn btn-warning' %>
       <% end %>
     </fieldset>
 

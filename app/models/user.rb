@@ -32,8 +32,6 @@ class User < ActiveRecord::Base
                                 :lifestyle_prefs,
                                 :first_date_prefs
 
-
-
   # validates_uniqueness_of :username
   # def self.authenticate(user, password)
   #   find_by_username(username).try(:authenticate, password)

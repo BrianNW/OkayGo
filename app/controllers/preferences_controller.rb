@@ -45,14 +45,31 @@ class PreferencesController < ApplicationController
 
     # @first_date = current_user.first_dates
     # @lifestyle = current_user.lifestyles
-    # @first_date = FirstDate.where(id: params[:user][:first_dates])
-    # @lifestyle = Lifestyle.where(id: params[:user][:lifestyles])
+    @first_date = FirstDate.where(id: params[:user][:first_dates])
+    @lifestyle = Lifestyle.where(id: params[:user][:lifestyles])
 
     if @preference.update_attributes(preference_params)
       # search
       redirect_to users_path, notice: 'Done!'
     else
       render :edit
+    end
+  end
+
+  def lifestyle_firstdate
+    @preference = current_user.preference
+    @user = current_user
+    @first_date = FirstDate.all
+    @lifestyle = Lifestyle.all
+  end
+
+  def create_lifestyles_firstdates
+    current_user.first_dates = FirstDate.where(id: params[:user][:first_dates])
+    current_user.lifestyles = Lifestyle.where(id: params[:user][:lifestyles])
+    if current_user.first_dates && current_user.lifestyles
+      redirect_to users_path
+    else
+      render :new
     end
   end
 

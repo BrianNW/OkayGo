@@ -1,37 +1,32 @@
-<!-- <div class="full"> PUT THIS IN IF WE WANT THE BACKGROUND TO SHOW UP-->
-  <div id="page-content-wrapper">
-      <div class="container-fluid">
-        
-<!--         <form class="form-horizontal"> -->
-        <legend>Log In</legend>
-          <fieldset>
-            
+  <div id='login-background'>
+    <div id="page-content-wrapper">
+        <div class="container-fluid" id='login-container-fluid'>
+          
 
-              <div class="form-group, field">
-                <%= form_tag sessions_path, class: 'form-horizontal' do %>
-                
-                <%= label_tag :username, nil, class: 'col-xs-2 control-label' %>
-                <div class="col-lg-4">
-                  <%= text_field_tag :username, params[:username], class: 'form-control', id: 'inputUsername', placeholder: 'Username' %>
+          <%= form_tag sessions_path, class: 'form-horizontal' do %>
+            <fieldset id='login-fieldset'>
+              <h1>Log In</h1>
+
+                <div class="form-group, field">
+                  
+                  <div class="col-lg-4" id='login-column'>
+                    <%= text_field_tag :username, params[:username], class: 'form-control', id: 'inputUsername', placeholder: 'Username' %>
+                  </div>
                 </div>
-              </div>
 
-              <div class="form-group, field">
-                <%= label_tag :password, nil, class: 'col-xs-2 control-label' %>
-                <div class="col-lg-4">
-                  <%= password_field_tag :password, class: 'form-control', id: 'inputPassword' %>
+                <div class="form-group, field">
+                  <div class="col-lg-4" id='login-column'>
+                    <%= password_field_tag :password, params[:password], class: 'form-control', id: 'inputPassword', placeholder: 'Password'  %>
+                  </div>
                 </div>
-              </div>
-              <br>
-              <div>
-                <%= submit_tag "Log In", class: 'actions, btn btn-warning' %>
-              </div>
+                <div>
+                  <%= submit_tag "Log In", class: 'actions, btn btn-warning', id: 'login-button-page' %>
+                </div>
 
-            <% end %>
 
-          </fieldset>
-<!--         </form> -->
-      </div>
+            </fieldset>
+          <% end %>
+
+        </div>
+    </div>
   </div>
-
-<!-- </div>
