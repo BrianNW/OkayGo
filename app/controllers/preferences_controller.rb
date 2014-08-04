@@ -12,16 +12,10 @@ class PreferencesController < ApplicationController
 
   def new
     @preference = Preference.new
-    @first_date = FirstDate.all
-    @lifestyle = Lifestyle.all
   end
 
   def create
     @preference = Preference.new(preference_params)
-    # @preference.user_id = current_user.id
-
-    # current_user.first_dates = FirstDate.where(id: params[:user][:first_dates])
-    # current_user.lifestyles = Lifestyle.where(id: params[:user][:lifestyles])
 
     if @preference.save
       session[:preference_id] = @preference.id
@@ -66,7 +60,7 @@ class PreferencesController < ApplicationController
 
   def preference_params
     params.require(:preference).permit(
-      :gender_pref, :min_age, :max_age, :date_type_pref, :lifestyle_pref, :address, first_date_attributes: [:first_date_id], lifestyle_attributes: [:lifestyle_id])
+      :gender_pref, :min_age, :max_age, :date_type_pref, :lifestyle_pref, :address)
   end
 
 end

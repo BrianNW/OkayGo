@@ -44,7 +44,7 @@ class UsersController < ApplicationController
       @deet = Deet.find_by(id: session[:deet_id]).update(user: @user)
       @preference = Preference.find_by(id: session[:preference_id]).update(user: @user)
       session[:user_id] = @user.id
-      redirect_to new_preference_path, notice: "Welcome aboard, #{@user.username}!"
+      redirect_to more_path, notice: "Welcome aboard, #{@user.username}!"
     else
       render :new
     end
@@ -119,29 +119,49 @@ class UsersController < ApplicationController
     second_array = User.find(chat_data.target_id).first_dates.map(&:types)
 
     @date_type = (first_array & second_array).sample
+    @date_type = google_input
     @user = current_user
     google_search
     random_date
-
   end
 
   protected
 
   def google_search
     @client = GooglePlaces::Client.new('AIzaSyCoasaICICKYybkFQtEZtA4jHK2a7tnHSw')
-    @first_dates = @client.spots(@latitude, @longitude, :types => ['restaurant', @date_type])
+    @first_dates = @client.spots(@latitude, @longitude, :radius => 100000, :name => @date_type)
     @hash = JSON.parse(@first_dates.to_json).first
     @name = @hash["name"]
     @address = @hash["vicinity"]
     @icon = @hash["icon"]
   end
 
+  def google_input
+    if @date_type == "drinks"
+      "bar"
+    elsif @date_type == "lunch"
+      ["african", "sushi", "gourmet pizza", "italian"].sample
+    elsif @date_type == "coffee"
+      "cafe"
+    elsif @date_type == "dinner"
+      ["african", "sushi", "gourmet pizza", "italian"].sample
+    elsif @date_type === "skydiving"
+      "skydive"
+    elsif @date_type == "choose for me"
+      ["african", "hiking", "paintball" "italian"].sample
+    else
+      @date_type
+    end
+  end
+
   def random_date
-    @day = Date.today+(7*rand())
-    @time = "7:00PM"
+    @day = (Date.today+(7*rand())).strftime("%A, %B %d %Y")
+    @evenings = (Time.now).strftime("%I:%M%p")
 
     if @date_type == "drinks"
-      @message = "Your date is on #{@day} at"
+      @message = "#{@day} at #{@time}"
+    elsif @date_type == "skydiving"
+      @message = "#{@day} at #{@time}"
     end
   end
 

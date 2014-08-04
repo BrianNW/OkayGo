@@ -27,12 +27,18 @@ html, body, .full {
 
 /*  background: url(http://i.imgur.com/jTc3Z.jpg) no-repeat center center fixed;*/
 .full {
-  background: url(http://i.imgur.com/jTc3Z.jpg) no-repeat center center fixed;
+  background: url(/assets/home.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
+
+#iframeModal .modal-dialog  {width:735px;}
+#iframeModal .modal-body  {height:430px;}
+
+
+
 
 form {
 display: block;
@@ -67,21 +73,28 @@ margin-left: 10%
 #homepageh4 {
   position: relative;
   text-align:center;
-  color: white;
-  font-size: 50px;
+  color: rgb(68, 68, 68);
+/*   font-size: 50px; */
 }
 
 .btn-homepage {
-color: #fff;
+color: #eea236;
 background-color: transparent;
 border-color: #eea236;
 }
 
+#logo-img {
+  margin-left: 40%;
+  margin-right: auto;
+  margin-bottom: 10%;
+}
+
 #logo-box {
-margin-left: 10%;
-margin-right: 10%;
+margin-top: 16%;
+margin-left: 30%;
+margin-right: 30%;
 height: 100%;
-background-color: rgba(0, 0, 0, 0.58);
+/* background-color: rgba(0, 0, 0, 0.58); */
 padding-bottom: 20px;
 }
 

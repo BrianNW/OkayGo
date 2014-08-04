@@ -18,7 +18,7 @@
     ['My Date', <%=@latitude%>, <%=@longitude%>],
   ];
 
-  var myLatlng = new google.maps.LatLng(49.2496600,-123.1193400);
+  var myLatlng = new google.maps.LatLng(<%=@latitude%>,<%=@longitude%>);
   var myMarker;
   var map;
 
@@ -50,7 +50,7 @@ function initialize() {
 
   var marker, i
 
-  for (i = 0; i < locations.length; i++) {  
+  for (i = 0; i < locations.length; i++) {
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(locations[i][1]),
         map: map
@@ -95,7 +95,7 @@ function initialize() {
 
     </head>
 
-<h1>Your date is going to be at:</h1>
+<h1>Your date!</h1>
 <br>
 <h2><%= @name %></h2>
 <img src='<%= @icon %>'>
@@ -124,9 +124,9 @@ function initialize() {
             $("#elsewhere").on('click', function() {
                 $(alert("If you choose somewhere else, you won't be able to retrieve this location. Are you sure?"));
             });
-            
+
 
             /**** STOP MODIFYING HERE. ****/
         });
-                
+
         </script>

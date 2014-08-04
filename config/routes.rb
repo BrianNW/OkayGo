@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :more, only: [:new, :create, :update, :edit]
+
   get 'message/index'
 
   get 'message/create'

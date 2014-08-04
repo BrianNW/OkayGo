@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   # DATES THROUGH TABLES
   has_many :user_dates
-  has_many :dates, through: :user_dates
+  has_many :date_deets, through: :user_dates
 
   # LIFESTYLE THROUGH TABLES
   has_many :lifestyle_prefs
@@ -23,16 +23,16 @@ class User < ActiveRecord::Base
   has_many :liked_by, :class_name => 'Like', :foreign_key => 'target_id'
   has_many :flags, :class_name => 'Flag', :foreign_key => 'user_id'
   has_many :flagged_by, :class_name => 'Flag', :foreign_key => 'target_id'
-  
+
   # IMAGES TABLE
   has_many :images
 
-  accepts_nested_attributes_for :preference, 
-                                :deet, 
-                                :lifestyle_prefs, 
+  accepts_nested_attributes_for :preference,
+                                :deet,
+                                :lifestyle_prefs,
                                 :first_date_prefs
 
-  
+
 
   # validates_uniqueness_of :username
   # def self.authenticate(user, password)
