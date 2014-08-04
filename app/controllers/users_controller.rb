@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_filter :authorize, only: [:edit, :update]
   helper_method :first_date
   helper_method :get_date_status
+  helper_method :accepted_date
 
   def index
     # MATCHING ALGORITHMS
@@ -128,7 +129,11 @@ class UsersController < ApplicationController
     @time = :noon
 
     date_entry = DateDeets.where(:name => @name).first_or_create!(name: @name, img: @icon, address: @address, latitude: @latitude, longitude: @longitude, date: @day, time: @time)
-    UserDate.where(date_deets_id: date_entry.id).first_or_create!(user_id: current_user.id, date_deets_id: date_entry.id)
+    @saved_date = UserDate.where(date_deets_id: date_entry.id).first_or_create!(user_id: current_user.id, date_deets_id: date_entry.id)
+  end
+
+  def accepted_date?(saved_date)
+    saved_date_id = saved_date.id
   end
 
   def my_dates
@@ -137,6 +142,14 @@ class UsersController < ApplicationController
     # switches boolean for this date deet to true
 
      # lists whether other user has accepted or not 
+  end
+
+  def accept_date
+    user_date_id = params[:user_date_id]
+    user_date = UserDate.find(user_date_id)
+    user_date.accepted = true
+    user_date.save
+    redirect_to my_dates_path
   end
 
   def get_date_status(date)

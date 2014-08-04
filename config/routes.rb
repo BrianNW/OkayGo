@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'matches', to: 'users#matches', as: 'matches'
   get 'first_date/:chatid', to: 'users#first_date', as: 'first_date'
   get 'my_dates', to: 'users#my_dates', as: 'my_dates'
+  post 'accept_date/:user_date_id', to: 'users#accept_date', as: 'accept_date'
 
   get 'getChatID/:otheruserid', to: 'users#chatid', as:
   'chatid'
