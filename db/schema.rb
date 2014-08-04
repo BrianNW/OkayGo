@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140803232417) do
+ActiveRecord::Schema.define(version: 20140804201422) do
 
   create_table "date_deets", force: true do |t|
     t.string   "name"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20140803232417) do
     t.time     "time"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status",     default: "online"
   end
 
   create_table "deets", force: true do |t|
@@ -97,7 +96,7 @@ ActiveRecord::Schema.define(version: 20140803232417) do
 
   create_table "user_dates", force: true do |t|
     t.integer  "user_id"
-    t.integer  "date_info_id"
+    t.integer  "date_deet_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "accepted"

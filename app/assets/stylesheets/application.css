@@ -47,7 +47,7 @@ margin-top: 15px;
 width: 100%;
 }
 #login-background {
-background: url(http://farm8.staticflickr.com/7232/7236736376_05de1c7745_c.jpg) no-repeat center center fixed;
+background: url(/assets/home.jpg) no-repeat center center fixed;
 -webkit-background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;
