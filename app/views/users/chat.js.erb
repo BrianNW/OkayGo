@@ -16,12 +16,14 @@ $( document ).ready(function() {
   $("#hisName").val(other_username);
   $("#hisEmail").val("fakerbaker@email.com");
 
-  // chat avatar
-  $("li.you div img").attr('src', 'http://localhost:3000/'+current_avatar);
-
   // before messages appear
   $("#noMessagesImage").attr('src', 'http://localhost:3000/'+current_avatar);
   $("#noMessagesImage2").attr('src', 'http://localhost:3000/'+other_avatar);
+
+
+  // rewrites chat avatar
+  $("body").data("me-avatar", 'http://localhost:3000/'+current_avatar)
+  $("body").data("you-avatar", 'http://localhost:3000/'+other_avatar)
 
   // image when user leaves
   $("#leftImage").attr('src', 'http://localhost:3000/'+current_avatar);
