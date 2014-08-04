@@ -63,13 +63,12 @@ class PreferencesController < ApplicationController
   end
 
   def lifestyle_firstdate
-    @user = current_user
+    @preference = current_user.preference
     @first_date = FirstDate.all
     @lifestyle = Lifestyle.all
   end
 
   def create_lifestyles_firstdates
-    binding.pry
     current_user.first_dates = FirstDate.where(id: params[:user][:first_dates])
     current_user.lifestyles = Lifestyle.where(id: params[:user][:lifestyles])
   end

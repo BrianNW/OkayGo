@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :authorize, only: [:edit, :update]
+  helper_method :first_date
 
   def index
     # MATCHING ALGORITHMS
@@ -23,7 +24,6 @@ class UsersController < ApplicationController
     # RENDERED IN DEET MODAL
     @deet = Deet.find(current_user.deet)
     # @chat = Like.where(user_id: user.id, target_id: current_user).first.code_chat
-
 
   end
 
@@ -124,7 +124,6 @@ class UsersController < ApplicationController
     random_date
     @time = :noon
 
-    DateInfo.create(name: @name, img: @icon, address: @address, latitude: @latitude, longitude: @longitude, date: random_date, time: @time )
   end
 
   protected
@@ -275,7 +274,6 @@ class UsersController < ApplicationController
   def final_matches
     @user = User.where(id: mutual_match_user_ids)
   end
-
 
   # def flag
   #   (params[:user]).increment!(:flag)
