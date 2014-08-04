@@ -120,11 +120,17 @@ class UsersController < ApplicationController
     second_array = User.find(chat_data.target_id).first_dates.map(&:types)
 
     @date_type = (first_array & second_array).sample
-    @date_type = google_input
+    @google_input = google_input
     @user = current_user
     google_search
     random_date
     @time = :noon
+
+    date_entry = DateDeets.create(name: @name, img: @icon, address: @address, latitude: @latitude, longitude: @longitude, date: @day, time: @time)
+    UserDate.create(user_id: current_user.id, date_deets_id: date_entry.id)
+  end
+
+  def my_dates
   end
 
   protected
@@ -160,12 +166,13 @@ class UsersController < ApplicationController
     @day = (Date.today+(7*rand())).strftime("%A, %B %d %Y")
     @evenings = (Time.now).strftime("%I:%M%p")
 
-    if @date_type == "drinks"
-      @message = "#{@day} at #{@time}"
-    elsif @date_type == "skydiving"
-      @message = "#{@day} at #{@time}"
+      if @date_type == "drinks"
+        @message = "#{@day} at #{@time}"
+      elsif @date_type == "skydiving"
+        @message = "#{@day} at #{@time}"
     end
   end
+
 
 
   def user_params
