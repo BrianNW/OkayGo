@@ -33,7 +33,7 @@ $(function() {
     <%= render 'layouts/sidebar' %>
     <h1>Mutual Matches page</h1>
 
-    <% @user.each do |user| %>
+    <% @user.each do |user| if @user %>
     
 
     <div class="col-md-4 portfolio-item">
@@ -48,6 +48,7 @@ $(function() {
 
       <!-- username -->
       <h3><%= link_to user.username, user_path(user) %></h3>
+<% end %>
 <% end %>
     <!-- /JAVASCRIPT TAG -->
 

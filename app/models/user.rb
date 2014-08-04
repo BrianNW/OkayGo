@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   # DATES THROUGH TABLES
   has_many :user_dates
-  has_many :dates, through: :user_dates
+  has_many :date_infos, through: :user_dates
 
   # LIFESTYLE THROUGH TABLES
   has_many :lifestyle_prefs
@@ -32,7 +32,6 @@ class User < ActiveRecord::Base
                                 :lifestyle_prefs, 
                                 :first_date_prefs
 
-  
 
   # validates_uniqueness_of :username
   # def self.authenticate(user, password)

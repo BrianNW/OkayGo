@@ -23,7 +23,7 @@ class DeetsController < ApplicationController
 
     if @deet.save
       session[:deet_id] = @deet.id
-      redirect_to users_path, notice: "Deet created successfully!"
+      redirect_to new_user_path, notice: "Deet created successfully!"
     else
       render :new
     end

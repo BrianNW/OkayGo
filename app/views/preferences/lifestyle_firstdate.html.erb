@@ -1,0 +1,23 @@
+  <!-- FIRST DATE PREFERENCE -->
+  <!-- CHECKBOXES -->
+  <fieldset>
+    <legend>Additional Information</legend>
+    <%= form_tag create_prefs_path, method: 'post', :html => {:class => 'form-horizontal'} do |f| %>
+     <p>
+       What would you consider as options for your first date? (Select one or more)
+     </p>
+
+      <%= collection_check_boxes(:preference, :first_dates, @first_date, :id, :types) %>
+
+      <!-- LIFESTYLE PREFERENCE -->
+      <!-- CHECKBOXES -->
+      <p>
+        How would you describe your lifestyle? (Select one or more)
+      </p>
+
+      <%= collection_check_boxes(:preference, :lifestyles, @lifestyle, :id, :types) %>
+
+      <%= link_to 'Back', root_path, class: 'btn btn-warning' %>
+      <%= f.submit "Next", class: 'btn btn-warning' %>
+    <% end %>
+  </fieldset>

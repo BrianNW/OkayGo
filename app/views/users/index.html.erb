@@ -3,7 +3,7 @@
 
       <%= render 'layouts/sidebar' %>
 
-      <% @user.each do |user| %>
+      <% @user.each do |user| if @user %>
         <div class="col-md-4 portfolio-item">
 
           <a href="#">
@@ -19,6 +19,7 @@
 
 
         </div>
+        <% end %>
         <% end %>
   </div>
 </div>
