@@ -141,9 +141,8 @@ class UsersController < ApplicationController
 
   def get_date_status(date)
     date_id = date.id
-    user_date = UserDate.where(date_deets_id: date_id).except(user_id: current_user.id)
-    if user_date.accepted?
-      binding.pry
+    user_date = UserDate.where(date_deets_id: date_id).except(user_id: current_user.id).last
+    if user_date.accepted
       return 'Accepted'
     else
       return 'Pending'
