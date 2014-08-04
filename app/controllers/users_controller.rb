@@ -127,10 +127,18 @@ class UsersController < ApplicationController
     @time = :noon
 
     date_entry = DateDeets.create(name: @name, img: @icon, address: @address, latitude: @latitude, longitude: @longitude, date: @day, time: @time)
+
     UserDate.create(user_id: current_user.id, date_deets_id: date_entry.id)
   end
 
   def my_dates
+    # RENDERED IN DEET MODAL
+    @deet = Deet.find(current_user.deet)
+
+    # RENDERED IN PREFERENCES MODAL
+    @preference = current_user.preference
+    @first_date = FirstDate.all
+    @lifestyle = Lifestyle.all
   end
 
   protected
