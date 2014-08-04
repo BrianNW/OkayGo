@@ -13,10 +13,6 @@
  *= require_tree .
  *= require_self
  */
-/* * {
-  border-style: solid;
-  border-width: 1px;
-} */
 
 /*SETS BODY AND HTML FOR BACKGROUND - DO NOT EDIT*/
 html, body, .full {
@@ -25,8 +21,43 @@ html, body, .full {
   font-family: 'Montserrat', sans-serif;
 }
 
+/*LOGIN PAGE*/
+
+#login-fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+  /* jordan */
+  max-width: 350px;
+}
+#login-container-fluid {
+padding-right: 15px;
+padding-left: 15px;
+margin-right: auto;
+margin-left: auto;
+max-width: 350px;
+}
+#login-column {
+width: 100%;
+margin-top: 15px;
+}
+#login-button-page {
+margin-top: 15px;
+width: 100%;
+}
+#login-background {
+background: url(http://farm8.staticflickr.com/7232/7236736376_05de1c7745_c.jpg) no-repeat center center fixed; 
+-webkit-background-size: cover; 
+-moz-background-size: cover; 
+-o-background-size: cover; 
+background-size: cover;
+height: 100%;
+}
+
 /*  background: url(http://i.imgur.com/jTc3Z.jpg) no-repeat center center fixed;*/
 .full {
+  width: 100%;
+  height: 100%;
   background: url(http://i.imgur.com/jTc3Z.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;

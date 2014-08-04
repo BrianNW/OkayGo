@@ -18,7 +18,7 @@
     ['My Date', <%=@latitude%>, <%=@longitude%>],
   ];
 
-  var myLatlng = new google.maps.LatLng(49.2496600,-123.1193400);
+  var myLatlng = new google.maps.LatLng(<%=@latitude%>,<%=@longitude%>);
   var myMarker;
   var map;
 
@@ -110,8 +110,6 @@ function initialize() {
 
 <br><br>
 <button class="btn btn-success">Accept</button>
-<button class="btn btn-danger">Decline</button>
-<button class="btn btn-info" id="elsewhere">Nah, give me somewhere else</button><br>
 <%= link_to matches_path do %>
     <%= button_tag "Back", :class => "btn btn-warning" %>
   <% end %>

@@ -20,8 +20,8 @@ class PreferencesController < ApplicationController
     @preference = Preference.new(preference_params)
     # @preference.user_id = current_user.id
 
-    # current_user.first_dates = FirstDate.where(id: params[:user][:first_dates])
-    # current_user.lifestyles = Lifestyle.where(id: params[:user][:lifestyles])
+    current_user.first_dates = FirstDate.where(id: params[:user][:first_dates])
+    current_user.lifestyles = Lifestyle.where(id: params[:user][:lifestyles])
 
     if @preference.save
       session[:preference_id] = @preference.id
@@ -51,8 +51,8 @@ class PreferencesController < ApplicationController
 
     # @first_date = current_user.first_dates
     # @lifestyle = current_user.lifestyles
-    # @first_date = FirstDate.where(id: params[:user][:first_dates])
-    # @lifestyle = Lifestyle.where(id: params[:user][:lifestyles])
+    @first_date = FirstDate.where(id: params[:user][:first_dates])
+    @lifestyle = Lifestyle.where(id: params[:user][:lifestyles])
 
     if @preference.update_attributes(preference_params)
       # search
@@ -60,6 +60,17 @@ class PreferencesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def lifestyle_firstdate
+    @preference = current_user.preference
+    @first_date = FirstDate.all
+    @lifestyle = Lifestyle.all
+  end
+
+  def create_lifestyles_firstdates
+    current_user.first_dates = FirstDate.where(id: params[:user][:first_dates])
+    current_user.lifestyles = Lifestyle.where(id: params[:user][:lifestyles])
   end
 
   protected

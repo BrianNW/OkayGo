@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :authorize, only: [:edit, :update]
+  helper_method :first_date
 
   def index
     # MATCHING ALGORITHMS
@@ -24,7 +25,6 @@ class UsersController < ApplicationController
     @deet = Deet.find(current_user.deet)
     # @chat = Like.where(user_id: user.id, target_id: current_user).first.code_chat
 
-
   end
 
   def show
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
       @deet = Deet.find_by(id: session[:deet_id]).update(user: @user)
       @preference = Preference.find_by(id: session[:preference_id]).update(user: @user)
       session[:user_id] = @user.id
-      redirect_to new_preference_path, notice: "Welcome aboard, #{@user.username}!"
+      redirect_to prefs_path, notice: "Welcome aboard, #{@user.username}!"
     else
       render :new
     end
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
     other_user_id = (params[:otheruserid]).to_i
 
     # creates chat code
-    @chat_code = current_user.id+ other_user_id
+    @chat_code = current_user.id + other_user_id
 
     # find user as object
     other_user = User.find(other_user_id)
@@ -122,6 +122,7 @@ class UsersController < ApplicationController
     @user = current_user
     google_search
     random_date
+    @time = :noon
 
   end
 
@@ -129,7 +130,7 @@ class UsersController < ApplicationController
 
   def google_search
     @client = GooglePlaces::Client.new('AIzaSyCoasaICICKYybkFQtEZtA4jHK2a7tnHSw')
-    @first_dates = @client.spots(@latitude, @longitude, :types => ['restaurant', @date_type])
+    @first_dates = @client.spots(@latitude, @longitude, :types => ['bar', @date_type])
     @hash = JSON.parse(@first_dates.to_json).first
     @name = @hash["name"]
     @address = @hash["vicinity"]
@@ -138,10 +139,9 @@ class UsersController < ApplicationController
 
   def random_date
     @day = Date.today+(7*rand())
-    @time = "7:00PM"
 
     if @date_type == "drinks"
-      @message = "Your date is on #{@day} at"
+      @message = "Your date is on #{@day} at #{@time}"
     end
   end
 
@@ -274,7 +274,6 @@ class UsersController < ApplicationController
   def final_matches
     @user = User.where(id: mutual_match_user_ids)
   end
-
 
   # def flag
   #   (params[:user]).increment!(:flag)

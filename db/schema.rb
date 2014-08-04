@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140803011214) do
+ActiveRecord::Schema.define(version: 20140803231615) do
 
-  create_table "dates", force: true do |t|
+  create_table "date_infos", force: true do |t|
     t.string   "name"
     t.string   "img"
     t.string   "address"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140803011214) do
     t.time     "time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status",     default: "online"
   end
 
   create_table "deets", force: true do |t|
@@ -98,9 +99,10 @@ ActiveRecord::Schema.define(version: 20140803011214) do
 
   create_table "user_dates", force: true do |t|
     t.integer  "user_id"
-    t.integer  "date_id"
+    t.integer  "date_info_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "accepted"
   end
 
   create_table "users", force: true do |t|
