@@ -48,6 +48,7 @@ $(function() {
 
       <!-- username -->
       <h3><%= link_to user.username, user_path(user) %></h3>
+       <%= button_to "Generate Date", first_date_path(:chatid => current_user.id + user.id), :class => "btn btn-danger", :method => :get  %>
   <% end %>
 <% end %>
     <!-- /JAVASCRIPT TAG -->
@@ -56,10 +57,6 @@ $(function() {
       <!-- CHAT BUTTON -->
       <!-- connected to script tag -->
       <button id="startChat" class="btn btn-warning chatLink"  data-toggle="modal" data-target="#iframeModal" data-otheruserid="<%=user.id%>">Chat</button>
-
-      <%= link_to users_path do %>
-          <%= button_tag "Generate Date", :class => "btn btn-danger" %>
-        <% end %>
 
     </div>
     <% end %>
@@ -77,9 +74,8 @@ $(function() {
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
           <!-- modal title -->
-          <h4 class="modal-title" id="myModalLabel"> <%= link_to users_path do %>
-          <%= button_tag "Generate Date", :class => "btn btn-danger" %>
-        <% end %></h4>
+          <h4 class="modal-title" id="myModalLabel"> Chat 
+          </h4>
         </div>
 
         <!-- model content -->

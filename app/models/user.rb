@@ -33,6 +33,10 @@ class User < ActiveRecord::Base
                                 :first_date_prefs
 
 
+  def generate_chat_code_for(user)
+    other_user_id = user.id
+    @chat_code = current_user.id + other_user_id
+  end
   # validates_uniqueness_of :username
   # def self.authenticate(user, password)
   #   find_by_username(username).try(:authenticate, password)

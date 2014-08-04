@@ -25,6 +25,7 @@ class UsersController < ApplicationController
     @deet = Deet.find(current_user.deet)
     # @chat = Like.where(user_id: user.id, target_id: current_user).first.code_chat
 
+    # creates chat code
   end
 
   def show
@@ -130,7 +131,7 @@ class UsersController < ApplicationController
 
   def google_search
     @client = GooglePlaces::Client.new('AIzaSyCoasaICICKYybkFQtEZtA4jHK2a7tnHSw')
-    @first_dates = @client.spots(@latitude, @longitude, :types => ['bar', @date_type])
+    @first_dates = @client.spots(@latitude, @longitude, :name => @date_type)
     @hash = JSON.parse(@first_dates.to_json).first
     @name = @hash["name"]
     @address = @hash["vicinity"]
@@ -198,7 +199,6 @@ class UsersController < ApplicationController
   def lifestyle_matches
     @user = Deet.where(lifestyle: lifestyle_types).where(user: basic_matches).map(&:user_id)
   end
-
   # def current_user_lifestyle_id
   #   lifestyle_type = current_user.lifestyle
   #   Lifestyles.where(:types lifestyle_type)(&)
