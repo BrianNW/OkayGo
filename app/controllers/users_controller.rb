@@ -126,11 +126,17 @@ class UsersController < ApplicationController
     random_date
     @time = :noon
 
-    date_entry = DateDeets.create(name: @name, img: @icon, address: @address, latitude: @latitude, longitude: @longitude, date: @day, time: @time)
-    UserDate.create(user_id: current_user.id, date_deets_id: date_entry.id)
+    date_entry = DateDeets.where(:name => @name).first_or_create!(name: @name, img: @icon, address: @address, latitude: @latitude, longitude: @longitude, date: @day, time: @time)
+    UserDate.where(date_deets_id: date_entry.id).first_or_create!(user_id: current_user.id, date_deets_id: date_entry.id)
   end
 
   def my_dates
+    date_deets_ids = current_user.user_dates.map(&:date_deets_id)
+    @date_deets = DateDeets.where(id: date_deets_ids)
+    # switches boolean for this date deet to true 
+
+    # gets current user user_dates and returns the date_deets_ids
+    # lists date_deets on page and lists whether other user has accepted or not 
   end
 
   protected
