@@ -1,15 +1,16 @@
-<!-- <div class="full"> -->
+
   <div id="page-content-wrapper">
-    <div class="container-fluid">
-      <!-- <form class="form-horizontal"> -->
-     <legend>Add your Preferences!</legend>
-      <fieldset>
+    <div class="container-fluid" id="pref-nav">
+
+    <%= render 'layouts/navbar' %>
+
+     <legend></legend>
+      <fieldset id='preference-fieldset'>
         <%= form_for @preference, :html => {:class => 'form-horizontal'} do |f| %>
           <%= render f %>
         <%= link_to 'Back', root_path, class: 'btn btn-warning' %>
           <%= f.submit "Next", class: 'btn btn-warning' %>
         <% end %>
       </fieldset>
-     <!--  </form> -->
     </div>
   </div> 

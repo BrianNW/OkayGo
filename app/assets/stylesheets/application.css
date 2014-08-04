@@ -24,6 +24,7 @@ html, body, .full {
 /*LOGIN PAGE*/
 
 #login-fieldset {
+  text-align: center;
   border: 1px solid #c0c0c0;
   margin: 0 2px;
   padding: 0.35em 0.625em 0.75em;
@@ -53,6 +54,22 @@ background: url(http://farm8.staticflickr.com/7232/7236736376_05de1c7745_c.jpg) 
 background-size: cover;
 height: 100%;
 }
+
+/*PREFERENCE PAGE*/
+#preference-fieldset {
+  text-align: center;
+  border: 1px solid #c0c0c0;
+  margin: auto;
+  padding: 0.35em 0.625em 0.75em;
+  /* jordan */
+  max-width: 400px;
+}
+/*element.style {
+text-align: center;
+}
+element.style {
+text-align: center;
+background-color: rgba(0, 0, 0, 0.5)*/
 
 /*  background: url(http://i.imgur.com/jTc3Z.jpg) no-repeat center center fixed;*/
 .full {
