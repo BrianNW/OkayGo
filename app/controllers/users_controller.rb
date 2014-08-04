@@ -141,7 +141,15 @@ class UsersController < ApplicationController
     @date_deets = DateDeets.where(id: date_deets_ids)
     # switches boolean for this date deet to true
 
-     # lists whether other user has accepted or not 
+     # lists whether other user has accepted or not
+
+   # RENDERED IN DEET MODAL
+   @deet = Deet.find(current_user.deet)
+
+   # RENDERED IN PREFERENCES MODAL
+   @preference = current_user.preference
+   @first_date = FirstDate.all
+   @lifestyle = Lifestyle.all
   end
 
   def accept_date

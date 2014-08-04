@@ -121,6 +121,14 @@ margin-left: 10%
   margin-bottom: 10%;
 }
 
+.button-img{
+  height:25px;
+}
+
+.minilogo {
+  height: 80px;
+}
+
 #homepageh4 {
   position: relative;
   text-align:center;

@@ -1,0 +1,40 @@
+<%= form_for @deet, html: { multipart: true, class: "form-horizontal"} do |form| %>
+
+<% if @deet.errors.any? %>
+ <div>
+   <%= pluralize(@deet.errors.count, "error") %> prevented this deet from being submitted:
+   <ul>
+     <% @deet.errors.full_messages.each do |msg| %>
+       <li><%= msg %></li>
+     <% end %>
+   </ul>
+ </div>
+<% end %>
+
+ <!-- ABOUT ME -->
+<div class='form-group'>
+ <%= form.label "about_me", class: 'col-lg-2 control-label' %>
+ <div class="col-lg-4">
+   <%= form.text_area "about_me", class: 'form-control', rows: '3', id: 'textArea', placeholder: 'What makes you stand out from the crowd?' %>
+ </div>
+</div>
+
+<!-- DEET DROP DOWN -->
+<div class="checkbox form-group">
+ <%= form.label "lifestyle", class: "col-lg-2 control-label" %>
+ <div class="col-lg-4">
+ <%= form.select("lifestyle",[['Adventurer', 'adventurer'], ['Athletic', 'athletic'], ['Intellectual', 'intellectual'], ['Professional', 'professional'], ['Traveller', 'traveller'], ['Party Animal', 'party animal'], ['Chill', 'chill']], {}, { :class => 'form-control', :id => 'select', include_blank: true} ) %>
+ </div>
+</div>
+
+<!-- PROFESSION -->
+<div class="form-group">
+ <%= form.label "profession", class: "col-lg-2 control-label" %>
+ <div class="col-lg-4">
+   <%= form.text_field "profession", class: 'form-control', id: "inputEmail", placeholder: 'Developer' %>
+ </div>
+</div>
+
+<%= link_to 'Back', new_preference_path, class: 'btn btn-warning' %>
+<%= form.submit 'Next!', class: 'btn btn-warning' %>
+<% end %>
