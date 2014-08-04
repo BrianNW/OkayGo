@@ -57,12 +57,15 @@ height: 100%;
 
 /*PREFERENCE PAGE*/
 #preference-fieldset {
-  text-align: center;
+  /*text-align: center;*/
   border: 1px solid #c0c0c0;
   margin: auto;
   padding: 0.35em 0.625em 0.75em;
   /* jordan */
   max-width: 400px;
+}
+#center-legend {
+  text-align: center;
 }
 /*element.style {
 text-align: center;
