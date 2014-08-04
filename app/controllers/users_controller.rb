@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   before_filter :authorize, only: [:edit, :update]
   helper_method :first_date
+  helper_method :get_date_status
 
   def index
     # MATCHING ALGORITHMS
@@ -133,10 +134,20 @@ class UsersController < ApplicationController
   def my_dates
     date_deets_ids = current_user.user_dates.map(&:date_deets_id)
     @date_deets = DateDeets.where(id: date_deets_ids)
-    # switches boolean for this date deet to true 
+    # switches boolean for this date deet to true
 
-    # gets current user user_dates and returns the date_deets_ids
-    # lists date_deets on page and lists whether other user has accepted or not 
+     # lists whether other user has accepted or not 
+  end
+
+  def get_date_status(date)
+    date_id = date.id
+    user_date = UserDate.where(date_deets_id: date_id).except(user_id: current_user.id)
+    if user_date.accepted?
+      binding.pry
+      return 'Accepted'
+    else
+      return 'Pending'
+    end
   end
 
   protected
