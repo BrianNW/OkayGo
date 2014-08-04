@@ -130,6 +130,9 @@ class UsersController < ApplicationController
     UserDate.create(user_id: current_user.id, date_deets_id: date_entry.id)
   end
 
+  def my_dates
+  end
+
   protected
 
   def google_search
@@ -169,6 +172,7 @@ class UsersController < ApplicationController
         @message = "#{@day} at #{@time}"
     end
   end
+
 
 
   def user_params
