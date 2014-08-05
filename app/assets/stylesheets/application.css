@@ -18,7 +18,7 @@
 html, body, .full {
   width: 100%;
   height: 100%;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 /*LOGIN PAGE*/
@@ -55,6 +55,10 @@ background-size: cover;
 height: 100%;
 }
 
+/*MATCHES PAGE*/
+
+
+
 /*PREFERENCE PAGE*/
 #preference-fieldset {
   /*text-align: center;*/
@@ -88,7 +92,17 @@ background-color: rgba(0, 0, 0, 0.5)*/
 #iframeModal .modal-dialog  {width:735px;}
 #iframeModal .modal-body  {height:430px;}
 
+/*FIRST DATE MAP PAGE*/
 
+#container-fluid-map {
+  padding-right: 50px;
+}
+
+/*MY DATES PAGE*/
+#dates-list {
+  background-color: bisque;
+  margin-left: 25%;
+}
 
 
 form {
