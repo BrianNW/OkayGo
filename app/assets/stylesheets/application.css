@@ -312,12 +312,18 @@ header {
     margin: 0;
     padding: 0;
     list-style: none;
-    background-color: #fff;
+    background-color: currentcolor;
 }
 
 .sidebar-nav li {
     text-indent: 20px;
     line-height: 40px;
+    display: block;
+    text-decoration: none;
+    color: #A4A4A4;
+    margin-top: 5%;
+    margin-bottom: 5%%;
+    margin-top: 2px
 }
 
 .sidebar-nav li a {
@@ -349,6 +355,10 @@ header {
 
 .sidebar-nav > .sidebar-brand a:hover {
     background: none;
+}
+
+#first-nav-bar-list-item {
+  margin-top: 20%;
 }
 
 @media(min-width:768px) {

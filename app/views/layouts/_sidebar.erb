@@ -1,22 +1,18 @@
 <div id="wrapper">
   <div id="sidebar-wrapper">
+
     <ul class="sidebar-nav">
-        <li class="sidebar-brand">
+
+        <li id='first-nav-bar-list-item'>
+         <a href="/my_dates"><img class="minilogo" src="assets/logo1.png"></a>
+         </li>
         </li>
         <li>
         <a href="/users"><img class="profilepic" src="<%=current_user.img%>"></a>
         </li>
         <li>
           <%= current_user.username %>
-        </li>
-          <%= current_user.deet.about_me %>
-        </li>
-        <li>
-            Lifestyle: <%= current_user.deet.lifestyle %>
-        </li>
-        <li>
-            Profession: <%= current_user.deet.profession %>
-        </li>
+
         <li>
         <!-- deet modal -->
         <button class="btn btn-warning" data-toggle="modal" data-target="#deetModal">
@@ -36,13 +32,12 @@
       </li>
         <li>
             <%= link_to "Mutual Matches", matches_path %>
-        </li>
-        <li>
           <% if current_user %>
           <%= link_to "All Matches", users_path %>
-          <a href="/my_dates"><img class="minilogo" src="assets/logo1.png"></a>
-
+          <%= link_to 'My Dates', my_dates_path %>
+        <li>
           <%= link_to "Log Out", logout_path %>
+        </li>
           <% else %>
           <%= link_to "Sign Up", signup_path %> or
           <%= link_to "Log In", login_path %>
