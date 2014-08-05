@@ -5,17 +5,17 @@
 
       <% @user.each do |user| if @user %>
         <div class="col-md-4 portfolio-item">
-
-          <a href="#">
+          <a href="/users">
             <img class="profilepic" src="<%=user.image%>">
           </a>
 
+          <div style="">
+              <%= link_to '<i class="fa fa-heart-o"></i>'.html_safe, {:controller => "likes", :action => "create", :target_id => user.id} , :method=>:post, class: 'btn btn-warning', style: 'margin-right: 90px;' %>
+              <%= link_to '<i class="fa fa-flag"></i>'.html_safe, {:controller => "flags", :action => "create", :target_id => user.id} , :method=>:post, class: 'btn btn-danger' %>
+          </div>
+
           <h3><%= link_to user.username, user_path(user) %></h3>
 
-          <p>
-          <%= button_to 'Like', {:controller => "likes", :action => "create", :target_id => user.id} , :method=>:post, class: 'btn btn-warning'  %>
-          <%= button_to 'Flag', {:controller => "flags", :action => "create", :target_id => user.id} , :method=>:post, class: 'btn btn-danger' %>
-          </p>
 
 
         </div>

@@ -41,8 +41,7 @@ function initialize() {
     '</div>'+
     '<h1 id="firstHeading" class="firstHeading"><%=@name%></h1>'+
     '<div id="bodyContent">'+
-    '<p><b>Vancouver</b>, is awesome.' +
-    '<p>Attribution: Vancouver, "http://en.wikipedia.org/wiki/Vancouver">'+
+    '<p><b>Vancouver</b>'+
     'http://en.wikipedia.org/wiki/Vancouver</a> '+
     '(last visited July 10, 2014).</p>'+
     '</div>'+
@@ -95,38 +94,35 @@ function initialize() {
 
     </head>
 
-    <div id="map-canvas"></div>
-
-<h1>You both wanted a <%= @date_type %> date so your date will be at:</h1>
-<br>
-<h2><%= @name %></h2>
-<img src='<%= @icon %>'>
-<h3>
-  <%= @address %>
-  <br>
-  <%= @message %>
-</h3>
-<br>
-
-<br><br>
-
-<%= link_to 'Accept', accept_date_path(@saved_date_deet.id), :class => "btn btn-danger", method: :post %>
-
-<%= link_to matches_path do %>
-    <%= button_tag "Back", :class => "btn btn-warning" %>
-  <% end %>
-
-        <script>
-
-        $(document).ready(function() {
-
-            /**** YOU MAY MODIFY THE CODE BELOW ****/
-            $("#elsewhere").on('click', function() {
-                $(alert("If you choose somewhere else, you won't be able to retrieve this location. Are you sure?"));
-            });
+<div id="map-canvas"></div>
 
 
-            /**** STOP MODIFYING HERE. ****/
-        });
+  <div class="container-fluid" id='container-fluid-map'>
+    <div id="page-content-wrapper" style="
+      background-color: antiquewhite;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      margin-left: 20px;
+      margin-right: 20px;">
 
-        </script>
+    
+
+
+      <h1>Congrats! You both wanted a <%= @date_type %> date!
+      <br>
+      You're going to <%= @name %> on <%= @day %></h1>
+
+      Here's the address: <%= @address %>, and don't forget to check out the map!
+        <br>
+      </h3>
+      <br>
+
+      <br><br>
+
+      <%= link_to 'Accept', accept_date_path(@saved_date_deet.id), :class => "btn btn-danger", method: :post %>
+
+      <%= link_to matches_path do %>
+          <%= button_tag "Back", :class => "btn btn-warning" %>
+        <% end %>
+      </div>
+  </div>

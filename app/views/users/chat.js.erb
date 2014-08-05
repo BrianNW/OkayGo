@@ -2,18 +2,18 @@ $( document ).ready(function() {
 
 <% if @current != @user_data[1].id %>
   var current_username = "<%= @user_data[1].username %>";
-  var current_avatar = "<%= @user_data[1].image%>";
+  var current_avatar = "<%= @user_data[1].img.url%>";
 
   var other_username = "<%= @user_data[0].username %>";
-  var other_avatar = "<%= @user_data[0].img%>";
+  var other_avatar = "<%= @user_data[0].img.url%>";
 
 <% else %>
 
   var current_username = "<%= @user_data[0].username %>";
-  var current_avatar = "<%= @user_data[0].image%>";
+  var current_avatar = "<%= @user_data[0].img.url%>";
 
   var other_username = "<%= @user_data[1].username %>";
-  var other_avatar = "<%= @user_data[1].img%>";
+  var other_avatar = "<%= @user_data[1].img.url%>";
 
 <% end %>
 

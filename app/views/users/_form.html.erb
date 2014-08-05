@@ -37,7 +37,7 @@
 <div class="form-group">
   <%= form.label "gender", class: 'col-lg-2 control-label' %>
   <div class="col-lg-4">
-    <%= form.text_field "gender" %>
+    <%= form.select("gender",[['male', 'male'], ['female', 'female']], include_blank: true, class: 'form-control', id: 'select') %>
   </div>
 </div>
 <br>

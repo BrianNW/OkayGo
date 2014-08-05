@@ -18,7 +18,7 @@
 html, body, .full {
   width: 100%;
   height: 100%;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 /*LOGIN PAGE*/
@@ -47,13 +47,17 @@ margin-top: 15px;
 width: 100%;
 }
 #login-background {
-background: url(/assets/home.jpg) no-repeat center center fixed;
+background: url(http://i.dailymail.co.uk/i/pix/2011/02_03/cab.gif) no-repeat center center fixed;
 -webkit-background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;
 background-size: cover;
 height: 100%;
 }
+
+/*MATCHES PAGE*/
+
+
 
 /*PREFERENCE PAGE*/
 #preference-fieldset {
@@ -66,6 +70,7 @@ height: 100%;
 }
 #center-legend {
   text-align: center;
+  color: white;
 }
 /*element.style {
 text-align: center;
@@ -88,7 +93,17 @@ background-color: rgba(0, 0, 0, 0.5)*/
 #iframeModal .modal-dialog  {width:735px;}
 #iframeModal .modal-body  {height:430px;}
 
+/*FIRST DATE MAP PAGE*/
 
+#container-fluid-map {
+  padding-right: 50px;
+}
+
+/*MY DATES PAGE*/
+#dates-list {
+  background-color: bisque;
+  margin-left: 25%;
+}
 
 
 form {
@@ -132,8 +147,7 @@ margin-left: 10%
 #homepageh4 {
   position: relative;
   text-align:center;
-  color: rgb(68, 68, 68);
-/* font-size: 50px; */
+  color: white;
 }
 
 #textArea {
@@ -160,9 +174,10 @@ margin-top: 16%;
 margin-left: 30%;
 margin-right: 30%;
 height: 100%;
-/*background-color: rgba(0, 0, 0, 0.58); */
+background-color: rgba(26, 26, 26, 0.46);
 padding-bottom: 20px;
 text-align:center;
+color: white
 }
 
 #logo-box p {
@@ -298,12 +313,18 @@ header {
     margin: 0;
     padding: 0;
     list-style: none;
-    background-color: #fff;
+    background-color: currentcolor;
 }
 
 .sidebar-nav li {
     text-indent: 20px;
     line-height: 40px;
+    display: block;
+    text-decoration: none;
+    color: #A4A4A4;
+    margin-top: 5%;
+    margin-bottom: 5%%;
+    margin-top: 2px
 }
 
 .sidebar-nav li a {
@@ -335,6 +356,10 @@ header {
 
 .sidebar-nav > .sidebar-brand a:hover {
     background: none;
+}
+
+#first-nav-bar-list-item {
+  margin-top: 20%;
 }
 
 @media(min-width:768px) {

@@ -128,11 +128,12 @@ class UsersController < ApplicationController
 
     @date_type = (first_array & second_array)[0]
     @google_input = google_input
+    # @other_user = User.find(chat_data.target_id)
     @user = current_user
     google_search
     random_date
 
-    @saved_date_deet = DateDeets.where(:name => @name).first_or_create!(name: @name, img: @icon, address: @address, latitude: @latitude, longitude: @longitude, date: @day, time: @time)
+    @saved_date_deet = DateDeets.create(name: @name, img: @icon, address: @address, latitude: @latitude, longitude: @longitude, date: @day, time: @time, code_chat: @code_chat)
   end
 
 
@@ -154,14 +155,13 @@ class UsersController < ApplicationController
 
   def accept_date
     user_date_id = params[:user_date_id]
-    user_dates = UserDate.where(date_deets_id: user_date_id).first_or_create!(user_id: current_user.id, date_deets_id: user_date_id, accepted: true)
+    user_dates = UserDate.where(date_deets_id: user_date_id, user_id: current_user.id, accepted: true).first_or_create!(user_id: current_user.id, date_deets_id: user_date_id, accepted: true)
     user_dates.save
     redirect_to my_dates_path
   end
 
   def get_date_status(date)
-    date_id = date.id
-    user_dates = UserDate.where('date_deets_id == ? AND user_id != ?', date_id, current_user.id).last
+    user_dates = UserDate.where('date_deets_id == ? AND user_id != ?', date.id, current_user.id).last
     if user_dates == nil
       return 'Pending'
     elsif user_dates
@@ -173,7 +173,7 @@ class UsersController < ApplicationController
     end
   end
 
-    def self.age_matches(user)
+  def self.age_matches(user)
     User.where('users.age >= ? AND users.age < ?', user.preference.min_age, user.preference.max_age)
   end
 
@@ -210,11 +210,11 @@ class UsersController < ApplicationController
     @day = (Date.today+(7*rand())).strftime("%A, %B %d %Y")
     @time = (Time.now).strftime("%I:%M%p")
 
-      if @date_type == "drinks"
-        @message = "#{@day} at #{@time}"
-      elsif @date_type == "skydiving"
-        @message = "#{@day} at #{@time}"
-    end
+      # if @date_type == "drinks"
+      #   @message = "#{@day} at #{@time}"
+      # elsif @date_type == "skydiving"
+      #   @message = "#{@day} at #{@time}"
+    # end
   end
 
 
@@ -359,5 +359,4 @@ class UsersController < ApplicationController
   # @liked_users.each do |id|
   # if id == user.id
   # I have liked this user
-
 end
