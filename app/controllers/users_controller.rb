@@ -128,7 +128,7 @@ class UsersController < ApplicationController
     google_search
     random_date
 
-    @saved_date_deet = DateDeets.create(name: @name, img: @icon, address: @address, latitude: @latitude, longitude: @longitude, date: @day, time: @time)
+    @saved_date_deet = DateDeets.create(name: @name, img: @icon, address: @address, latitude: @latitude, longitude: @longitude, date: @day, time: @time, code_chat: @code_chat)
   end
 
 
