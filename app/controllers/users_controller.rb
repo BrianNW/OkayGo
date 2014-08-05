@@ -121,20 +121,15 @@ class UsersController < ApplicationController
     first_array = User.find(chat_data.user_id).first_dates.map(&:types)
     second_array = User.find(chat_data.target_id).first_dates.map(&:types)
 
-    @date_type = (first_array & second_array).sample
+    @date_type = (first_array & second_array)[0]
     @google_input = google_input
     @user = current_user
     google_search
     random_date
-    @time = :noon
 
-    date_entry = DateDeets.where(:name => @name).first_or_create!(name: @name, img: @icon, address: @address, latitude: @latitude, longitude: @longitude, date: @day, time: @time)
-    @saved_date = UserDate.where(date_deets_id: date_entry.id).first_or_create!(user_id: current_user.id, date_deets_id: date_entry.id)
+    @saved_date_deet = DateDeets.where(:name => @name).first_or_create!(name: @name, img: @icon, address: @address, latitude: @latitude, longitude: @longitude, date: @day, time: @time)
   end
 
-  def accepted_date?(saved_date)
-    saved_date_id = saved_date.id
-  end
 
   def my_dates
     date_deets_ids = current_user.user_dates.map(&:date_deets_id)
@@ -154,20 +149,27 @@ class UsersController < ApplicationController
 
   def accept_date
     user_date_id = params[:user_date_id]
-    user_date = UserDate.find(user_date_id)
-    user_date.accepted = true
-    user_date.save
+    user_dates = UserDate.where(date_deets_id: user_date_id).first_or_create!(user_id: current_user.id, date_deets_id: user_date_id, accepted: true)
+    user_dates.save
     redirect_to my_dates_path
   end
 
   def get_date_status(date)
     date_id = date.id
-    user_date = UserDate.where(date_deets_id: date_id).except(user_id: current_user.id).last
-    if user_date.accepted
-      return 'Accepted'
+    user_dates = UserDate.where('date_deets_id == ? AND user_id != ?', date_id, current_user.id).last
+    if user_dates == nil
+      return 'Pending'
+    elsif user_dates
+      if user_dates.accepted
+        return 'Accepted'
+      end
     else
       return 'Pending'
     end
+  end
+
+    def self.age_matches(user)
+    User.where('users.age >= ? AND users.age < ?', user.preference.min_age, user.preference.max_age)
   end
 
   protected
@@ -201,7 +203,7 @@ class UsersController < ApplicationController
 
   def random_date
     @day = (Date.today+(7*rand())).strftime("%A, %B %d %Y")
-    @evenings = (Time.now).strftime("%I:%M%p")
+    @time = (Time.now).strftime("%I:%M%p")
 
       if @date_type == "drinks"
         @message = "#{@day} at #{@time}"
