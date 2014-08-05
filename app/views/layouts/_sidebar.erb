@@ -2,7 +2,6 @@
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
         <li class="sidebar-brand">
-         <%= link_to "bolt", root_path, id: 'bolt-header' %>
         </li>
         <li>
         <img class="profilepic" src="<%=current_user.img%>">
@@ -19,7 +18,7 @@
         <li>
         <!-- deet modal -->
         <button class="btn btn-warning" data-toggle="modal" data-target="#deetModal">
-          Update Deets
+          <img class="button-img" src="assets/icons/deet.png">
         </button>
         </li>
         <li>
@@ -31,18 +30,22 @@
         <li>
         <!-- deet modal -->
         <button class="btn btn-warning" data-toggle="modal" data-target="#firstdateModal">
-          Update First Date
+          <img class="button-img" src="assets/icons/preference.png">
         </button>
         </li>
         <li>
-            <%= link_to "Upload More Images", new_image_path %>
-        </li>
+        <button class="btn btn-warning" data-toggle="modal" data-target="#deetModal">
+          Update First Date
+        </button>
+      </li>
         <li>
             <%= link_to "Mutual Matches", matches_path %>
         </li>
         <li>
           <% if current_user %>
           <%= link_to "All Matches", users_path %>
+          <a href="/my_dates"><img class="minilogo" src="assets/logo1.png"></a>
+
           <%= link_to "Log Out", logout_path %>
           <% else %>
           <%= link_to "Sign Up", signup_path %> or

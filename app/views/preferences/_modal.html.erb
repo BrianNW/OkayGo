@@ -27,21 +27,6 @@
   <!-- MAX AGE PREFERENCE -->
     <%= f.select :max_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>.
 
-  <!-- FIRST DATE PREFERENCE -->
-  <!-- CHECKBOXES -->
-   <p>
-   I would consider the following options for a first-date:
-   </p>
-    <%= collection_check_boxes(:current_user, :first_dates, @first_date, :id, :types) %>
-
-    <!-- LIFESTYLE PREFERENCE -->
-    <!-- CHECKBOXES -->
-    <p>
-    I would describe my lifestyle as:
-    </p>
-    <%= collection_check_boxes(:current_user, :lifestyles, @lifestyle, :id, :types) %>
-
-
     <!-- LOCATION PREFERENCE -->
     <p>My preferred date location would be:
       <%= f.text_field "address", class: 'form-control', placeholder: 'Gastown, Vancouver, BC' %></p>
