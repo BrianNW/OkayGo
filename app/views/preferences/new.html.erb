@@ -1,16 +1,31 @@
+<!-- NEW PREFERENCE -->
 
-  <div id="page-content-wrapper">
-    <div class="container-fluid" id="pref-nav">
+<!-- BACKGROUND -->
+<div id="login-background">
+  <div class="overlay-bg">
+    <div class="col-xs-12 col-sm-12 col-md-12">
 
-    <%= render 'layouts/navbar' %>
+      <!-- CONTENT -->
+      <div id="logo-box">
 
-     <legend id='center-legend'>Let's get started!</legend>
-      <fieldset id='preference-fieldset'>
-        <%= form_for @preference, :html => {:class => 'form-horizontal'} do |f| %>
+       <!-- tagline -->
+       <legend id='center-legend'>Let's get started!</legend>
+
+        <!-- preference form -->
+        <fieldset id='preference-fieldset'>
+          <%= form_for @preference, :html => {:class => 'form-horizontal'} do |f| %>
           <%= render f %>
-        <%= link_to 'Back', root_path, class: 'btn btn-warning' %>
+
+          <!-- BACK -->
+          <%= link_to 'Back', root_path, class: 'btn btn-warning' %>
+
+          <!-- NEXT -->
           <%= f.submit "Next", class: 'btn btn-warning' %>
-        <% end %>
-      </fieldset>
+          <% end %>
+        </fieldset>
+
+      </div>
+
     </div>
   </div>
+</div>

@@ -4,7 +4,7 @@
         <li class="sidebar-brand">
         </li>
         <li>
-        <img class="profilepic" src="<%=current_user.img%>">
+        <a href="/users"><img class="profilepic" src="<%=current_user.img%>"></a>
         </li>
         <li>
             About Me: <%= current_user.deet.about_me %>
@@ -20,6 +20,15 @@
         <button class="btn btn-warning" data-toggle="modal" data-target="#deetModal">
           <img class="button-img" src="assets/icons/deet.png">
         </button>
+          <!-- preference modal -->
+          <button class="btn btn-warning" data-toggle="modal" data-target="#firstdateModal">
+            <img class="button-img" src="assets/icons/preference.png">
+          </button>
+
+        <!-- first date and lifestyle modal -->
+        <button class="btn btn-warning" data-toggle="modal" data-target="#deetModal">
+          <img class="button-img" src="assets/icons/first_date.png">
+        </button>
         </li>
         <li>
             Looking for: <%= current_user.preference.gender_pref %>
@@ -28,15 +37,11 @@
             Between: <%= current_user.preference.min_age %> - <%= current_user.preference.max_age %>
         </li>
         <li>
-        <!-- deet modal -->
-        <button class="btn btn-warning" data-toggle="modal" data-target="#firstdateModal">
-          <img class="button-img" src="assets/icons/preference.png">
-        </button>
+
         </li>
         <li>
-        <button class="btn btn-warning" data-toggle="modal" data-target="#deetModal">
-          Update First Date
-        </button>
+
+
       </li>
         <li>
             <%= link_to "Mutual Matches", matches_path %>

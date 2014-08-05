@@ -136,6 +136,13 @@ margin-left: 10%
 /*   font-size: 50px; */
 }
 
+#textArea {
+  float:left;
+  margin: 0px;
+  width: 356px;
+  height: 74px;
+}
+
 .btn-homepage {
 color: #eea236;
 background-color: transparent;
@@ -143,7 +150,7 @@ border-color: #eea236;
 }
 
 #logo-img {
-  margin-left: 40%;
+  margin-left: 0%;
   margin-right: auto;
   margin-bottom: 10%;
 }
@@ -155,6 +162,7 @@ margin-right: 30%;
 height: 100%;
 /* background-color: rgba(0, 0, 0, 0.58); */
 padding-bottom: 20px;
+text-align:center;
 }
 
 #logo-box p {
