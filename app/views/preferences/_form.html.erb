@@ -14,22 +14,22 @@
 <!-- GENDER PREFERENCE -->
 <div class='form group'>
   I am looking for a
-  <%= form.select("gender_pref",[['male', 'male'], ['female', 'female']], include_blank: true, class: 'form-control', id: 'select') %>
+  <%= form.select("gender_pref",[['male', 'male'], ['female', 'female']], { class: 'form-control' }, include_blank: true, id: 'select', class: 'form-control') %>
 
   <!-- MIN AGE PREFERENCE -->
   <div class="checkbox">
-  between <%= form.select :min_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>
+  between <%= form.select :min_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}),{ class: 'form-control' }, include_blank: true, class: 'form-control' %>
 
   and
 
   <!-- MAX AGE PREFERENCE -->
-  <%= form.select :max_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}), include_blank: true %>
+  <%= form.select :max_age, options_for_select( (19..99).step(1).map{|n| n%1 == 0 ? n.to_i : n}),{ class: 'form-control' }, include_blank: true, class: 'form-control' %>
   </div>
   <br>
 
   <!-- LOCATION PREFERENCE -->
 
    to go on a date in:
-    <%= form.text_field "address", class: 'form-control', placeholder: 'Gastown, Vancouver, BC' %>
+    <%= form.text_field "address", class: 'form-control', placeholder: 'Gsastown, Vancouver, BC' %>
 </div>
 <br>

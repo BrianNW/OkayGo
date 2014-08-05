@@ -1,4 +1,4 @@
-  <% if @user.errors.any? %>
+<% if @user.errors.any? %>
     <div>
       <%= pluralize(@user.errors.count, "error") %> prevented the account from being created:
       <ul>
@@ -9,51 +9,44 @@
     </div>
   <% end %>
 
-<div class='form-group'>
-  <%= form.label "username", class: 'col-lg-2 control-label'%>
-  <div class="col-lg-4">
-    <%= form.text_field "username" %>
-  </div>
-</div>
-<br>
-<br>
-
-<div class="form-group">
-  <%= form.label "img", class: 'col-lg-2 control-label' %>
-  <div class="col-lg-4">
-    <%= form.text_field "img" %>
+<div class='form-group' >
+  <div class="col-lg-4 sup" >
+    <%= form.text_field "username", class: 'form-control', placeholder: 'Username' %>
   </div>
 </div>
 <br>
 
-<div class="form-group">
-  <%= form.label "age", class: 'col-lg-2 control-label' %>
-  <div class="col-lg-4">
-    <%= form.number_field "age" %>
+<div class="form-group" >
+  <div class="col-lg-4 sup" >
+    <%= form.file_field "img", class: 'form-control', placeholder: 'Image'  %>
   </div>
 </div>
 <br>
 
-<div class="form-group">
-  <%= form.label "gender", class: 'col-lg-2 control-label' %>
-  <div class="col-lg-4">
-    <%= form.select("gender",[['male', 'male'], ['female', 'female']], include_blank: true, class: 'form-control', id: 'select') %>
+<div class="form-group" >
+  <div class="col-lg-4 sup" >
+    <%= form.number_field "age", class: 'form-control', placeholder: 'Age'  %>
   </div>
 </div>
 <br>
 
-<div class="form-group">
-  <%= form.label "password", class: 'col-lg-2 control-label' %>
-  <div class="col-lg-4">
-    <%= form.password_field "password" %>
+<div class="form-group" >
+  <div class="col-lg-4 sup" >
+    <%= form.select("gender",[['male', 'male'], ['female', 'female']], { class: 'form-control', value: 'user@domain.com' }, include_blank: true, id: 'select', class: 'form-control') %>
   </div>
 </div>
 <br>
 
-<div lass="form-group">
-  <%= form.label "password_confirmation", class: 'col-lg-2 control-label' %>
-  <div class="col-lg-4">
-  <%= form.password_field "password_confirmation" %>
+<div class="form-group" >
+  <div class="col-lg-4 sup" >
+    <%= form.password_field "password", class: 'form-control', placeholder: 'Password' %>
+  </div>
+</div>
+<br>
+
+<div class="form-group" >
+  <div class="col-lg-4 sup">
+  <%= form.password_field "password_confirmation", class: 'form-control', placeholder: 'Confirm Password'  %>
   </div>
 </div>
 <br>

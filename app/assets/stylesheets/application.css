@@ -23,6 +23,11 @@ html, body, .full {
 
 /*LOGIN PAGE*/
 
+.sup {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
 #login-fieldset {
   text-align: center;
   border: 1px solid #c0c0c0;
