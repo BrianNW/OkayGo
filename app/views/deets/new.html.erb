@@ -1,16 +1,31 @@
-<div id="page-content-wrapper">
-  <div class="container-fluid" id="pref-nav">
+<!-- NEW DEETS -->
 
-  <%= render 'layouts/navbar' %>
+<!-- BACKGROUND -->
+<div id="login-background">
+  <div class="overlay-bg">
+    <div class="col-xs-12 col-sm-12 col-md-12">
 
-<legend id='center-legend'>...a little about you...</legend>
-  <fieldset id="">
-     <%= form_for @deet, html: { multipart: true, class: "form-horizontal"} do |f| %>
-      <%= render f %>
-      <%= link_to 'Back', new_preference_path, class: 'btn btn-warning' %>
-      <%= f.submit 'Next!', class: 'btn btn-warning' %>
-    <% end %>
-  </fieldset>
+      <!-- CONTENT -->
+      <div id="logo-box">
 
+      <!-- tagline -->
+      <legend id='center-legend'>Now just a bit about yourself!</legend>
+
+        <!-- deets form -->
+        <fieldset id="">
+           <%= form_for @deet, html: { multipart: true, class: "form-horizontal"} do |f| %>
+           <%= render f %>
+
+           <!-- BACK -->
+           <%= link_to 'Back', new_preference_path, class: 'btn btn-warning' %>
+
+           <!-- NEXT -->
+           <%= f.submit 'Next!', class: 'btn btn-warning' %>
+          <% end %>
+        </fieldset>
+
+      </div>
+
+    </div>
   </div>
 </div>

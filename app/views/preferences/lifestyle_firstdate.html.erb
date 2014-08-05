@@ -1,25 +1,41 @@
-  <!-- FIRST DATE PREFERENCE -->
-  <!-- CHECKBOXES -->
-  <fieldset>
-    <legend>Additional Information</legend>
-<!--     form_tag create_prefs_path, method: 'post', :html => {:class => 'form-horizontal'} do |f|  -->
+<!-- NEW DEETS -->
 
-      <%= form_for @user, :url => create_prefs_path, :method => :post, :html => {:class => 'form-horizontal'} do |f| %>
-     <p>
-       What would you consider as options for your first date? (Select one or more)
-     </p>
+<!-- BACKGROUND -->
+<div id="login-background">
+  <div class="overlay-bg">
+    <div class="col-xs-12 col-sm-12 col-md-12">
 
-      <%= collection_check_boxes(:user, :first_dates, @first_date, :id, :types) %>
+      <!-- CONTENT -->
+      <div id="logo-box">
 
-      <!-- LIFESTYLE PREFERENCE -->
-      <!-- CHECKBOXES -->
-      <p>
-        How would you describe your lifestyle? (Select one or more)
-      </p>
+      <!-- tagline -->
+      <legend>Let's find you matches!</legend>
 
-      <%= collection_check_boxes(:user, :lifestyles, @lifestyle, :id, :types) %>
+        <!-- first date checkboxes -->
+        <fieldset id="">
+          <%= form_for @user, :url => create_prefs_path, :method => :post, :html => {:class => 'form-horizontal'} do |f| %>
 
-      <%= link_to 'Back', root_path, class: 'btn btn-warning' %>
-      <%= f.submit "Next", class: 'btn btn-warning' %>
-    <% end %>
-  </fieldset>
+           First date? I'd be down for: (select one or more)<br>
+
+          <%= collection_check_boxes(:user, :first_dates, @first_date, :id, :types) %>
+          <br>
+          <br>
+
+          <!-- lifestyle checkboxes -->
+          How would you describe your lifestyle? (select one or more)<br>
+
+
+          <%= collection_check_boxes(:user, :lifestyles, @lifestyle, :id, :types) %>
+          <br>
+          <br>
+
+          <!-- SUBMIT -->
+          <%= f.submit "Find Matches", class: 'btn btn-warning' %>
+        <% end %>
+      </fieldset>
+
+      </div>
+
+    </div>
+  </div>
+</div>

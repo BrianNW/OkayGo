@@ -11,20 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20140804220836) do
+ActiveRecord::Schema.define(version: 20140805175053) do
 
   create_table "date_deets", force: true do |t|
     t.string   "name"
     t.string   "img"
     t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
     t.date     "date"
     t.time     "time"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status",     default: "online"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.integer  "code_chat"
   end
 
   create_table "deets", force: true do |t|
@@ -82,8 +82,8 @@ ActiveRecord::Schema.define(version: 20140804220836) do
     t.integer  "target_id"
     t.integer  "user_id"
     t.integer  "code_chat"
-    t.float    "latitude"
     t.float    "longitude"
+    t.float    "latitude"
   end
 
   create_table "preferences", force: true do |t|
