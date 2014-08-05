@@ -30,38 +30,29 @@ $(function() {
 
 <div id="page-content-wrapper">
   <div class="container-fluid" style="margin-left:20%">
-    <%= render 'layouts/sidebar' %>
-    <h1>Mutual Matches page</h1>
 
+      <%= render 'layouts/sidebar' %>
 
-    <% @user.each do |user| if @user %>
-
+      <% @user.each do |user| if @user %>
     <div class="col-md-4 portfolio-item">
-      <a href="#">
-
-    <!-- JAVASCRIPT TAG -->
+      <!-- JAVASCRIPT TAG -->
         <%= content_tag "div", id: "products", data: {otheruserid: user.id} do %>
-
-        <!-- profile pic -->
         <img class="profilepic" src="<%=user.img%>">
-      </a>
-
-      <!-- username -->
       <h3><%= link_to user.username, user_path(user) %></h3>
-       <%= button_to "Date", first_date_path(:chatid => current_user.id + user.id), :class => "btn btn-danger", :method => :get  %>
-      <% end %>
-    <% end %>
+      <div style="">
+      <!-- username -->
+       <%= link_to "Date", first_date_path(:chatid => current_user.id + user.id), :class => "btn btn-danger", :method => :get, style: 'margin-right: 90px;'  %>
     <!-- /JAVASCRIPT TAG -->
-
 
       <!-- CHAT BUTTON -->
       <!-- connected to script tag -->
       <button id="startChat" class="btn btn-warning chatLink"  data-toggle="modal" data-target="#iframeModal" data-otheruserid="<%=user.id%>">Chat</button>
-
-    </div>
-    <% end %>
-    </div>
-  </div>
+      </div>
+      </div>
+          <% end %>
+        <% end %>
+      <% end %>
+</div>
 
 <!-- IFRAME MODAL -->
 
