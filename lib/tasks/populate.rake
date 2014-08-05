@@ -70,7 +70,7 @@ namespace :db do
       username = Faker::Internet.user_name
       password_digest = "pass"
       user = User.create!(:username => username,
-        :img => ['assets/male1.jpg', 'assets/male2.jpg', 'assets/male3.jpg', 'assets/male4.jpg', 'assets/male5.jpg', 'assets/male6.jpg', 'assets/male7.jpg', 'assets/male8.jpg', 'assets/male9.jpg', 'assets/male10.jpg', 'assets/male11.jpg'].sample,
+        :image => ['assets/male1.jpg', 'assets/male2.jpg', 'assets/male3.jpg', 'assets/male4.jpg', 'assets/male5.jpg', 'assets/male6.jpg', 'assets/male7.jpg', 'assets/male8.jpg', 'assets/male9.jpg', 'assets/male10.jpg', 'assets/male11.jpg'].sample,
         :password_digest => 'password_digest',
         :age => 20 + rand(20),
         :gender => 'male'
@@ -115,7 +115,7 @@ namespace :db do
       3.times do |n|
        Like.create({
         :user_id => user.id,
-        :target_id => 1001
+        :target_id => 1002
       })
      end
     end
@@ -128,7 +128,7 @@ namespace :db do
       username = Faker::Internet.user_name
       password_digest = "password_digest"
       user = User.create!(:username => username,
-        :img => ['assets/female1.jpg', 'assets/female2.jpg', 'assets/female3.jpg', 'assets/female4.jpg', 'assets/female5.jpg', 'assets/female6.jpg', 'assets/female7.jpg', 'assets/female8.jpg', 'assets/female9.jpg', 'assets/female10.jpg'].sample,
+        :image => ['assets/female1.jpg', 'assets/female2.jpg', 'assets/female3.jpg', 'assets/female4.jpg', 'assets/female5.jpg', 'assets/female6.jpg', 'assets/female7.jpg', 'assets/female8.jpg', 'assets/female9.jpg', 'assets/female10.jpg'].sample,
         :password_digest => 'pass',
         :age => 20 + rand(20),
         :gender => 'female'
@@ -173,7 +173,7 @@ namespace :db do
       3.times do |n|
        Like.create({
         :user_id => user.id,
-        :target_id => 1001
+        :target_id => 1002
       })
      end
     end

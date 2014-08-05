@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get 'getChatID/:otheruserid', to: 'users#chatid', as:
   'chatid'
 
-  get 'getUserInfo/:chatid', to: 'users#userinfo', as:
+  get 'getUserInfo/:user_id/:chatid', to: 'users#userinfo', as:
   'userinfo', :defaults => { :format => :js }
 
   get 'my_profile', to: 'users#my_profile', as: 'profile'

@@ -7,7 +7,7 @@
         <div class="col-md-4 portfolio-item">
 
           <a href="#">
-            <img class="profilepic" src="<%=user.img%>">
+            <img class="profilepic" src="<%=user.image%>">
           </a>
 
           <h3><%= link_to user.username, user_path(user) %></h3>
@@ -73,6 +73,33 @@ FORM -->
      <!-- model content -->
      <div class="modal-body">
       <%= render "preferences/modal" %>
+     </div>
+
+     <!-- buttons -->
+     <!-- <div class="modal-footer">
+       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       <button type="button" class="btn btn-primary">Save changes</button>
+     </div> -->
+   </div>
+ </div>
+</div>
+
+<!-- FIRST DATE MODAL -->
+<div class="modal fade" id="firstdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+   <div class="modal-content">
+     <div class="modal-header">
+
+       <!-- close modal x -->
+       <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+       <!-- modal title -->
+       <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+     </div>
+
+     <!-- model content -->
+     <div class="modal-body">
+      <%= render "deets/modal" %>
      </div>
 
      <!-- buttons -->

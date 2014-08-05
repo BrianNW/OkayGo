@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
   has_secure_password
+  mount_uploader :img, ImgUploader
 
   # ONE TO ONE
   has_one :deet
@@ -25,7 +26,7 @@ class User < ActiveRecord::Base
   has_many :flagged_by, :class_name => 'Flag', :foreign_key => 'target_id'
 
   # IMAGES TABLE
-  has_many :images
+  # has_many :images
 
   accepts_nested_attributes_for :preference,
                                 :deet,

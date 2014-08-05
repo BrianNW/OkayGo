@@ -133,7 +133,7 @@ margin-left: 10%
   position: relative;
   text-align:center;
   color: rgb(68, 68, 68);
-/*   font-size: 50px; */
+/* font-size: 50px; */
 }
 
 #textArea {
@@ -160,7 +160,7 @@ margin-top: 16%;
 margin-left: 30%;
 margin-right: 30%;
 height: 100%;
-/* background-color: rgba(0, 0, 0, 0.58); */
+/*background-color: rgba(0, 0, 0, 0.58); */
 padding-bottom: 20px;
 text-align:center;
 }
