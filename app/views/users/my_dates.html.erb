@@ -3,8 +3,8 @@
 
       <%= render 'layouts/sidebar' %>
 
-        <div class="col-md-4 portfolio-item" id='dates-list'>
-          <!-- CONTENT OF WEBSITE -->
+      <div class="col-md-4 portfolio-item" div id='dates-list'>
+          <!-- CONTENT -->
 
         <% @date_deets.each do |date| if @date_deets %>
 
@@ -12,13 +12,11 @@
         <p><%= date.date %></p>
 
         <h3><%= get_date_status(date) %></h3>
+        <% end %>
+        <% end %>
 
-    <% end %>
-  <% end %>
-
-        </div>
-
-  </div>
+      </div>
+    </div>
 </div>
 
 <!--
