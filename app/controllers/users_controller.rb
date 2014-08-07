@@ -159,16 +159,16 @@ class UsersController < ApplicationController
     #when the user clicks accept
     user_date_id = params[:user_date_id]
     #takes the date_deets id as params and saveds it to user_date_id
-    user_dates = UserDate.where(date_deets_id: user_date_id, user_id: current_user.id, accepted: true).first_or_create!(user_id: current_user.id, date_deets_id: user_date_id, accepted: true)
-    #finsds a date_deet where the id is equal to the one just created and the same user id and makes accepted == true. if it doesn't find one, it adds one to the database and makes it accepted
+    user_dates = UserDate.where(date_deets_id: user_date_id, user_id: current_user.id).first_or_create!(user_id: current_user.id, date_deets_id: user_date_id, accepted: true)
+    #finsds a date_deet where the id is equal to the one just created and the same user id. if it doesn't find one, it adds one to the database and makes it accepted
     redirect_to my_dates_path
     #redirects to my dates path
   end
 
   def get_date_status(date)
     #passes in the date_deet object (date_deet record in the database)
-    user_dates = UserDate.where('date_deets_id == ? AND user_id != ?', date.id, current_user.id).last
-    #finds the user_date where 
+    user_dates = UserDate.where('date_deets_id == ? AND user_id != ?', date.id, current_user.id)
+    #finds the user_date where the date deets id (shared by both users) matches the 
     if user_dates == nil
       return 'Pending'
     elsif user_dates
