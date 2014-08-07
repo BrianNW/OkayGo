@@ -1,10 +1,21 @@
 $( document ).ready(function() {
 
+<% if @current != @user_data[1].id %>
   var current_username = "<%= @user_data[1].username %>";
-  var current_avatar = "<%= @user_data[1].img%>";
+  var current_avatar = "<%= @user_data[1].img.url%>";
 
   var other_username = "<%= @user_data[0].username %>";
-  var other_avatar = "<%= @user_data[0].img%>";
+  var other_avatar = "<%= @user_data[0].img.url%>";
+
+<% else %>
+
+  var current_username = "<%= @user_data[0].username %>";
+  var current_avatar = "<%= @user_data[0].img.url%>";
+
+  var other_username = "<%= @user_data[1].username %>";
+  var other_avatar = "<%= @user_data[1].img.url%>";
+
+<% end %>
 
 	$("#creatorImage").attr('src', 'http://localhost:3000/'+current_avatar);
 
@@ -20,10 +31,23 @@ $( document ).ready(function() {
   $("#noMessagesImage").attr('src', 'http://localhost:3000/'+current_avatar);
   $("#noMessagesImage2").attr('src', 'http://localhost:3000/'+other_avatar);
 
+// where user is !0 + else
+// where user is !1 + else
+// where user is ==0 + else
+// where user is ==1 + else
 
+<%if @current != @user_data[0].id %>
   // rewrites chat avatar
   $("body").data("me-avatar", 'http://localhost:3000/'+current_avatar)
   $("body").data("you-avatar", 'http://localhost:3000/'+other_avatar)
+
+<%else%>
+
+  $("body").data("you-avatar", 'http://localhost:3000/'+current_avatar)
+  $("body").data("me-avatar", 'http://localhost:3000/'+other_avatar)
+
+<%end%>
+
 
   // image when user leaves
   $("#leftImage").attr('src', 'http://localhost:3000/'+current_avatar);

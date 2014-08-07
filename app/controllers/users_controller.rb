@@ -26,6 +26,9 @@ class UsersController < ApplicationController
     # RENDERED IN DEET MODAL
     @deet = Deet.find(current_user.deet)
     # @chat = Like.where(user_id: user.id, target_id: current_user).first.code_chat
+    @preference = current_user.preference
+    @first_date = FirstDate.all
+    @lifestyle = Lifestyle.all
 
     # creates chat code
   end
@@ -100,6 +103,8 @@ class UsersController < ApplicationController
 
     # finds users based on chat data query
     @user_data = User.where(id: [chat_data.target_id, chat_data.user_id])
+
+    @current = params[:user_id]
 
     # sends data as raw javascript
     respond_to do |format|
@@ -225,7 +230,7 @@ class UsersController < ApplicationController
     # params.require(:user).permit(
     #   :username, :password, :img, :age, :gender)
     params.require(:user).permit(:username,
-      :password, :password_confirmation, :img, :age, :gender,
+      :password, :password_confirmation, :img, :age, :image, :gender,
       :preference_attributes => [:max_age, :min_age, :gender_pref, :address],
       :deet_attributes => [:lifestyle, :about_me, :profession]
     )

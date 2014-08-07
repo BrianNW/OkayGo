@@ -17,11 +17,15 @@ $(function() {
 
       //make iframe code here CHAT BOX
       //URL - 'http://localhost:8080/'+data.chatID
-        $("#iframeModal").find("iframe").attr('src', 'http://localhost:8080/chat/'+data.chatID)
+        $("#iframeModal").find("iframe").attr('src', 'http://localhost:8080/chat/<%=@current_user.id%>/'+data.chatID);
 
       });
 
     });
+
+  $('#iframeModal').on("hidden.bs.modal", function() {
+    $(this).find("iframe").attr("src","");
+  });
 
 });
 
@@ -37,7 +41,7 @@ $(function() {
     <div class="col-md-4 portfolio-item">
       <!-- JAVASCRIPT TAG -->
         <%= content_tag "div", id: "products", data: {otheruserid: user.id} do %>
-        <img class="profilepic" src="<%=user.img%>">
+        <img class="profilepic" src="<%=user.image%>">
       <h3><%= link_to user.username, user_path(user) %></h3>
       <div style="">
       <!-- username -->
@@ -85,58 +89,86 @@ $(function() {
   </div>
 
 
+<!-- DEET MODAL -->
+<div class="modal fade" id="deetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+   <div class="modal-content">
+     <div class="modal-header">
 
+       <!-- close modal x -->
+       <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
-  <!-- DEET MODAL -->
- <div class="modal fade" id="deetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-   <div class="modal-dialog">
-     <div class="modal-content">
-       <div class="modal-header">
-
-         <!-- close modal x -->
-         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-
-         <!-- modal title -->
-         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-       </div>
-
-       <!-- model content -->
-
-       <!-- buttons -->
-       <!-- <div class="modal-footer">
-         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-         <button type="button" class="btn btn-primary">Save changes</button>
-       </div> -->
+       <!-- modal title -->
+       <h4 class="modal-title" id="myModalLabel">Modal title</h4>
      </div>
+
+     <!-- model content -->
+     <div class="modal-body">
+       <%= render "deets/modal" %>
+     </div>
+
+     <!-- buttons -->
+     <!-- <div class="modal-footer">
+       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       <button type="button" class="btn btn-primary">Save changes</button>
+     </div> -->
    </div>
  </div>
+</div>
 
 
 
 
- <!-- FIRST DATE MODAL -->
- <div class="modal fade" id="firstdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
+<!-- FIRST DATE MODAL -->
+<div class="modal fade" id="firstdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
 
-        <!-- close modal x -->
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <!-- close modal x -->
+      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
-        <!-- modal title -->
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-
-      <!-- model content -->
-      <div class="modal-body">
-
-      </div>
-
-      <!-- buttons -->
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
+      <!-- modal title -->
+      <h4 class="modal-title" id="myModalLabel">Modal title</h4>
     </div>
+
+    <!-- model content -->
+    <div class="modal-body">
+     <%= render "preferences/modal" %>
+    </div>
+
+    <!-- buttons -->
+    <!-- <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary">Save changes</button>
+    </div> -->
   </div>
- </div>
+</div>
+</div>
+
+<!-- FIRST DATE MODAL -->
+<div class="modal fade" id="firstdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+
+      <!-- close modal x -->
+      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+      <!-- modal title -->
+      <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+    </div>
+
+    <!-- model content -->
+    <div class="modal-body">
+     <%= render "deets/modal" %>
+    </div>
+
+    <!-- buttons -->
+    <!-- <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary">Save changes</button>
+    </div> -->
+  </div>
+</div>
+</div>
