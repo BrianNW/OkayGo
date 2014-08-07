@@ -41,7 +41,13 @@ $(function() {
     <div class="col-md-4 portfolio-item">
       <!-- JAVASCRIPT TAG -->
         <%= content_tag "div", id: "products", data: {otheruserid: user.id} do %>
+
+      <%if user.image.nil?%>
+        <img class="profilepic" src="<%=user.img%>">
+      <%else%>
         <img class="profilepic" src="<%=user.image%>">
+      <%end%>
+
       <h3><%= link_to user.username, user_path(user) %></h3>
       <div style="">
       <!-- username -->
@@ -69,7 +75,7 @@ $(function() {
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
           <!-- modal title -->
-          <h4 class="modal-title" id="myModalLabel">Just Decide</h4>
+          <h4 class="modal-title" id="myModalLabel">okay go</h4>
         </div>
 
         <!-- model content -->
@@ -99,7 +105,7 @@ $(function() {
        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
        <!-- modal title -->
-       <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+       <h4 class="modal-title" id="myModalLabel">okay go</h4>
      </div>
 
      <!-- model content -->
@@ -129,7 +135,7 @@ $(function() {
       <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
       <!-- modal title -->
-      <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      <h4 class="modal-title" id="myModalLabel">okay go</h4>
     </div>
 
     <!-- model content -->
@@ -156,7 +162,7 @@ $(function() {
       <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
       <!-- modal title -->
-      <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      <h4 class="modal-title" id="myModalLabel">okay go</h4>
     </div>
 
     <!-- model content -->
