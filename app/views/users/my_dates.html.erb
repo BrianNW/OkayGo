@@ -9,9 +9,11 @@
         <% @date_deets.each do |date| if @date_deets %>
 
         <h3><%= date.name %></h3>
+        <p><%= date.address %></p>
         <p><%= date.date %></p>
 
         <h3><%= get_date_status(date) %></h3>
+
         <% end %>
         <% end %>
 

@@ -165,6 +165,12 @@ class UsersController < ApplicationController
     #redirects to my dates path
   end
 
+  def decline_date
+    date_deet = DateDeets.find(params[:user_date_id]).destroy
+    redirect_to my_dates_path
+    #destroys the date_deet for both users & associated user_dates with dependant destroy in model
+  end
+
   def get_date_status(date)
     #passes in the date_deet object (date_deet record in the database)
     user_dates = UserDate.where('date_deets_id == ? AND user_id != ?', date.id, current_user.id).last
