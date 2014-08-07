@@ -214,14 +214,8 @@ class UsersController < ApplicationController
   end
 
   def random_date
-    @day = (Date.today+(7*rand())).strftime("%A, %B %d %Y")
-    @time = (Time.now).strftime("%I:%M%p")
-
-      # if @date_type == "drinks"
-      #   @message = "#{@day} at #{@time}"
-      # elsif @date_type == "skydiving"
-      #   @message = "#{@day} at #{@time}"
-    # end
+    @day = (Date.today+(7)).strftime("%A, %B %d %Y")
+    @time = "11:00AM"
   end
 
 
