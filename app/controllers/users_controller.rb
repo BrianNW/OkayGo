@@ -133,11 +133,13 @@ class UsersController < ApplicationController
     google_search
     random_date
 
-    @saved_date_deet = DateDeets.create(name: @name, img: @icon, address: @address, latitude: @latitude, longitude: @longitude, date: @day, time: @time, code_chat: @code_chat)
+    @saved_date_deet = DateDeets.where(code_chat: @code_chat).first_or_create!(name: @name, img: @icon, address: @address, latitude: @latitude, longitude: @longitude, date: @day, time: @time, code_chat: @code_chat)
+    #checks to see if the date with this code_chat exists. if it does, returns it, if not, creates one.
   end
 
 
   def my_dates
+    #after running the accept_date method, it finds the current users date_deets and puts them on the page
     date_deets_ids = current_user.user_dates.map(&:date_deets_id)
     @date_deets = DateDeets.where(id: date_deets_ids)
     # switches boolean for this date deet to true
@@ -154,14 +156,19 @@ class UsersController < ApplicationController
   end
 
   def accept_date
+    #when the user clicks accept
     user_date_id = params[:user_date_id]
+    #takes the date_deets id as params and saveds it to user_date_id
     user_dates = UserDate.where(date_deets_id: user_date_id, user_id: current_user.id, accepted: true).first_or_create!(user_id: current_user.id, date_deets_id: user_date_id, accepted: true)
-    user_dates.save
+    #finsds a date_deet where the id is equal to the one just created and the same user id and makes accepted == true. if it doesn't find one, it adds one to the database and makes it accepted
     redirect_to my_dates_path
+    #redirects to my dates path
   end
 
   def get_date_status(date)
+    #passes in the date_deet object (date_deet record in the database)
     user_dates = UserDate.where('date_deets_id == ? AND user_id != ?', date.id, current_user.id).last
+    #finds the user_date where 
     if user_dates == nil
       return 'Pending'
     elsif user_dates
