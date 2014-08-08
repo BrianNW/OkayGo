@@ -168,7 +168,7 @@ class UsersController < ApplicationController
   def get_date_status(date)
     #passes in the date_deet object (date_deet record in the database)
     user_dates = UserDate.where('date_deets_id == ? AND user_id != ?', date.id, current_user.id).last
-    #finds the user_date where 
+    #finds the user_date where
     if user_dates == nil
       return 'Pending'
     elsif user_dates

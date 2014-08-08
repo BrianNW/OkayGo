@@ -21,9 +21,16 @@
           <% end %>
 
           <!-- LOG IN -->
-          <%= link_to login_path do %>
-            <%= button_tag "Login", :class => "btn btn-homepage" %>
+          <%if !current_user.nil?%>
+            <%= link_to users_path do %>
+              <%= button_tag "View Matches", :class => "btn btn-homepage" %>
+            <%end%>
+          <%else%>
+            <%= link_to login_path do %>
+              <%= button_tag "Login", :class => "btn btn-homepage" %>
+            <% end %>
           <% end %>
+
         </div>
 
       </div>
