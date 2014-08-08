@@ -159,16 +159,22 @@ class UsersController < ApplicationController
     #when the user clicks accept
     user_date_id = params[:user_date_id]
     #takes the date_deets id as params and saveds it to user_date_id
-    user_dates = UserDate.where(date_deets_id: user_date_id, user_id: current_user.id, accepted: true).first_or_create!(user_id: current_user.id, date_deets_id: user_date_id, accepted: true)
-    #finsds a date_deet where the id is equal to the one just created and the same user id and makes accepted == true. if it doesn't find one, it adds one to the database and makes it accepted
+    user_dates = UserDate.where(user_id: current_user.id, date_deets_id: user_date_id).first_or_create!(user_id: current_user.id, date_deets_id: user_date_id, accepted: true)
+    #finsds a date_deet where the id is equal to the one just created and the same user id. if it doesn't find one, it adds one to the database and makes it accepted
     redirect_to my_dates_path
     #redirects to my dates path
+  end
+
+  def decline_date
+    date_deet = DateDeets.find(params[:user_date_id]).destroy
+    redirect_to my_dates_path
+    #destroys the date_deet for both users & associated user_dates with dependant destroy in model
   end
 
   def get_date_status(date)
     #passes in the date_deet object (date_deet record in the database)
     user_dates = UserDate.where('date_deets_id == ? AND user_id != ?', date.id, current_user.id).last
-    #finds the user_date where 
+    #finds the user_date where the date deets id (shared by both users) matches the 
     if user_dates == nil
       return 'Pending'
     elsif user_dates
@@ -214,14 +220,8 @@ class UsersController < ApplicationController
   end
 
   def random_date
-    @day = (Date.today+(7*rand())).strftime("%A, %B %d %Y")
-    @time = (Time.now).strftime("%I:%M%p")
-
-      # if @date_type == "drinks"
-      #   @message = "#{@day} at #{@time}"
-      # elsif @date_type == "skydiving"
-      #   @message = "#{@day} at #{@time}"
-    # end
+    @day = (Date.today+(7)).strftime("%A, %B %d %Y")
+    @time = "11:00AM"
   end
 
 

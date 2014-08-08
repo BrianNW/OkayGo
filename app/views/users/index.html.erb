@@ -6,15 +6,22 @@
       <% @user.each do |user| if @user %>
         <div class="col-md-4 portfolio-item">
           <a href="/users">
+
+            <%if user.image.nil?%>
+            <img class="profilepic" src="<%=user.img%>">
+            <%else%>
             <img class="profilepic" src="<%=user.image%>">
+            <%end%>
           </a>
+
+          <h3><%= link_to user.username, user_path(user) %></h3>
 
           <div style="">
               <%= link_to '<i class="fa fa-heart-o"></i>'.html_safe, {:controller => "likes", :action => "create", :target_id => user.id} , :method=>:post, class: 'btn btn-warning', style: 'margin-right: 90px;' %>
               <%= link_to '<i class="fa fa-flag"></i>'.html_safe, {:controller => "flags", :action => "create", :target_id => user.id} , :method=>:post, class: 'btn btn-danger' %>
           </div>
 
-          <h3><%= link_to user.username, user_path(user) %></h3>
+
 
 
 
@@ -37,7 +44,7 @@ FORM -->
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
         <!-- modal title -->
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">okay go</h4>
       </div>
 
       <!-- model content -->
@@ -67,7 +74,7 @@ FORM -->
        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
        <!-- modal title -->
-       <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+       <h4 class="modal-title" id="myModalLabel">okay go</h4>
      </div>
 
      <!-- model content -->
@@ -94,7 +101,7 @@ FORM -->
        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
        <!-- modal title -->
-       <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+       <h4 class="modal-title" id="myModalLabel">okay go</h4>
      </div>
 
      <!-- model content -->
