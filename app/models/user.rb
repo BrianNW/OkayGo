@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   # FIRST DATES THROUGH TABLES
   has_many :first_date_prefs
   has_many :first_dates, through: :first_date_prefs
-
+  
   # LIKES & FLAGS TABLES
   has_many :likes, :class_name => 'Like', :foreign_key => 'user_id'
   has_many :liked_by, :class_name => 'Like', :foreign_key => 'target_id'
